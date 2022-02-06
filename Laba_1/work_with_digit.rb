@@ -1,14 +1,26 @@
 def main
   number = ARGV.first # Считываем число, поступившее программе
-  # puts("Сумма цифр в числе '#{number}' - #{sum_digits_number(number)}") # вызов функции суммы цифр в числе
-  # puts("Произведение цифр в числе '#{number}' - #{mul_digits_number(number)}") # вызов функции суммы цифр в числе
-  # puts("Минимальная цифра в числе '#{number}' - #{min_digit_number(number)}") # вызов функции минимальной цифры в числе
-  # puts("Максимальная цифра в числе '#{number}' - #{max_digit_number(number)}") # вызов функции максимальной цифры в числе
-  # puts("Количество четных чисел, не взаимно простых с '#{number}'" +
-  #      " - #{count_even_number_not_mut_sim(number)}") # вызов метода: количество четных чисел, не взаимно простых с данным
-  # puts("Максимальная цифра числа '#{number}', не делящиеся на 3" +
-  #      " - #{max_digit_not_div_3_number(number)}") # вызов метода: максимальная цифра числа, не делящиеся на 3
-  puts("Результат 3 метода - #{mul_max(number)}") # Метод 3
+  select = ARGV[1] # Считываем выбор пользователя
+  case select
+    when '1'
+      puts("Сумма цифр в числе '#{number}' - #{sum_digits_number(number)}") # вызов функции суммы цифр в числе
+    when '2'
+      puts("Произведение цифр в числе '#{number}' - #{mul_digits_number(number)}") # вызов функции суммы цифр в числе
+    when '3'
+      puts("Минимальная цифра в числе '#{number}' - #{min_digit_number(number)}") # вызов функции минимальной цифры в числе
+    when '4'
+      puts("Максимальная цифра в числе '#{number}' - #{max_digit_number(number)}") # вызов функции максимальной цифры в числе
+    when '5'
+      puts("Количество четных чисел, не взаимно простых с '#{number}'" +
+           " - #{count_even_number_not_mut_sim(number)}") # вызов метода: количество четных чисел, не взаимно простых с данным
+    when '6'
+      puts("Максимальная цифра числа '#{number}', не делящиеся на 3" +
+           " - #{max_digit_not_div_3_number(number)}") # вызов метода: максимальная цифра числа, не делящиеся на 3
+    when '7'
+      puts("Результат 3 метода - #{mul_max(number)}") # Метод 3
+    else
+    puts("Hello, неверный ввод выбора!!!")
+  end
 end
 
 # Функция суммы цифр в числе
@@ -87,7 +99,7 @@ def mul_max(number)
   while(i > 1)
     if((gcd(number_int, i) != 1) & (i % min_div != 0))
       max_digit = i
-      puts("Максмальное число - #{max_digit}")
+      puts("Максимальное число - #{max_digit}")
       break
     end
     i = i - 1
