@@ -1,29 +1,50 @@
 def main
-  number = ARGV[0]
-  if(ARGV[1].downcase == "key")
+  puts("Здравствуйте! Выберите один из следующих методов:
+    1. Вывести индексы массива в том порядке,в котором соответствующие
+     им элементы образую убывающую последовательность.
+    2. Необходимо найти элементы,расположенные между первым и вторым максимальным.
+    3. Необходимо найти элементы,расположенные между первым и последним максимальным.
+    4. Необходимо найти минимальный четный элемент.
+    5. Для введенного числа построить список всех его простых делителей,
+    причем если введенное число делится на простое число p в степени a , то в
+    итоговом списке число p должно повторятся a раз. Результирующий список
+    должен быть упорядочен по возрастанию.
+    ")
+    sel = gets.chomp
+    select_metod(sel)
+end
+
+def init_list
+  puts("Список считываем с key или file?")
+  sel = gets.chomp
+  if(sel.downcase == "key")
     puts("Введите список через пробел и нажмите Enter : ")
     ARGV.clear
     list = gets.chomp.split(" ")
-  elsif(ARGV[1].downcase == "file")
+  elsif(sel.downcase == "file")
     file = File.new(ARGV[2], "r")
     list = file.gets.chomp.split(" ")
   end
   list = list.map {|i| i.to_i} # Преобразуем в массив чисел
-  select_metod(number, list)
 end
 
-def select_metod(number, list)
+def init_number
+  puts("Введите цифру: ")
+  sel = gets.chomp
+end
+
+def select_metod(number)
   case number
     when "1"
-      puts("Полученный массив с индексами: #{metod_1(list)}")
+      puts("Полученный массив с индексами: #{metod_1(init_list)}")
     when "2"
-      puts("Полученный массив : #{metod_2(list)}")
+      puts("Полученный массив : #{metod_2(init_list)}")
     when "3"
-      puts("Полученный массив : #{metod_3(list)}")
+      puts("Полученный массив : #{metod_3(init_list)}")
     when "4"
-      puts("Полученный элемент : #{metod_4(list)}")
+      puts("Полученный элемент : #{metod_4(init_list)}")
     when "5"
-      puts("Список : #{metod_5(256)}")
+      puts("Список : #{metod_5(init_number)}")
     else
       puts("Некорректный ввод!")
   end
@@ -91,13 +112,12 @@ end
 должен быть упорядочен по возрастанию.
 =end
 def metod_5(number)
-  28.to_s(16)
-  # (2..number).select {|x| (1..x).select{|y| x % y == 0}.size == 2 && number % x == 0 }. # Выбрали простые делители
-  # # Перевели в соответствующую систему, и отобрали нули
-  # map{|x| number.to_s(x).reverse.sub(number.to_s(x).reverse.sub(/[0]*/, ""), "")
-  #   # каждый ноль меняем на делитель
-  #   .chars.map{|e| e=x}
-  # }.flatten # Сделали одномерный массив
+  (2..number).select {|x| (1..x).select{|y| x % y == 0}.size == 2 && number % x == 0 }. # Выбрали простые делители
+  # Перевели в соответствующую систему, и отобрали нули
+  map{|x| number.to_s(x).reverse.sub(number.to_s(x).reverse.sub(/[0]*/, ""), "")
+    # каждый ноль меняем на делитель
+    .chars.map{|e| e=x}
+  }.flatten # Сделали одномерный массив
 end
 
 if __FILE__ == $0
