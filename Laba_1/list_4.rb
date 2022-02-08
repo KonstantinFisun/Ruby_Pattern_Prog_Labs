@@ -1,10 +1,10 @@
 def main
   number = ARGV[0]
-  if(ARGV[1].downcase == "клавиатура")
+  if(ARGV[1].downcase == "key")
     puts("Введите список через пробел и нажмите Enter : ")
     ARGV.clear
     list = gets.chomp.split(" ")
-  elsif(ARGV[1].downcase == "файл")
+  elsif(ARGV[1].downcase == "file")
     file = File.new(ARGV[2], "r")
     list = file.gets.chomp.split(" ")
   end
@@ -18,6 +18,8 @@ def select_metod(number, list)
       puts("Полученный массив с индексами: #{metod_1(list)}")
     when "2"
       puts("Полученный массив : #{metod_2(list)}")
+    when "3"
+      puts("Полученный массив : #{metod_3(list)}")
     else
       puts("Некорректный ввод!")
   end
@@ -62,6 +64,14 @@ def metod_2(list)
   list.slice(start + 1, lenght) # Выбираем подпоследовательность между ними
 end
 
+=begin
+Дан целочисленный массив. Необходимо найти элементы,расположенные между
+первым и последним максимальным.
+=end
+def metod_3(list)
+  max_with_index = list.map.with_index.max(1) # Получаем последний максимальный с индексом
+  list.slice(1, max_with_index[0][1]) # Выбираем подпоследовательность между ними
+end
 
 if __FILE__ == $0
     main
