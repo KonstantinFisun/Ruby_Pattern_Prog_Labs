@@ -20,6 +20,8 @@ def select_metod(number, list)
       puts("Полученный массив : #{metod_2(list)}")
     when "3"
       puts("Полученный массив : #{metod_3(list)}")
+    when "4"
+      puts("Полученный элемент : #{metod_4(list)}")
     else
       puts("Некорректный ввод!")
   end
@@ -71,6 +73,13 @@ end
 def metod_3(list)
   max_with_index = list.map.with_index.max(1) # Получаем последний максимальный с индексом
   list.slice(1, max_with_index[0][1]) # Выбираем подпоследовательность между ними
+end
+
+=begin
+Дан целочисленный массив. Необходимо найти минимальный четный элемент.
+=end
+def metod_4(list)
+  list.map{|x| if x % 2 == 0 then x end }.compact.min
 end
 
 if __FILE__ == $0
