@@ -22,6 +22,8 @@ def select_metod(number, list)
       puts("Полученный массив : #{metod_3(list)}")
     when "4"
       puts("Полученный элемент : #{metod_4(list)}")
+    when "5"
+      puts("Список : #{metod_5(256)}")
     else
       puts("Некорректный ввод!")
   end
@@ -80,6 +82,22 @@ end
 =end
 def metod_4(list)
   list.map{|x| if x % 2 == 0 then x end }.compact.min
+end
+
+=begin
+Для введенного числа построить список всех его простых делителей,
+причем если введенное число делится на простое число p в степени a , то в
+итоговом списке число p должно повторятся a раз. Результирующий список
+должен быть упорядочен по возрастанию.
+=end
+def metod_5(number)
+  28.to_s(16)
+  # (2..number).select {|x| (1..x).select{|y| x % y == 0}.size == 2 && number % x == 0 }. # Выбрали простые делители
+  # # Перевели в соответствующую систему, и отобрали нули
+  # map{|x| number.to_s(x).reverse.sub(number.to_s(x).reverse.sub(/[0]*/, ""), "")
+  #   # каждый ноль меняем на делитель
+  #   .chars.map{|e| e=x}
+  # }.flatten # Сделали одномерный массив
 end
 
 if __FILE__ == $0
