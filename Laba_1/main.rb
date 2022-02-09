@@ -3,17 +3,18 @@
 def main
   name = ARGV.first
   puts "Приветствую тебя, #{name.capitalize}" # Первый аргумент переводим в нужный регистр
-  # puts "Какой ваш любимый язык?"
-  # language = STDIN.gets.chomp # Считываем язык
-  # select_language(language) # Вызов выбора ответа
+  ARGV.clear
+  puts "Какой ваш любимый язык?"
+  language = gets.chomp # Считываем язык
+  select_language(language) # Вызов выбора ответа
 
   puts "Введите команду ОС"
-  command_oc = `#{STDIN.gets.chomp}`
+  command_os = system"#{gets}"
   puts command_os
 
   puts "Введите команду Ruby"
-  command_ruby = STDIN.gets.chomp
-  puts system (command_ruby)
+  command_ruby = `ruby "-e#{gets}"`
+  puts command_ruby
 end
 
 # Ответ на введенный язык
