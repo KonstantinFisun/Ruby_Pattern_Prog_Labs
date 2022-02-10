@@ -30,7 +30,7 @@ end
 
 def init_number
   puts("Введите цифру: ")
-  sel = gets.chomp
+  sel = gets.chomp.to_i
 end
 
 def select_metod(number)
@@ -111,14 +111,22 @@ end
 итоговом списке число p должно повторятся a раз. Результирующий список
 должен быть упорядочен по возрастанию.
 =end
+# Преобразование в список k = [del*], где узнаем сколько данное число num может поделиться на del без остатка
+def func(num, k, del)
+  if (num % del == 0)
+    k.push(del)
+    func(num / del, k, del)
+  else
+    k
+  end
+end
+
 def metod_5(number)
   (2..number).select {|x| (1..x).select{|y| x % y == 0}.size == 2 && number % x == 0 }. # Выбрали простые делители
-  # Перевели в соответствующую систему, и отобрали нули
-  map{|x| number.to_s(x).reverse.sub(number.to_s(x).reverse.sub(/[0]*/, ""), "")
-    # каждый ноль меняем на делитель
-    .chars.map{|e| e=x}
-  }.flatten # Сделали одномерный массив
+  # Преобразовали каждый элемент в список, в которой число p должно повторятся a раз
+  map{|x| func(number, k = [], x)}.flatten # Сделали одномерный массив
 end
+
 
 if __FILE__ == $0
     main
