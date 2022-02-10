@@ -1,10 +1,10 @@
 def main
   number = ARGV[0]
-  if(ARGV[1].downcase == "клавиатура")
+  if(ARGV[1].downcase == "key")
     puts("Введите список через пробел и нажмите Enter : ")
     ARGV.clear
     list = gets.chomp.split(" ")
-  elsif(ARGV[1].downcase == "файл")
+  elsif(ARGV[1].downcase == "file")
     file = File.new(ARGV[2], "r")
     list = file.gets.chomp.split(" ")
   end
@@ -39,7 +39,7 @@ end
 # Функция нахождения произведения элементов списка
 def mul_el_in_list(list)
   mul = 1
-  for i in list
+  for i in list do
     mul *= i
   end
   mul
@@ -48,7 +48,7 @@ end
 # Функция нахождения минимального элемента списка
 def min_el_in_list(list)
   min = list.first
-  for i in list
+  for i in list do
     if(i < min)
       min = i
     end
@@ -59,7 +59,7 @@ end
 # Функция нахождения максимального элемента списка
 def max_el_in_list(list)
   max = list.first
-  for i in list
+  for i in list do
     if(i > max)
       max = i
     end
