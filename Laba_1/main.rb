@@ -1,5 +1,3 @@
-# puts "Hello world, guys!"
-
 def main
   name = ARGV.first
   puts "Приветствую тебя, #{name.capitalize}" # Первый аргумент переводим в нужный регистр
