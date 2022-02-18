@@ -6,10 +6,13 @@ def main
     средним количеством согласных и средним количеством гласных букв в строке.
     4. Отсортировать строки в порядке увеличения квадратичного отклонения частоты
 встречаемости самого часто встречаемого в строке символа от частоты его
-встречаемости в текстах на этом алфавите
+встречаемости в текстах на этом алфавите.
+    5. Отсортировать строки в порядке увеличения разницы между количеством сочетаний
+«гласная-согласная» и «согласная-гласная» в строке
     ")
-    sel = gets.chomp
-    select_metod(sel)
+    # sel = gets.chomp
+    # select_metod(sel)
+    puts(count_vowel_consonant("ilyaf lox i kozel"))
 end
 
 def select_metod(number)
@@ -25,6 +28,9 @@ def select_metod(number)
       puts("В порядке увеличения квадратичного отклонения частоты
 встречаемости самого часто встречаемого в строке символа от частоты его
 встречаемости в текстах на этом алфавите - #{metod_4(init_list_str)}")
+    when "5"
+      puts("В порядке увеличения разницы между количеством сочетаний
+«гласная-согласная» и «согласная-гласная» в строке - #{metod_5(init_list_str)}")
     else
       puts("Некорректный ввод!")
   end
@@ -53,15 +59,15 @@ end
 # Отсортировать строки в порядке увеличения разницы между средним количеством
 # согласных и средним количеством гласных букв в строке
 def metod_3(list_str)
-  list_str.sort{|a,b| (mean_vowel(a)-mean_vowel(a)) <=> (mean_vowel(b)-mean_vowel(b))}
-end
-
-# Среднее количество гласных
-def mean_vowel(str)
-  (str.size)/(str.count "qwrtplkjhgfdsmnbvcxz")
+  list_str.sort{|a,b| (mean_consonant(a)-mean_vowel(a)) <=> (mean_consonant(b)-mean_vowel(b))}
 end
 
 # Среднее количество согласных
+def mean_consonant(str)
+  (str.size)/(str.count "qwrtplkjhgfdsmnbvcxz")
+end
+
+# Среднее количество гласных
 def mean_vowel(str)
   (str.size)/(str.count "eyuioa")
 end
@@ -77,7 +83,10 @@ end
 
 def metod_4(list_str)
   list_str.sort{|a,b|
-    ((frequency_of_the_most_frequently_occurring_character_in_line(a) - frequency_of_the_most_frequently_occurring_character_in_text(list_str, a))**2)<=>((frequency_of_the_most_frequently_occurring_character_in_line(b) - frequency_of_the_most_frequently_occurring_character_in_text(list_str, b))**2)
+    ((frequency_of_the_most_frequently_occurring_character_in_line(a)
+    - frequency_of_the_most_frequently_occurring_character_in_text(list_str, a))**2)<=>(
+      (frequency_of_the_most_frequently_occurring_character_in_line(b)
+      - frequency_of_the_most_frequently_occurring_character_in_text(list_str, b))**2)
   }
 end
 
@@ -104,6 +113,29 @@ def frequency_of_the_most_frequently_occurring_character_in_text(text, str)
 end
 
 # ------------------------------------------------------------------------------
+
+# В порядке увеличения разницы между количеством сочетаний
+# «гласная-согласная» и «согласная-гласная» в строке
+def metod_5(list_str)
+  list_str.sort do
+    |a,b| (count_vowel_consonant(a)-count_consonant_vowel(a))
+    <=>
+    (count_vowel_consonant(b)-count_consonant_vowel(b))
+  end
+end
+
+# Количество гласная-согласная
+def count_vowel_consonant(str)
+  str.scan(/[eyuioa][qwrtplkjhgfdsmnbvcxz]/).size
+end
+
+# Количество согласная-гласная
+def count_consonant_vowel(str)
+  str.scan(/[qwrtplkjhgfdsmnbvcxz][eyuioa]/).size
+end
+
+#-------------------------------------------------------------------------------
+
 if __FILE__ == $0
     main
 end
