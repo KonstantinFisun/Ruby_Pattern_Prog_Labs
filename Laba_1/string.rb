@@ -19,7 +19,9 @@ def init_str
     ARGV.clear
     str = gets.chomp
   elsif(sel.downcase == "file")
-    file = File.new(ARGV[2], "r")
+    puts("Введите название файла: ")
+    file_name = gets.chomp
+    file = File.new(file_name, "r")
     str = file.gets.chomp
   end
   str

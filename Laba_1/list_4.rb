@@ -22,7 +22,9 @@ def init_list
     ARGV.clear
     list = gets.chomp.split(" ")
   elsif(sel.downcase == "file")
-    file = File.new(ARGV[2], "r")
+    puts("Введите название файла: ")
+    file_name = gets.chomp
+    file = File.new(file_name, "r")
     list = file.gets.chomp.split(" ")
   end
   list = list.map {|i| i.to_i} # Преобразуем в массив чисел
