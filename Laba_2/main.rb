@@ -1,26 +1,20 @@
+path = File.dirname(__FILE__) # Получили путь к папке
+require "#{path}/Department.rb"
+
+# Считывание отделов из файла
+def read_from_txt(file)
+  file = File.new(file, "r")
+  list_departments = [] # Список отделов
+  for line in file.readlines
+    component = line.chomp.split(';')
+    list_departments.push(d = Department.new(component[0], component[1]))
+    component[2].split(',').each{|x| d.duty_add(x)} # Добавили обязанности
+  end
+  list_departments
+end
+
 def main
-  # sales_department = Department.new("Отдел продаж", "+79234252522", "Привлечение клиентов")
-  # hr_department = Department.new("Отдел кадров", "+7423425222", "Расчет премии", "Определение количество рабочих дней")
-  #
-  #
-  # # Добавление обязанностей
-  # sales_department.duty_add("Работа с целевой аудиторией")
-  #
-  # # Выбрать определенную обязанность
-  # sales_department.duty_select(1)
-  #
-  # # Заменить текст выделенной обязанности
-  # sales_department.change_text_sel_duty("Бездельничать")
-  #
-  # # Получить текст выделенной обязанности
-  # puts(sales_department.get_text_sel_duty)
-  #
-  # # Удаление обязанности
-  # sales_department.duty_delete
-  #
-  # # Вывод обязанностей
-  # puts(sales_department)
-  # puts(hr_department)
+  list = read_from_txt("Department.txt")
 end
 
 if __FILE__ == $0

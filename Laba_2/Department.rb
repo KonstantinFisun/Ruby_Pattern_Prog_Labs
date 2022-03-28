@@ -49,7 +49,7 @@ class Department
   # Проверка корректности номера
   def phone=(value)
     if self.class.verify_phone(value)
-      @phone = phone
+      @phone = value
     else raise ArgumentError.new("Номер телефона введен неверно!")
     end
   end
