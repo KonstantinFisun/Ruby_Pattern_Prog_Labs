@@ -17,7 +17,7 @@ end
 # Запись всех отделов в файл
 def write_to_txt(file, list_departments)
   file = File.open(file, "w") do |f|
-    list_departments.each{|x| f.puts(x)}
+    list_departments.each{|x| f.puts("#{x.name};#{x.phone};#{x.duty_write_txt}")}
   end
 end
 
@@ -30,7 +30,10 @@ end
 def main
   list_departments = read_from_txt("Department.txt")
   departments_info(list_departments)
-  write_to_txt("Department_write.txt", list_departments)
+
+  list_departments.push(Department.new("Отдел маркетинга", "+74234252230", "Просмотр истории взаимоотношений"))
+
+  write_to_txt("Department.txt", list_departments)
 end
 
 if __FILE__ == $0

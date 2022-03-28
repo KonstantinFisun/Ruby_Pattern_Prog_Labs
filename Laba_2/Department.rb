@@ -20,6 +20,12 @@ class Department
     s
   end
 
+  def duty_write_txt
+    s = ""
+    @duty.each_index{|i| s += "#{@duty[i]},"}
+    s.chop
+  end
+
   # Добавить обязанность,
   def duty_add(value)
     @duty.append(value)
