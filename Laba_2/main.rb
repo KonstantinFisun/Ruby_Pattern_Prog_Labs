@@ -1,14 +1,16 @@
 class Department
-  attr_accessor :name, :phone
+  attr_accessor :name
+  attr_reader :phone
 
   def initialize (name, phone, *duty)
-  @name, @phone = name, phone
+  @name = name
+  self.phone = phone
   @duty = duty
   @index_duty = -1 # Индекс выбранной обязанности
   end
   # Получение информации об объекте
   def to_s
-    "Имя: #{@name}; Телефон : #{@phone}; \n Обязанности : \n #{duty}"
+    "\nИмя: #{@name}; Телефон : #{@phone}; \nОбязанности : \n#{duty}"
   end
 
   # Вывод всех обязанностей
@@ -44,11 +46,24 @@ class Department
     @duty[@index] = value
   end
 
+  # Проверка корректности номера
+  def phone=(value)
+    if self.class.verify_phone(value)
+      @phone = phone
+    else raise ArgumentError.new("Номер телефона введен неверно!")
+    end
+  end
+
+  # Метод класса для проверки номера телефона
+  def self.verify_phone(phone)
+    /^((\+7|7|8)+([0-9]){10})$/.match(phone).to_s == phone
+  end
 end
 
 def main
-  sales_department = Department.new("Отдел продаж", "+7-923-42-52-522", "Привлечение клиентов")
-  hr_department = Department.new("Отдел кадров", "+7-425-25-24-235", "Расчет премии", "Определение количество рабочих дней")
+  sales_department = Department.new("Отдел продаж", "+79234252522", "Привлечение клиентов")
+  hr_department = Department.new("Отдел кадров", "+7423425222", "Расчет премии", "Определение количество рабочих дней")
+
 
   # Добавление обязанностей
   sales_department.duty_add("Работа с целевой аудиторией")
@@ -67,7 +82,7 @@ def main
 
   # Вывод обязанностей
   puts(sales_department)
-
+  puts(hr_department)
 end
 
 if __FILE__ == $0
