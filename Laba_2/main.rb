@@ -36,12 +36,24 @@ def write_to_yaml(file, list_departments)
   end
 end
 
+# Считывание всех отделов из YAML
+def read_from_YAML(file)
+  store = YAML::Store.new file
+  list_departments = ""
+  File.open(file, 'r') do |f|
+    while (line = f.gets)
+      list_departments += line
+    end
+  end
+  store.load(list_departments)
+end
+
 
 def main
-  list_departments = read_from_txt("Department.txt")
+  list_departments = read_from_YAML("Department_write.yaml")
   departments_info(list_departments)
 
-  # list_departments.push(Department.new("Отдел маркетинга", "+74234252230", "Просмотр истории взаимоотношений"))
+  list_departments.push(Department.new("Отдел маркетинга", "+74234252230", "Просмотр истории взаимоотношений"))
 
   # write_to_txt("Department.txt", list_departments)
   write_to_yaml("Department_write.yaml", list_departments)
