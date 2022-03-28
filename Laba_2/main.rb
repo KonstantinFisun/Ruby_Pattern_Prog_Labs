@@ -1,7 +1,7 @@
 path = File.dirname(__FILE__) # Получили путь к папке
 require "#{path}/Department.rb"
 
-# Считывание отделов из файла
+# Считывание всех отделов из файла
 def read_from_txt(file)
   file = File.new(file, "r")
   list_departments = [] # Список отделов
@@ -10,7 +10,15 @@ def read_from_txt(file)
     list_departments.push(d = Department.new(component[0], component[1]))
     component[2].split(',').each{|x| d.duty_add(x)} # Добавили обязанности
   end
+  file.close()
   list_departments
+end
+
+# Запись всех отделов в файл
+def write_to_txt(file, list_departments)
+  file = File.open(file, "w") do |f|
+    list_departments.each{|x| f.puts(x)}
+  end
 end
 
 # Вывод всех отделов из списка
@@ -22,6 +30,7 @@ end
 def main
   list_departments = read_from_txt("Department.txt")
   departments_info(list_departments)
+  write_to_txt("Department_write.txt", list_departments)
 end
 
 if __FILE__ == $0
