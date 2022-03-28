@@ -13,8 +13,15 @@ def read_from_txt(file)
   list_departments
 end
 
+# Вывод всех отделов из списка
+def departments_info(departments)
+  departments.each{|x| puts(x)}
+end
+
+
 def main
-  list = read_from_txt("Department.txt")
+  list_departments = read_from_txt("Department.txt")
+  departments_info(list_departments)
 end
 
 if __FILE__ == $0
