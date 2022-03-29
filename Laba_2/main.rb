@@ -4,6 +4,13 @@ require "#{path}/Department_list.rb"
 require "yaml"
 require "yaml/store"
 
+# Вывод всех отделов из списка
+def departments_info(list_departments)
+  list_departments.each{|x| puts(x)}
+end
+
+# Для класса Department
+
 # Считывание всех отделов из файла
 def read_from_txt(file)
   file = File.new(file, "r")
@@ -25,18 +32,6 @@ def write_to_txt(file, list_departments)
   end
 end
 
-# Вывод всех отделов из списка
-def departments_info(list_departments)
-  list_departments.each{|x| puts(x)}
-end
-
-# Запись всех отделов в YAML
-def write_to_yaml(file, list_departments)
-  File.open(file,"w") do |f|
-    f.puts YAML.dump(list_departments)
-  end
-end
-
 # Считывание всех отделов из YAML
 def read_from_YAML(file)
   store = YAML::Store.new file
@@ -49,11 +44,20 @@ def read_from_YAML(file)
   store.load(list_departments)
 end
 
+# Запись всех отделов в YAML
+def write_to_yaml(file, list_departments)
+  File.open(file,"w") do |f|
+    f.puts YAML.dump(list_departments)
+  end
+end
+
+#===============================================================================
 
 def main
   list_departments = read_from_txt("Department_write.txt")
   departments = Department_list.new(list_departments)
-
+  departments.write_to_yaml("Lol.yaml")
+  # departments = Department_list.read_from_txt("Department_write.txt")
 end
 
 if __FILE__ == $0
