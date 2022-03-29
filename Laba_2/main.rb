@@ -51,14 +51,9 @@ end
 
 
 def main
-  list_departments = read_from_YAML("Department_write.yaml")
-  # departments_info(list_departments)
+  list_departments = read_from_txt("Department_write.txt")
   departments = Department_list.new(list_departments)
-  print(departments.departments[0])
-  # list_departments.push(Department.new("Отдел маркетинга", "+74234252230", "Просмотр истории взаимоотношений"))
-  #
-  # # write_to_txt("Department.txt", list_departments)
-  # write_to_yaml("Department_write.yaml", list_departments)
+
 end
 
 if __FILE__ == $0
