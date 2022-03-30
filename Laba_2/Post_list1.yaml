@@ -1,0 +1,13 @@
+--- !ruby/object:Post_list
+posts:
+- !ruby/object:Post
+  department: Отдел финансов
+  name: Бухгалтер
+  salary: 70000
+  vacancy: 1
+- !ruby/object:Post
+  department: Отдел продаж
+  name: Продавец
+  salary: 30000
+  vacancy: 0
+index: -1

@@ -2,6 +2,7 @@ path = File.dirname(__FILE__) # Получили путь к папке
 require "#{path}/Department.rb"
 require "#{path}/Department_list.rb"
 require "#{path}/Post.rb"
+require "#{path}/Post_list.rb"
 require "yaml"
 require "yaml/store"
 
@@ -54,9 +55,12 @@ end
 #===============================================================================
 
 def main
-  departments = Department_list.read_from_txt("Department_write.txt")
-  post = Post.new("Отдел финансов", "Бухгалтер", 70000, 0)
-  puts(post)
+  # departments1 = Department_list.initialize_txt("Department.txt")
+  # departments1.class.write_to_txt("Department_write.txt")
+  #departments.class.write_to_txt("Post_list1.yaml")
+  posts = Post_list.initialize_txt("Post_list.txt")
+  posts.class.write_to_yaml("Post_list1.yaml")
+  # puts(posts)
 end
 
 if __FILE__ == $0

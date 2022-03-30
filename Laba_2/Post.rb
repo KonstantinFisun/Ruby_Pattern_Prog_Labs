@@ -5,7 +5,13 @@ class Post
 
   # Конструктор
   def initialize(department,name,salary,vacancy)
-    @department, @name, @salary, @vacancy = department, name, salary, vacancy
+    @department, @name, @salary, self.vacancy = department, name, salary.to_i, vacancy.to_i
+  end
+
+  # Конструктор, принимающий строку
+  def Post.read_line(line)
+    component = line.chomp.split(';')
+    new(component[0], component[1], component[2], component[3])
   end
 
   def vacancy=(value)
@@ -16,7 +22,7 @@ class Post
   end
 
   def Post.check_vacancy(value)
-    value == 0 || 1
+    value == 0 or value == 1
   end
 
   def display_vacancy

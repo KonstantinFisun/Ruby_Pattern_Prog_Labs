@@ -6,9 +6,10 @@ class Department_list
   # Конструктор
   def initialize(list_departments)
     @departments = list_departments
-    #list_departments.each{|x| self.add_note(x)}
     @index = -1
   end
+
+  
 
   # Метод добавления записи
   def add_note(department)
@@ -50,6 +51,12 @@ class Department_list
     @departments.sort_by!{|a| a.name}
   end
 
+  def each
+   @departments.each  do |dep|
+     yield dep
+   end
+ end
+
   # Считывание всех отделов из файла
   def Department_list.read_from_txt(file)
     file = File.new(file, "r")
@@ -86,6 +93,16 @@ class Department_list
     File.open(file,"w") do |f|
       f.puts YAML.dump(@departments)
     end
+  end
+
+  def Department_list.initialize_yaml(file)
+    @index = -1
+    @departments = Department_list.read_from_yaml(file)
+  end
+
+  def Department_list.initialize_txt(file)
+    @index = -1
+    @departments = Department_list.read_from_txt(file)
   end
 
 end
