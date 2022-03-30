@@ -58,7 +58,7 @@ def main
   posts = Post_list.initialize_txt("Post_list.txt")
   posts.class.write_to_yaml("Post_list1.yaml")
   dep = Department.new("Отдел связи","81241683377",["звонить","доставать"],posts)
-  puts(dep.popular_vacancies)
+  puts(dep.posts)
   # dep.post_select(0)
   # puts(dep.get_sel_post)
 

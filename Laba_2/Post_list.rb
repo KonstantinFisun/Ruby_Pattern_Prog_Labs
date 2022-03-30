@@ -10,6 +10,13 @@ class Post_list
     @index = -1
   end
 
+  # Вывод всех должностей
+  def posts
+    s = ""
+    @posts.each_index{|i| s += "#{i} - #{@posts[i].name} \n"}
+    s
+  end
+
   # Метод добавления записи
   def add_note(post)
     @posts.push(post)

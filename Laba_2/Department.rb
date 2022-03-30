@@ -30,6 +30,11 @@ class Department
     s
   end
 
+  def posts
+    @posts.posts
+  end
+
+
   def duty_write_txt
     s = ""
     @duty.each_index{|i| s += "#{@duty[i]},"}
