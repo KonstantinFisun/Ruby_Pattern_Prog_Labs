@@ -100,4 +100,9 @@ class Department
     @posts.change_note(value)
   end
 
+  # Все вакантные должности
+  def popular_vacancies
+    @posts.find_vacancy
+  end
+
 end

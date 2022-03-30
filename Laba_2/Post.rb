@@ -14,6 +14,7 @@ class Post
     new(component[0], component[1], component[2], component[3])
   end
 
+  # Сеттер вакансии
   def vacancy=(value)
     if self.class.check_vacancy(value)
       @vacancy = value
@@ -21,10 +22,12 @@ class Post
     end
   end
 
+  # Проверка вакансии
   def Post.check_vacancy(value)
     value == 0 or value == 1
   end
 
+  # Отображение вакансии
   def display_vacancy
     if(@vacancy == 0) then
       "не вакантна"
@@ -32,8 +35,13 @@ class Post
       "вакантна"
     end
   end
+
+  # Переопределенный метод to_s
   def to_s
     "Отдел: #{department}; Название: #{name}; Оклад: #{salary}; Должность: #{display_vacancy}"
   end
+
+  
+
 
 end

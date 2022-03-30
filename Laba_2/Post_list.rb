@@ -96,14 +96,20 @@ class Post_list
     end
   end
 
+  # Конструктор для yaml
   def Post_list.initialize_yaml(file)
     @index = -1
     @posts = Post_list.read_from_yaml(file)
   end
 
+  # Конструктор для txt
   def Post_list.initialize_txt(file)
     @index = -1
     @posts = Post_list.read_from_txt(file)
   end
 
+  # Метод получающий все вакантные должности
+  def find_vacancy
+    @posts.find_all{|x| x.vacancy == 1}
+  end
 end
