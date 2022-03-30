@@ -8,6 +8,14 @@ class Department
   @duty = duty
   @index_duty = -1 # Индекс выбранной обязанности
   end
+
+  def Department.read_line(line)
+    component = line.chomp.split(';')
+    new(component[0], component[1],*component[2].split(','))
+  end
+
+
+
   # Получение информации об объекте
   def to_s
     "Название: #{@name}; Телефон : #{@phone}; \nОбязанности : \n#{duty}\n"

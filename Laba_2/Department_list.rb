@@ -55,9 +55,7 @@ class Department_list
     file = File.new(file, "r")
     list_departments = [] # Список отделов
     for line in file.readlines
-      component = line.chomp.split(';')
-      list_departments.push(d = Department.new(component[0], component[1]))
-      component[2].split(',').each{|x| d.duty_add(x)} # Добавили обязанности
+      list_departments.push(Department.read_line(line))
     end
     file.close()
     new(list_departments)
@@ -89,16 +87,5 @@ class Department_list
       f.puts YAML.dump(@departments)
     end
   end
-
-  def Department_list.initialize_yaml(file)
-    @index = -1
-    @departments = Department_list.read_from_yaml(file)
-  end
-
-  def Department_list.initialize_txt(file)
-    @index = -1
-    @departments = Department_list.read_from_txt(file)
-  end
-
 
 end

@@ -17,7 +17,6 @@ def read_from_txt(file)
   list_departments = [] # Список отделов
   for line in file.readlines
     component = line.chomp.split(';')
-
     list_departments.push(d = Department.new(component[0], component[1]))
     component[2].split(',').each{|x| d.duty_add(x)} # Добавили обязанности
   end
@@ -55,9 +54,8 @@ end
 
 def main
   list_departments = read_from_txt("Department_write.txt")
-  departments = Department_list.initialize_txt("Department_write.txt")
-  puts(departments)
-  departments.sort_by!
+  departments = Department_list.read_from_txt("Department_write.txt")
+
   puts(departments)
 
   # departments = Department_list.read_from_txt("Department_write.txt")
