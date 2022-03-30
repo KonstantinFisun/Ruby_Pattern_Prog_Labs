@@ -30,6 +30,7 @@ class Department
     s
   end
 
+  # Вывод всех должностей
   def posts
     @posts.posts
   end
