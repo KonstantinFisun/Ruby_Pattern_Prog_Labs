@@ -45,6 +45,11 @@ class Department_list
     s
   end
 
+  # Сортировка по имени
+  def sort_by!
+    @departments.sort_by!{|a| a.name}
+  end
+
   # Считывание всех отделов из файла
   def Department_list.read_from_txt(file)
     file = File.new(file, "r")
@@ -55,7 +60,7 @@ class Department_list
       component[2].split(',').each{|x| d.duty_add(x)} # Добавили обязанности
     end
     file.close()
-    @departments = list_departments
+    new(list_departments)
   end
 
   # Запись всех отделов в файл
@@ -75,7 +80,7 @@ class Department_list
       end
     end
     store.load(list_departments)
-    @departments = list_departments
+    new(list_departments)
   end
 
   # Запись всех отделов в YAML
@@ -85,14 +90,15 @@ class Department_list
     end
   end
 
-  def Department_list.deserialize_yaml(file)
+  def Department_list.initialize_yaml(file)
     @index = -1
-    @dep_list = Department_list.read_from_yaml(file)
+    @departments = Department_list.read_from_yaml(file)
   end
 
-  def Department_list.deserialize_txt(file)
+  def Department_list.initialize_txt(file)
     @index = -1
-    @dep_list = Department_list.read_from_txt(file)
+    @departments = Department_list.read_from_txt(file)
   end
+
 
 end

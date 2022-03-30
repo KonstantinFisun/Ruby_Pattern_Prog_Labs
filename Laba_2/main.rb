@@ -55,9 +55,11 @@ end
 
 def main
   list_departments = read_from_txt("Department_write.txt")
-  departments = Department_list.deserialize_yaml("Department_write.yaml")
+  departments = Department_list.initialize_txt("Department_write.txt")
+  puts(departments)
+  departments.sort_by!
+  puts(departments)
 
-  puts departments
   # departments = Department_list.read_from_txt("Department_write.txt")
 end
 
