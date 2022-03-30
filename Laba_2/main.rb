@@ -33,7 +33,7 @@ def write_to_txt(file, list_departments)
 end
 
 # Считывание всех отделов из YAML
-def read_from_YAML(file)
+def read_from_yaml(file)
   store = YAML::Store.new file
   list_departments = ""
   File.open(file, 'r') do |f|
@@ -55,8 +55,9 @@ end
 
 def main
   list_departments = read_from_txt("Department_write.txt")
-  departments = Department_list.new(list_departments)
-  departments.write_to_yaml("Lol.yaml")
+  departments = Department_list.deserialize_yaml("Department_write.yaml")
+
+  puts departments
   # departments = Department_list.read_from_txt("Department_write.txt")
 end
 

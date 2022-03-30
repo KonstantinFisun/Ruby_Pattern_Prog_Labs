@@ -1,6 +1,7 @@
 path = File.dirname(__FILE__) # Получили путь к папке
 require "#{path}/Department.rb"
 
+
 class Department_list
   # Конструктор
   def initialize(list_departments)
@@ -45,7 +46,7 @@ class Department_list
   end
 
   # Считывание всех отделов из файла
-  def read_from_txt(file)
+  def Department_list.read_from_txt(file)
     file = File.new(file, "r")
     list_departments = [] # Список отделов
     for line in file.readlines
@@ -58,14 +59,14 @@ class Department_list
   end
 
   # Запись всех отделов в файл
-  def write_to_txt(file)
+  def Department_list.write_to_txt(file)
     File.open(file, "w") do |f|
       @departments.each{|x| f.puts("#{x.name};#{x.phone};#{x.duty_write_txt}")}
     end
   end
 
   # Считывание всех отделов из YAML
-  def read_from_YAML(file)
+  def Department_list.read_from_yaml(file)
     store = YAML::Store.new file
     list_departments = ""
     File.open(file, 'r') do |f|
@@ -78,10 +79,20 @@ class Department_list
   end
 
   # Запись всех отделов в YAML
-  def write_to_yaml(file)
+  def Department_list.write_to_yaml(file)
     File.open(file,"w") do |f|
       f.puts YAML.dump(@departments)
     end
+  end
+
+  def Department_list.deserialize_yaml(file)
+    @index = -1
+    @dep_list = Department_list.read_from_yaml(file)
+  end
+
+  def Department_list.deserialize_txt(file)
+    @index = -1
+    @dep_list = Department_list.read_from_txt(file)
   end
 
 end
