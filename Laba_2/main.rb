@@ -55,11 +55,19 @@ end
 #===============================================================================
 
 def main
-  # departments1 = Department_list.initialize_txt("Department.txt")
-  # departments1.class.write_to_txt("Department_write.txt")
-  #departments.class.write_to_txt("Post_list1.yaml")
   posts = Post_list.initialize_txt("Post_list.txt")
   posts.class.write_to_yaml("Post_list1.yaml")
+  dep = Department.new("Отдел связи","81241683377",["звонить","доставать"],posts)
+  puts dep
+
+
+
+
+  # departments = Department_list.initialize_txt("Department.txt")
+  # puts(departments)
+  # departments.class.write_to_txt("Department_write.txt")
+  #departments.class.write_to_txt("Post_list1.yaml")
+
   # puts(posts)
 end
 

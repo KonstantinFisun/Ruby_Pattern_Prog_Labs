@@ -2,22 +2,23 @@ class Department
   attr_accessor :name
   attr_reader :phone
 
-  def initialize (name, phone, *duty)
+  def initialize (name, phone, duty, posts)
   @name = name
   self.phone = phone
   @duty = duty
   @index_duty = -1 # Индекс выбранной обязанности
+  @posts = posts
   end
 
   # Конструктор, принимающий строку
   def Department.read_line(line)
     component = line.chomp.split(';')
-    new(component[0], component[1],*component[2].split(','))
+    new(component[0], component[1],component[2].split(','))
   end
 
   # Получение информации об объекте
   def to_s
-    "Название: #{@name}; Телефон : #{@phone}; \nОбязанности : \n#{duty}\n"
+    "Название: #{@name}; Телефон : #{@phone}; \nОбязанности : \n#{duty}Должности: \n#{@posts}\n"
   end
 
   # Вывод всех обязанностей
