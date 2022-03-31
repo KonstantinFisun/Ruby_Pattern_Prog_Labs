@@ -17,6 +17,12 @@ class Post_list
     s
   end
 
+  def posts_write_txt
+    s = ""
+    @posts.each_index{|i| s += "#{@posts[i]},"}
+    s.chop
+  end
+
   # Метод добавления записи
   def add_note(post)
     @posts.push(post)

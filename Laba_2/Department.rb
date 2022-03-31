@@ -1,9 +1,13 @@
+current_path = File.dirname(__FILE__)
+require "#{current_path}/Post.rb"
+require "#{current_path}/Post_list.rb"
+
 class Department
   attr_accessor :name
   attr_reader :phone
 
   # Конструктор
-  def initialize (name, phone, duty, posts)
+  def initialize (name, phone, duty, posts = Post_list.new)
   @name = name # Имя
   self.phone = phone # Телефон
   @duty = duty # Обязанности
@@ -15,12 +19,17 @@ class Department
   # Конструктор, принимающий строку
   def Department.read_line(line)
     component = line.chomp.split(';')
-    new(component[0], component[1],component[2].split(','))
+    new(component[0], component[1],component[2].split(','),Post_list.initialize_txt(component[3]))
   end
 
   # Получение информации об объекте
   def to_s
     "Название: #{@name}; Телефон : #{@phone}; \nОбязанности : \n#{duty}Должности: \n#{@posts}\n"
+  end
+
+  # Урезанный формат
+  def cut
+    "Название: #{@name}; Телефон : #{@phone}; Количество обязанностей : #{@duty.length}; Вакантных должностей: #{@posts.find_vacancy.length}\n"
   end
 
   # Вывод всех обязанностей
@@ -30,16 +39,22 @@ class Department
     s
   end
 
+
+  # Вывод всех обязанностей в txt
+  def duty_write_txt
+    s = ""
+    @duty.each_index{|i| s += "#{@duty[i]},"}
+    s.chop
+  end
+
   # Вывод всех должностей
   def posts
     @posts.posts
   end
 
-
-  def duty_write_txt
-    s = ""
-    @duty.each_index{|i| s += "#{@duty[i]},"}
-    s.chop
+  # # Вывод всех должностей в txt
+  def posts_write_txt
+    @posts.posts_write_txt
   end
 
   # Добавить обязанность
@@ -110,5 +125,12 @@ class Department
   def popular_vacancies
     @posts.find_vacancy
   end
+
+  # Количество вакантных мест
+  def count_vacancy
+    @posts.find_vacancy.length
+  end
+
+
 
 end

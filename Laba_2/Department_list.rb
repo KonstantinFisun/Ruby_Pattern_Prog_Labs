@@ -1,6 +1,10 @@
 path = File.dirname(__FILE__) # Получили путь к папке
 require "#{path}/Department.rb"
-
+require "#{path}/Department_list.rb"
+require "#{path}/Post.rb"
+require "#{path}/Post_list.rb"
+require "yaml"
+require "yaml/store"
 
 class Department_list
   # Конструктор
@@ -9,7 +13,7 @@ class Department_list
     @index = -1
   end
 
-  
+
 
   # Метод добавления записи
   def add_note(department)
@@ -46,6 +50,12 @@ class Department_list
     s
   end
 
+  # Урезанный формат
+  def cut_to_s
+    s = ""
+    @departments.each_index{|i| s += "Отдел - #{i}\n#{@departments[i].cut}"}
+    s
+  end
   # Сортировка по имени
   def sort_by!
     @departments.sort_by!{|a| a.name}
@@ -71,7 +81,7 @@ class Department_list
   # Запись всех отделов в файл
   def Department_list.write_to_txt(file)
     File.open(file, "w") do |f|
-      @departments.each{|x| f.puts("#{x.name};#{x.phone};#{x.duty_write_txt}")}
+      @departments.each{|x| f.puts("#{x.name};#{x.phone};#{x.duty_write_txt};#{x.posts_write_txt}")}
     end
   end
 
@@ -104,5 +114,10 @@ class Department_list
     @index = -1
     @departments = Department_list.read_from_txt(file)
   end
+
+  def sort_by_vacancy!
+    @departments.sort_by!{|a| a.count_vacancy}
+  end
+
 
 end
