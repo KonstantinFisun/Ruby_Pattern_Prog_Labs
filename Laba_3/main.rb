@@ -1,19 +1,14 @@
 path = File.dirname(__FILE__) # Получили путь к папке
-require "#{path}/Department.rb"
-require "#{path}/Department_list.rb"
-require "#{path}/Post.rb"
-require "#{path}/Post_list.rb"
-require "#{path}/Rub_sal.rb"
-require "#{path}/Percent_sal.rb"
-require "#{path}/Rub_percent_sal.rb"
-require "#{path}/Fine_rub_percent_sal.rb"
+Dir[File.dirname(__FILE__) + '/*.rb'].each {|file| require file }
 require "yaml"
 require "yaml/store"
 
 
+
+
 def main
-  # rub = Fine_rub_percent_sal.new(5000, 50, 2000, 3000)
-  # puts(rub.get_salary)
+  rub = Fine_rub_percent_sal.new(5000, 50, 2000, 3000)
+  puts(rub.get_salary)
 
   # rub = Percent_sal.new(5000, 50)
   # puts(rub.get_salary)
