@@ -6,13 +6,14 @@ require "#{path}/Post_list.rb"
 require "#{path}/Rub_sal.rb"
 require "#{path}/Percent_sal.rb"
 require "#{path}/Rub_percent_sal.rb"
+require "#{path}/Fine_rub_percent_sal.rb"
 require "yaml"
 require "yaml/store"
 
 
 def main
-  rub = Rub_percent_sal.new(5000, 50, 2000)
-  puts(rub.get_salary)
+  # rub = Fine_rub_percent_sal.new(5000, 50, 2000, 3000)
+  # puts(rub.get_salary)
 
   # rub = Percent_sal.new(5000, 50)
   # puts(rub.get_salary)
