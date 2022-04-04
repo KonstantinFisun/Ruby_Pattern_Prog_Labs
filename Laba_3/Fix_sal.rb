@@ -2,7 +2,8 @@ path = File.dirname(__FILE__) # Получили путь к папке
 require "#{path}/Salary.rb"
 
 class Fix_sal < Salary
-  def iniinitialization(fixed)
+  # Конструктор
+  def initialize(fixed)
     @fixed = fixed
   end
 

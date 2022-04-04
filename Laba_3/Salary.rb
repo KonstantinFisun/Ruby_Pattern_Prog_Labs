@@ -1,5 +1,6 @@
 class Salary
-  def initialization(salary)
+  # Конструктор
+  def initialize(salary)
     @salary = salary
   end
 
