@@ -1,5 +1,5 @@
 path = File.dirname(__FILE__) # Получили путь к папке
-require "#{path}/Rub_percent_sal.rb"
+require "#{path.rpartition('/').first}/Rub_percent_sal.rb"
 
 class Fine_rub_percent_sal < Rub_percent_sal
   # Конструктор

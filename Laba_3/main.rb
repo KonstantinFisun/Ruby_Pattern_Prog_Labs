@@ -1,5 +1,8 @@
 path = File.dirname(__FILE__) # Получили путь к папке
 Dir[File.dirname(__FILE__) + '/*.rb'].each {|file| require file }
+Dir[File.dirname(__FILE__) + '/Salary/*.rb'].each {|file| require file }
+Dir[File.dirname(__FILE__) + '/Salary/Fine/*.rb'].each {|file| require file }
+Dir[File.dirname(__FILE__) + '/Salary/Premium/*.rb'].each {|file| require file }
 require "yaml"
 require "yaml/store"
 
@@ -7,8 +10,10 @@ require "yaml/store"
 
 
 def main
-  rub = Fine_rub_percent_sal.new(5000, 50, 2000, 3000)
-  puts(rub.get_salary)
+  p = Premium_fine_sal.new(5000, 1000, 13)
+  puts(p.get_salary)
+  # rub = Fine_rub_percent_sal.new(5000, 50, 2000, 3000)
+  # puts(rub.get_salary)
 
   # rub = Percent_sal.new(5000, 50)
   # puts(rub.get_salary)
