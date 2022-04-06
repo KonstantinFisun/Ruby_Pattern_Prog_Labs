@@ -3,14 +3,14 @@ require "#{path}/Post.rb"
 
 
 class Post_list
-  attr_accessor :posts
+
   # Конструктор
   def initialize(list_posts)
     @posts = list_posts
     @index = -1
   end
 
-  # Вывод всех должностей
+  # Вывод всех должностейc
   def posts
     s = ""
     @posts.each_index{|i| s += "#{i} - #{@posts[i].name} \n"}

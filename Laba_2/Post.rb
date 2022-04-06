@@ -41,7 +41,4 @@ class Post
     "Отдел: #{department}; Название: #{name}; Оклад: #{salary}; Должность: #{display_vacancy}"
   end
 
-  
-
-
 end

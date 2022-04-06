@@ -1,11 +1,13 @@
+Dir[File.dirname(__FILE__) + '/Salary/*.rb'].each {|file| require file }
 class Post
   # Геттеры и сеттеры
-  attr_accessor :department, :name, :salary
-  attr_reader :vacancy
+  attr_accessor :department, :name
+  attr_reader :vacancy, :salary
 
   # Конструктор
-  def initialize(department,name,salary,vacancy)
-    @department, @name, @salary, self.vacancy = department, name, salary.to_i, vacancy.to_i
+  def initialize(department,name,salary = Salary.new,vacancy)
+    @department, @name, self.vacancy = department, name, vacancy.to_i
+    @salary = salary
   end
 
   # Конструктор, принимающий строку
@@ -20,6 +22,16 @@ class Post
       @vacancy = value
     else raise ArgumentError.new("Вакантность должности введена неверно!")
     end
+  end
+
+  # Сеттер зарплаты
+  # def salary=(**value)
+  #
+  # end
+
+  # Проверка зарплаты
+  def Post.check_salary(value)
+
   end
 
   # Проверка вакансии
@@ -40,8 +52,5 @@ class Post
   def to_s
     "Отдел: #{department}; Название: #{name}; Оклад: #{salary}; Должность: #{display_vacancy}"
   end
-
-  
-
 
 end

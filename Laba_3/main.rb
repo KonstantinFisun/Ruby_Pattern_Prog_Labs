@@ -10,8 +10,14 @@ require "yaml/store"
 
 
 def main
-  p = Premium_fine_sal.new(5000, 1000, 13)
-  puts(p.get_salary)
+  # Проверка класса Salary в Post
+  post = Post.new("1","2",Salary.new(3000),1)
+  # puts(post.salary)
+
+  puts(post.salary.get_salary)
+
+  # p = Premium_fine_sal.new(5000, 1000, 13)
+  # puts(p.get_salary)
   # rub = Fine_rub_percent_sal.new(5000, 50, 2000, 3000)
   # puts(rub.get_salary)
 

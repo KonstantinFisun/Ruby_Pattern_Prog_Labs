@@ -131,6 +131,4 @@ class Department
     @posts.find_vacancy.length
   end
 
-
-
 end

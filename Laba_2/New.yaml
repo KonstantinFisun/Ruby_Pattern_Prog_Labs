@@ -1,0 +1,24 @@
+--- !ruby/object:Department_list
+departments:
+- !ruby/object:Department
+  name: Отдел связи
+  phone: '81241683377'
+  duty:
+  - звонить
+  - доставать
+  posts: !ruby/object:Post_list
+    posts:
+    - !ruby/object:Post
+      department: Отдел финансов
+      name: Бухгалтер
+      salary: 70000
+      vacancy: 1
+    - !ruby/object:Post
+      department: Отдел продаж
+      name: Продавец
+      salary: 30000
+      vacancy: 0
+    index: -1
+  index_duty: -1
+  index_post: -1
+index: -1
