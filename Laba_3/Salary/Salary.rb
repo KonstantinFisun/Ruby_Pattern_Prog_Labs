@@ -1,8 +1,20 @@
-# Реализация декоратора
+# интерфейс
+class Salary
+  def Salary.assembling(salary:, percent:0, rub:0, premium:0, fine:0)
+    salary = Fix_sal.new(salary)
+    salary = Percent_sal.new(salary, percent)
+    salary = Rub_sal.new(salary, rub)
+    salary = Premium_sal.new(salary, premium)
+    salary = Fine_sal.new(salary, fine)
+    salary
+  end
+
+  def get_salary
+  end
+end
 
 # Базовый класс с фиксированной зарплатой
-class Salary
-  # Конструктор
+class Fix_sal < Salary
   def initialize(salary)
     @salary = salary
   end
@@ -12,24 +24,36 @@ class Salary
   end
 end
 
+# Реализация декоратора
+class Salary_dec < Salary
+  # Конструктор
+  def initialize(salary)
+    @salary = salary
+  end
+
+  def get_salary
+    @salary.get_salary
+  end
+end
+
 # Декоратор надбавки в денежных единицах(рублях)
-class Salary::Rub
+class Rub_sal < Salary_dec
   # Конструктор
   def initialize(salary, allowance)
-    @salary = salary
+    super(salary)
     @add_rub = allowance
   end
 
   def get_salary
-    @salary.get_salary+@add_rub
+    super+@add_rub
   end
 end
 
 # Декоратор надбавки в процентах
-class Salary::Percent
+class Percent_sal < Salary_dec
   # Конструктор
   def initialize(salary, allowance_in_percentage)
-    @salary = salary
+    super(salary)
     @add_percent = allowance_in_percentage
   end
 
@@ -37,43 +61,41 @@ class Salary::Percent
     # Будет надбавка или нет(случайно)
     choose = rand(2)
     if(choose == 1)
-      @salary.get_salary + (@salary.get_salary/100*@add_percent)
+      super + (super/100*@add_percent)
     else
-      @salary.get_salary
+      super
     end
   end
 end
 
 # Декоратор премии
-class Salary::Premium
+class Premium_sal < Salary_dec
   # Конструктор
   def initialize(salary, premium)
-    @salary = salary
+    super(salary)
     @premium = premium
   end
 
   def get_salary
-    @salary.get_salary+(@salary.get_salary/100*@premium)
+    super+(super/100*@premium)
   end
 end
 
 # Декоратор штрафа
-class Salary::Fine
+class Fine_sal < Salary_dec
   # Конструктор
   def initialize(salary, fine)
-    @salary = salary
+    super(salary)
     @fine = fine
   end
 
   def get_salary
-    @salary.get_salary-@fine
+    super-@fine
   end
 end
 
 def main
-  puts (Salary::Premium.new(Salary::Fine.new(Salary::Percent.new(
-    Salary::Rub.new(Salary.new(5000),2000),
-    5),3000),20).get_salary)
+  
 end
 
 if __FILE__ == $0
