@@ -7,13 +7,15 @@ class Post
   # Конструктор
   def initialize(department:,name:,salary:, percent: 0, rub: 0, premium: 0, fine: 0,vacancy:)
     @department, @name, self.vacancy = department, name, vacancy.to_i
-    set_salary(salary:salary, percent:percent, rub:rub, premium:premium, fine:fine) # Вызов сеттер зарплаты
+    set_salary(salary:salary.to_i, percent:percent.to_i, rub:rub.to_i, premium:premium.to_i, fine:fine.to_i) # Вызов сеттер зарплаты
   end
 
   # Конструктор, принимающий строку
   def Post.read_line(line)
-    component = line.chomp.split(';')
-    new(component[0], component[1], component[2], component[3])
+    component = line.chomp.split(';') # Разделитель в строке
+    salary = component[2].split(',') # Разделитель в зарплате
+    new(department:component[0], name:component[1], salary:salary[0],
+      percent:salary[1], rub:salary[2],premium:salary[3],fine:salary[4], vacancy:component[3])
   end
 
   #=============================================================================
@@ -76,6 +78,7 @@ class Post
   def write_to_txt
     "#{department};#{name};#{salary};#{vacancy}"
   end
+
 
   #========================================================================
 

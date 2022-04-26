@@ -90,7 +90,6 @@ class Post_list
   end
 
 
-
   def each
    @posts.each  do |post|
      yield post

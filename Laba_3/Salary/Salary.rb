@@ -1,4 +1,4 @@
-# интерфейс
+# Абстрактный класс для класса Salary
 class Salary
   def Salary.assembling(salary:, percent:0, rub:0, premium:0, fine:0)
     salary = Fix_sal.new(salary)
@@ -11,6 +11,7 @@ class Salary
 
   def get_salary
   end
+
 end
 
 # Базовый класс с фиксированной зарплатой
@@ -95,7 +96,7 @@ class Fine_sal < Salary_dec
 end
 
 def main
-  
+
 end
 
 if __FILE__ == $0
