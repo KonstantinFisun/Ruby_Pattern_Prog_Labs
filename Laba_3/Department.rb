@@ -1,6 +1,5 @@
 current_path = File.dirname(__FILE__)
-require "#{current_path}/Post.rb"
-require "#{current_path}/Post_list.rb"
+Dir[File.dirname(__FILE__) + '/*.rb'].each {|file| require file }
 
 class Department
   attr_accessor :name

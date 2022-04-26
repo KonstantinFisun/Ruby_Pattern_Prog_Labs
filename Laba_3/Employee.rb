@@ -29,4 +29,5 @@ class Skilled_employee < Employee
 
   @experience = experience # Лет опыта
   @description_experience = description_experience # Описание опыта
+  end
 end

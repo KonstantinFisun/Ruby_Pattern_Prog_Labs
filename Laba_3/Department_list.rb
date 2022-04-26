@@ -1,69 +1,60 @@
 path = File.dirname(__FILE__) # Получили путь к папке
-require "#{path}/Department.rb"
-require "#{path}/Department_list.rb"
-require "#{path}/Post.rb"
-require "#{path}/Post_list.rb"
+Dir[File.dirname(__FILE__) + '/*.rb'].each {|file| require file }
 require "yaml"
 require "yaml/store"
 
-class Department_list
+class Department_list < Parent_list
   # Конструктор
   def initialize(list_departments)
-    @departments = list_departments
-    @index = -1
+    super(list_departments)
   end
 
-  # Метод добавления записи
-  def add_note(department)
-    @departments.push(department)
-  end
-
-  # Метод выделяющий запись
-  def choose_note(index)
-    if @departments.length > index and index >= 0 then
-      @index = index
-    else raise ArgumentError.new("Индекс вышел за пределы массива!")
-    end
-  end
-
-  # Заменяет выбранную запись
-  def change_note(department)
-    @departments[@index] = department
-  end
-
-  # Метод возвращающий выбранную запись
-  def get_note
-    @departments[@index]
-  end
-
-  # Метод удаляющий выбранную запись
-  def delete_note
-    @departments.delete_at(@index)
-    @index = -1
-  end
+  # # Метод добавления записи
+  # def add_note(department)
+  #   @departments.push(department)
+  # end
+  #
+  # # Метод выделяющий запись
+  # def choose_note(index)
+  #   if @departments.length > index and index >= 0 then
+  #     @index = index
+  #   else raise ArgumentError.new("Индекс вышел за пределы массива!")
+  #   end
+  # end
+  #
+  # # Заменяет выбранную запись
+  # def change_note(department)
+  #   @departments[@index] = department
+  # end
+  #
+  # # Метод возвращающий выбранную запись
+  # def get_note
+  #   @departments[@index]
+  # end
+  #
+  # # Метод удаляющий выбранную запись
+  # def delete_note
+  #   @departments.delete_at(@index)
+  #   @index = -1
+  # end
 
   def to_s
     s = ""
-    @departments.each_index{|i| s += "Отдел - #{i}\n#{@departments[i]}"}
+    @children_list.each_index{|i| s += "Отдел - #{i}\n#{@children_list[i]}"}
     s
   end
 
   # Урезанный формат
   def cut_to_s
     s = ""
-    @departments.each_index{|i| s += "Отдел - #{i}\n#{@departments[i].cut}"}
+    @children_list.each_index{|i| s += "Отдел - #{i}\n#{@children_list[i].cut}"}
     s
   end
   # Сортировка по имени
   def sort_by!
-    @departments.sort_by!{|a| a.name}
+    @children_list.sort_by!{|a| a.name}
   end
 
-  def each
-   @departments.each  do |dep|
-     yield dep
-   end
- end
 
   # Считывание всех отделов из файла
   def Department_list.read_from_txt(file)
@@ -79,7 +70,7 @@ class Department_list
   # Запись всех отделов в файл
   def Department_list.write_to_txt(file)
     File.open(file, "w") do |f|
-      @departments.each do |x|
+      @children_list.each do |x|
         f.puts("#{x.name};#{x.phone};#{x.duty_write_txt};#{x.name+"-должности.txt"}")
         x.posts_write_txt(x.name+"-должности.txt")
       end
@@ -102,22 +93,22 @@ class Department_list
   # Запись всех отделов в YAML
   def Department_list.write_to_yaml(file)
     File.open(file,"w") do |f|
-      f.puts YAML.dump(@departments)
+      f.puts YAML.dump(@children_list)
     end
   end
 
   def Department_list.initialize_yaml(file)
     @index = -1
-    @departments = Department_list.read_from_yaml(file)
+    @children_list = Department_list.read_from_yaml(file)
   end
 
   def Department_list.initialize_txt(file)
     @index = -1
-    @departments = Department_list.read_from_txt(file)
+    @children_list = Department_list.read_from_txt(file)
   end
 
   def sort_by_vacancy!
-    @departments.sort_by!{|a| a.count_vacancy}
+    @children_list.sort_by!{|a| a.count_vacancy}
   end
 
 
