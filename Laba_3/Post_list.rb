@@ -23,6 +23,12 @@ class Post_list
     s.chop
   end
 
+  def posts_write_txt(file)
+    File.open(file, "w") do |f|
+      @posts.each_index{|i| f.puts ("#{@posts[i].write_to_txt}")}
+    end
+  end
+
   # Метод добавления записи
   def add_note(post)
     @posts.push(post)
@@ -82,6 +88,8 @@ class Post_list
       @posts.each{|x| f.puts("#{x.department};#{x.name};#{x.salary};#{x.vacancy}")}
     end
   end
+
+
 
   def each
    @posts.each  do |post|

@@ -53,8 +53,8 @@ class Department
   end
 
   # # Вывод всех должностей в txt
-  def posts_write_txt
-    @posts.posts_write_txt
+  def posts_write_txt(file)
+    @posts.posts_write_txt(file)
   end
 
   # Добавить обязанность

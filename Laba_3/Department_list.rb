@@ -13,8 +13,6 @@ class Department_list
     @index = -1
   end
 
-
-
   # Метод добавления записи
   def add_note(department)
     @departments.push(department)
@@ -81,7 +79,10 @@ class Department_list
   # Запись всех отделов в файл
   def Department_list.write_to_txt(file)
     File.open(file, "w") do |f|
-      @departments.each{|x| f.puts("#{x.name};#{x.phone};#{x.duty_write_txt};#{x.posts_write_txt}")}
+      @departments.each do |x|
+        f.puts("#{x.name};#{x.phone};#{x.duty_write_txt};#{x.name+"-должности.txt"}")
+        x.posts_write_txt(x.name+"-должности.txt")
+      end
     end
   end
 

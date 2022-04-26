@@ -5,7 +5,7 @@ class Post
   attr_reader :vacancy, :salary
 
   # Конструктор
-  def initialize(department,name,salary = Salary.new,vacancy)
+  def initialize(department,name,salary,vacancy)
     @department, @name, self.vacancy = department, name, vacancy.to_i
     @salary = salary
   end
@@ -50,7 +50,11 @@ class Post
 
   # Переопределенный метод to_s
   def to_s
-    "Отдел: #{department}; Название: #{name}; Оклад: #{salary}; Должность: #{display_vacancy}"
+    "Название: #{name}; Оклад: #{salary}; Должность: #{display_vacancy}"
+  end
+
+  def write_to_txt
+    "#{department};#{name};#{salary};#{vacancy}"
   end
 
 end
