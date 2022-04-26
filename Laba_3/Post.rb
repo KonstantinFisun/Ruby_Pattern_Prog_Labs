@@ -1,4 +1,4 @@
-Dir[File.dirname(__FILE__) + '/Salary/Salary.rb'].each {|file| require file }
+Dir[File.dirname(__FILE__) + '/Salary.rb'].each {|file| require file }
 class Post
   # Геттеры и сеттеры
   attr_accessor :department, :name
