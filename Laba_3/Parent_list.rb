@@ -33,4 +33,10 @@ class Parent_list
     @children_list.delete_at(@index)
     @index = -1
   end
+
+  def each
+   @children_list.each  do |dep|
+     yield dep
+   end
+ end
 end

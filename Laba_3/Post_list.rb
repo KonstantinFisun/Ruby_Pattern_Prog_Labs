@@ -27,34 +27,6 @@ class Post_list < Parent_list
     end
   end
 
-  # # Метод добавления записи
-  # def add_note(post)
-  #   @posts.push(post)
-  # end
-  #
-  # # Метод выделяющий запись
-  # def choose_note(index)
-  #   if @posts.length > index and index >= 0 then
-  #     @index = index
-  #   else raise ArgumentError.new("Индекс вышел за пределы массива!")
-  #   end
-  # end
-  #
-  # # Заменяет выбранную запись
-  # def change_note(post)
-  #   @posts[@index] = post
-  # end
-  #
-  # # Метод возвращающий выбранную запись
-  # def get_note
-  #   @posts[@index]
-  # end
-  #
-  # # Метод удаляющий выбранную запись
-  # def delete_note
-  #   @posts.delete_at(@index)
-  #   @index = -1
-  # end
 
   def to_s
     s = ""
