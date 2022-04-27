@@ -52,6 +52,18 @@ class Employee_list < Parent_list
     @children_list = Employee_list.read_from_txt(file)
   end
 
+  def Employee_list.initialize_txt(file)
+    @index = -1
+    @children_list = Employee_list.read_from_txt(file)
+  end
 
+  # Метод возвращающий коллекцию, в названии которых
+  # содержится введенная в аргументе строка как подстрока.
+  def Employee_list.all_employees_with_substring(str)
+    new(@children_list.find_all do |x|
+      x.surname[str] or x.firstname[str] or x.lastname[str] or
+      x.bd[str] or x.passport[str] or x.address[str] or x.phone[str] or x.email[str]
+    end)
+  end
 
 end

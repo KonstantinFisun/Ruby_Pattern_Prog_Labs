@@ -82,5 +82,13 @@ class Department_list < Parent_list
     @children_list.sort_by!{|a| a.count_vacancy}
   end
 
+  # Метод возвращающий коллекцию, в названии которых
+  # содержится введенная в аргументе строка как подстрока.
+  def Department_list.all_departments_with_substring(str)
+    new(@children_list.find_all do |x|
+      x.name[str] or x.phone[str]
+    end)
+  end
+
 
 end
