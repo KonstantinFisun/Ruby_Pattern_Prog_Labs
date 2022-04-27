@@ -42,7 +42,7 @@ class Employee_list < Parent_list
   def Employee_list.write_to_txt(file)
     File.open(file, "w") do |f|
       @children_list.each do |x|
-        f.puts("#{x.surname} #{x.firstname} #{x.lastname};#{x.bd};#{x.passport};#{x.phone};#{x.address};#{x.email}")
+      f.puts("#{x.surname} #{x.firstname} #{x.lastname};#{x.bd};#{x.passport};#{x.phone};#{x.address};#{x.email}")
       end
     end
   end
@@ -52,10 +52,6 @@ class Employee_list < Parent_list
     @children_list = Employee_list.read_from_txt(file)
   end
 
-  def Employee_list.initialize_txt(file)
-    @index = -1
-    @children_list = Employee_list.read_from_txt(file)
-  end
 
   # Метод возвращающий коллекцию, в названии которых
   # содержится введенная в аргументе строка как подстрока.
@@ -66,4 +62,54 @@ class Employee_list < Parent_list
     end)
   end
 
+  # Подсчет полного возраста
+  def Employee_list.age_in_completed_years (bd, today)
+    age = today.year - bd.year
+    age = age - 1 if (
+         bd.month >  today.month or
+        (bd.month >= today.month and bd.day > today.day)
+    )
+    age
+  end
+
+  # Метод возвращающий людей, конкретного возраста
+  def Employee_list.employees_of_a_specific_age(age)
+    today = Time.new() # Текущая дата
+    new(@children_list.find_all do |x|
+      data = x.bd.split(".")
+      Employee_list.age_in_completed_years(Time.new(data[0],
+        data[1], data[2]), today) == age
+    end)
+  end
+
+  # Метод  возвращающий людей, младше заданного возраста
+  def Employee_list.employees_of_the_youngest_age(age)
+    today = Time.new() # Текущая дата
+    new(@children_list.find_all do |x|
+      data = x.bd.split(".")
+      Employee_list.age_in_completed_years(Time.new(data[0],
+        data[1], data[2]), today) < age
+    end)
+  end
+
+  # Метод  возвращающий людей, старше заданного возраста
+  def Employee_list.employees_of_the_olderest_age(age)
+    today = Time.new() # Текущая дата
+    new(@children_list.find_all do |x|
+      data = x.bd.split(".")
+      Employee_list.age_in_completed_years(Time.new(data[0],
+        data[1], data[2]), today) > age
+    end)
+  end
+
+  # Метод  возвращающий людей в заданном диапазоне
+  def Employee_list.employees_of_the_range_age(age_a, age_b)
+    today = Time.new() # Текущая дата
+    new(@children_list.find_all do |x|
+      data = x.bd.split(".")
+       Employee_list.age_in_completed_years(Time.new(data[2],
+        data[1], data[0]), today) < age_b and Employee_list.age_in_completed_years(Time.new(data[2],
+         data[1], data[0]), today) > age_a
+    end)
+  end
 end
