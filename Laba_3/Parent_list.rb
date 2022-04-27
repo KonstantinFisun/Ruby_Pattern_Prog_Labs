@@ -36,13 +36,19 @@ class Parent_list
 
   def each
      @children_list.each  do |dep|
-     yield dep
+       yield dep
+     end
+  end
+
+  def each_index
+     @children_list.each_index  do |dep|
+       yield dep
      end
   end
 
   def find_all
      @children_list.find_all  do |dep|
-     yield dep
+       yield dep
      end
   end
 end
