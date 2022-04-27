@@ -10,7 +10,7 @@ require "yaml/store"
 
 def main
   employeers = Post_list.initialize_txt("Должности.txt")
-  otdel = employeers.class.all_vacant_posts_of_the_department("Отдел продаж")
+  otdel = employeers.class.all_posts_of_the_department_with_substring("ов")
   puts(otdel)
 end
 
