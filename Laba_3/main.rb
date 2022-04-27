@@ -8,9 +8,8 @@ require "yaml/store"
 
 
 def main
-  employeers = Employee_list.initialize_txt("Работники.txt")
-  lol = employeers.class.employees_of_the_range_age(18,25)
-  puts(lol)
+  job = Job.new(post_name: "Бухгалтер", employee: "Вася", start_date: "22.10.2021", percentage_of_the_bid: 100)
+  puts(job)
 end
 
 if __FILE__ == $0
