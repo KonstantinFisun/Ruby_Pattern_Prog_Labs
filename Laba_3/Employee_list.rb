@@ -77,8 +77,8 @@ class Employee_list < Parent_list
     today = Time.new() # Текущая дата
     new(@children_list.find_all do |x|
       data = x.bd.split(".")
-      Employee_list.age_in_completed_years(Time.new(data[0],
-        data[1], data[2]), today) == age
+      Employee_list.age_in_completed_years(Time.new(data[2],
+        data[1], data[0]), today) == age
     end)
   end
 
@@ -87,8 +87,8 @@ class Employee_list < Parent_list
     today = Time.new() # Текущая дата
     new(@children_list.find_all do |x|
       data = x.bd.split(".")
-      Employee_list.age_in_completed_years(Time.new(data[0],
-        data[1], data[2]), today) < age
+      Employee_list.age_in_completed_years(Time.new(data[2],
+        data[1], data[0]), today) < age
     end)
   end
 
@@ -97,8 +97,8 @@ class Employee_list < Parent_list
     today = Time.new() # Текущая дата
     new(@children_list.find_all do |x|
       data = x.bd.split(".")
-      Employee_list.age_in_completed_years(Time.new(data[0],
-        data[1], data[2]), today) > age
+      Employee_list.age_in_completed_years(Time.new(data[2],
+        data[1], data[0]), today) > age
     end)
   end
 

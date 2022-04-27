@@ -96,7 +96,6 @@ class Fine_sal < Salary_dec
 end
 
 def main
-
 end
 
 if __FILE__ == $0
