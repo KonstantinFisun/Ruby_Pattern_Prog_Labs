@@ -35,8 +35,14 @@ class Parent_list
   end
 
   def each
-   @children_list.each  do |dep|
+     @children_list.each  do |dep|
      yield dep
-   end
- end
+     end
+  end
+
+  def find_all
+     @children_list.find_all  do |dep|
+     yield dep
+     end
+  end
 end

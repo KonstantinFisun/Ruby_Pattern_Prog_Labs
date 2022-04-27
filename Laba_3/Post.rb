@@ -71,7 +71,7 @@ class Post
 
   # Переопределенный метод to_s
   def to_s
-    "Название: #{name}; Зарплата: #{salary}; Должность: #{display_vacancy}"
+    "#{department}; Название: #{name}; Зарплата: #{salary}; Должность: #{display_vacancy}"
   end
 
   # Запись в txt

@@ -9,9 +9,7 @@ require "yaml/store"
 
 
 def main
-  employeers = Employee_list.initialize_txt("Работники.txt")
-  puts(employeers)
-  employeers.class.write_to_txt("2.txt")
+
 end
 
 if __FILE__ == $0

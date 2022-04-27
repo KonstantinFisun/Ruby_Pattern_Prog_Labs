@@ -96,4 +96,9 @@ class Post_list < Parent_list
   def find_vacancy
     @children_list.find_all{|x| x.vacancy == 1}
   end
+
+  # Возвращающий коллекцию должностей, относящихся к заданному в аргументе отделу.
+  def Post_list.all_posе_of_the_department(department)
+    new(@children_list.find_all{|x| x.department == department})
+  end
 end
