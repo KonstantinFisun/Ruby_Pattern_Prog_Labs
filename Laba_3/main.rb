@@ -9,7 +9,9 @@ require "yaml/store"
 
 
 def main
-
+  employeers = Post_list.initialize_txt("Должности.txt")
+  otdel = employeers.class.all_vacant_posts_of_the_department("Отдел продаж")
+  puts(otdel)
 end
 
 if __FILE__ == $0

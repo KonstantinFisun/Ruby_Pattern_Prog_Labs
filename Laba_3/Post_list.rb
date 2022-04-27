@@ -97,8 +97,15 @@ class Post_list < Parent_list
     @children_list.find_all{|x| x.vacancy == 1}
   end
 
-  # Возвращающий коллекцию должностей, относящихся к заданному в аргументе отделу.
-  def Post_list.all_posе_of_the_department(department)
+  # Метод возвращающий коллекцию должностей,
+  # относящихся к заданному в аргументе отделу.
+  def Post_list.all_posts_of_the_department(department)
     new(@children_list.find_all{|x| x.department == department})
+  end
+
+  # Метод возвращающий коллекцию вакантных должностей,
+  # относящихся к заданному в аргументе отделу.
+  def Post_list.all_vacant_posts_of_the_department(department)
+    new(@children_list.find_all{|x| x.department == department and x.vacancy == 1})
   end
 end
