@@ -13,4 +13,10 @@ class Job
   def to_s
     "#{@post_name}, Сотрудник: #{@employee}, Дата назначения: #{@start_date}, Процент от ставки: #{@percentage_of_the_bid}, Дата увольнения: #{@date_of_dismissal}"
   end
+
+  def cut
+    "#{@post_name}, Сотрудник: #{@employee}"
+  end
+
+
 end
