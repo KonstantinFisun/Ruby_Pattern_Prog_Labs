@@ -24,4 +24,5 @@ class Job
     "#{@post_name}, Сотрудник: #{@employee}"
   end
 
+
 end
