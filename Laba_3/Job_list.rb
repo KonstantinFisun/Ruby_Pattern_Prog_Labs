@@ -14,7 +14,11 @@ class Job_list < Parent_list
   # Переопределенный метод to_s
   def to_s
     s = ""
-    @children_list.each_index{|i| s += "Запись - #{i}\n#{@children_list[i]}\n"}
+    i = 0
+    @children_list.each do |x|
+      s += "Запись работы - #{i}\n#{x}\n"
+      i += 1
+    end
     s
   end
 
@@ -48,7 +52,7 @@ class Job_list < Parent_list
     for line in file.readlines
       list_jobs.push(Job.read_line(line))
     end
-    file.close()
+    file.close
     new(list_jobs)
   end
 

@@ -5,7 +5,7 @@ class Employee
 
   # Конструктор
   def initialize(surname:, firstname:, lastname:, bd:, passport:,
-  phone:, address:, email:)
+  phone:, address:, email:, job_list:)
     @surname = surname # Фамилия
     @firstname = firstname # Имя
     @lastname = lastname # Отчество
@@ -14,6 +14,7 @@ class Employee
     @phone = phone # Телефон
     @address = address # Адрес
     @email = email # Электронная почта
+    @job_list = Job_list.new(job_list) # Места работ
   end
 
   # Конструктор из строки
@@ -22,8 +23,10 @@ class Employee
     fio = component[0].split(" ")
     new(surname:fio[0], firstname:fio[1], lastname:fio[2],
       bd:component[1], passport:component[2], phone:component[3], address:component[4],
-      email:component[5])
+      email:component[5], job_list: component[6])
   end
+
+  #=====================================================================================================================
 
   # Получение информации об объекте
   def to_s
@@ -32,12 +35,20 @@ class Employee
      Паспорт: #{@passport};
      Телефон: #{@phone};
      Адрес: #{@address};
-     Email: #{@email};\n"
+     Email: #{@email};
+     Список работ: #{@job_list}\n"
   end
 
   # Урезанный формат
   def cut
     "ФИО: #{@surname} #{@name} #{@lastname};"
+  end
+
+  #=====================================================================================================================
+
+  # Метод вступления в должность
+  def hiring(job)
+    @job_list.add_note(job)
   end
 end
 
@@ -47,11 +58,11 @@ class Skilled_employee < Employee
 
   # Конструктор
   def initialize(surname:, firstname:, lastname:, bd:, passport:,
-                  phone:, address:, email:, experience:, description_experience:)
+                  phone:, address:, email:, job_list:, experience:, descrip_exp:)
     super(surname:surname, firstname:firstname, lastname:lastname, bd:bd,
-          passport:passport, phone:phone, address:address, email:email)
+          passport:passport, phone:phone, address:address, email:email, job_list:)
 
       @experience = experience # Лет опыта
-      @description_experience = description_experience # Описание опыта
+      @descrip_exp = descrip_exp # Описание опыта
   end
 end

@@ -3,6 +3,7 @@ Dir[File.dirname(__FILE__) + '/*.rb'].each {|file| require file }
 
 
 class Post_list < Parent_list
+  attr_accessor :children_list
   # Конструктор
   def initialize(list_posts)
     super(list_posts)
@@ -118,5 +119,9 @@ class Post_list < Parent_list
   # содержится введенная в аргументе строка как подстрока.
   def Post_list.all_posts_department_substring(department)
     new(@children_list.find_all{|x| x.department[department]})
+  end
+
+  def hiring(employee, percentage_bid)
+    @children_list[0].hiring(employee, percentage_bid)
   end
 end

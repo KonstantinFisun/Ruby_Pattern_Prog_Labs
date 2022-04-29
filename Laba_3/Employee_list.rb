@@ -84,7 +84,7 @@ class Employee_list < Parent_list
 
   # Метод  возвращающий людей, младше заданного возраста
   def Employee_list.employees_of_the_youngest_age(age)
-    today = Time.new() # Текущая дата
+    today = Time.new # Текущая дата
     new(@children_list.find_all do |x|
       data = x.bd.split(".")
       Employee_list.age_in_completed_years(Time.new(data[2],
@@ -94,7 +94,7 @@ class Employee_list < Parent_list
 
   # Метод  возвращающий людей, старше заданного возраста
   def Employee_list.employees_of_the_olderest_age(age)
-    today = Time.new() # Текущая дата
+    today = Time.new # Текущая дата
     new(@children_list.find_all do |x|
       data = x.bd.split(".")
       Employee_list.age_in_completed_years(Time.new(data[2],
@@ -104,7 +104,7 @@ class Employee_list < Parent_list
 
   # Метод  возвращающий людей в заданном диапазоне
   def Employee_list.employees_of_the_range_age(age_a, age_b)
-    today = Time.new() # Текущая дата
+    today = Time.new # Текущая дата
     new(@children_list.find_all do |x|
       data = x.bd.split(".")
        Employee_list.age_in_completed_years(Time.new(data[2],

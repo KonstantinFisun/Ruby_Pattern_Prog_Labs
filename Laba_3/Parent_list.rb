@@ -5,11 +5,11 @@ class Parent_list
     @index = -1
   end
 
-  # Метод добавления записи
-  def add_note(children_list)
-    @children_list.push(children_list)
-  end
 
+  # Метод добавления записи
+  def add_note(children)
+    @children_list.append(children)
+  end
   # Метод выделяющий запись
   def choose_note(children_list)
     if @children_list.length > index and index >= 0
