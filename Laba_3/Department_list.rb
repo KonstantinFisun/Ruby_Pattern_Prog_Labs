@@ -34,7 +34,7 @@ class Department_list < Parent_list
     for line in file.readlines
       list_departments.push(Department.read_line(line))
     end
-    file.close()
+    file.close
     new(list_departments)
   end
 

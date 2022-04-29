@@ -18,7 +18,7 @@ class Department
   # Конструктор, принимающий строку
   def Department.read_line(line)
     component = line.chomp.split(';')
-    new(component[0], component[1],component[2].split(','),Post_list.initialize_txt(component[3]))
+    new(component[0], component[1],component[2].split(','),Post_list.initialize_txt("#{File.dirname(__FILE__)}/txt/" + component[3]))
   end
 
   # Получение информации об объекте

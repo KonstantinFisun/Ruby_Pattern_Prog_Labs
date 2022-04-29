@@ -31,7 +31,7 @@ class Post
 
   # Проверка зарплаты
   def Post.check_salary(salary, percent, rub, premium, fine)
-    if(salary > 0 and percent>=0 and percent<=100 and rub>=0 and premium>=0 and premium<=100 and fine >= 0)
+    if salary > 0 and percent >= 0 and percent <= 100 and rub >= 0 and premium >= 0 and premium <= 100 and fine >= 0
       true
     else
       false
@@ -60,7 +60,7 @@ class Post
 
   # Отображение вакансии
   def display_vacancy
-    if(@vacancy == 0) then
+    if @vacancy == 0
       "не вакантна"
     else
       "вакантна"

@@ -48,7 +48,7 @@ class Post_list < Parent_list
     for line in file.readlines
       list_posts.push(Post.read_line(line))
     end
-    file.close()
+    file.close
     new(list_posts)
   end
 

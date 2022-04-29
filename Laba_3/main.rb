@@ -8,7 +8,8 @@ require "yaml/store"
 
 
 def main
-
+  depart = Department_list.initialize_txt("#{File.dirname(__FILE__)}/txt/Department.txt")
+  puts(depart)
   # job = Job.new(post_name: "Бухгалтер", employee: "Вася", start_date: "22.10.2021", percentage_of_the_bid: 100)
   # puts job.class
 
