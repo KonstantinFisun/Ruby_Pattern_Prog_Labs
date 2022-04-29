@@ -92,7 +92,7 @@ class Department
 
   # Метод класса для проверки номера телефона
   def self.verify_phone(phone)
-    /^((\+7|7|8)+([0-9]){10})$/.match(phone).to_s == phone
+    phone == /^((\+7|7|8)+(\d){10})$/.match(phone).to_s
   end
 
   # Добавить должность
@@ -129,7 +129,5 @@ class Department
   def count_vacancy
     @posts.find_vacancy.length
   end
-
-
 
 end
