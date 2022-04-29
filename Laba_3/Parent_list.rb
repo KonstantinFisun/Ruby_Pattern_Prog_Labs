@@ -12,7 +12,7 @@ class Parent_list
 
   # Метод выделяющий запись
   def choose_note(children_list)
-    if @children_list.length > index and index >= 0 then
+    if @children_list.length > index and index >= 0
       @index = index
     else raise ArgumentError.new("Индекс вышел за пределы массива!")
     end

@@ -15,22 +15,27 @@ class Post_list < Parent_list
     s
   end
 
-  def posts_write_txt
-    s = ""
-    @children_list.each_index{|i| s += "#{@children_list[i]},"}
-    s.chop
-  end
+  # def posts_write_txt
+  #   s = ""
+  #   @children_list.each_index{|i| s += "#{@children_list[i]},"}
+  #   s.chop
+  # end
 
   def posts_write_txt(file)
     File.open(file, "w") do |f|
-      @children_list.each_index{|i| f.puts ("#{@children_list[i].write_to_txt}")}
+      i = 0
+      @children_list.each{|x| f.puts("#{x.write_to_txt}")}
     end
   end
 
 
   def to_s
     s = ""
-    @children_list.each_index{|i| s += "Должность - #{i}\n#{@children_list[i]}\n"}
+    i = 0
+    @children_list.each do |x|
+      s += "Должность - #{i}\n#{x}\n"
+      i += 1
+    end
     s
   end
 
@@ -55,7 +60,7 @@ class Post_list < Parent_list
   # Запись всех должностей в файл(txt)
   def Post_list.write_to_txt(file)
     File.open(file, "w") do |f|
-      @children_list.each{|x| f.puts("#{x.department};#{x.name};#{x.salary};#{x.vacancy}")}
+      @children_list.each{|x| f.puts(x.write_to_txt)}
     end
   end
 
@@ -105,13 +110,13 @@ class Post_list < Parent_list
 
   # Метод возвращающий коллекцию вакантных должностей,
   # относящихся к заданному в аргументе отделу.
-  def Post_list.all_vacant_posts_of_the_department(department)
+  def Post_list.all_vacant_posts_department(department)
     new(@children_list.find_all{|x| x.department == department and x.vacancy == 1})
   end
 
   # Метод возвращающий коллекцию должностей, в названии которых
   # содержится введенная в аргументе строка как подстрока.
-  def Post_list.all_posts_of_the_department_with_substring(department)
+  def Post_list.all_posts_department_substring(department)
     new(@children_list.find_all{|x| x.department[department]})
   end
 end

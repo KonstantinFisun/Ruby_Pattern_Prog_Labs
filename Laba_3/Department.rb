@@ -6,11 +6,11 @@ class Department
   attr_reader :phone
 
   # Конструктор
-  def initialize (name, phone, duty, posts = Post_list.new)
+  def initialize(name, phone, duty, posts)
   @name = name # Имя
   self.phone = phone # Телефон
   @duty = duty # Обязанности
-  @posts = posts # Должности
+  @posts = Post_list.new(posts) # Должности
   @index_duty = -1 # Индекс выбранной обязанности
   @index_post = -1 # Индекс выбранной должности
   end

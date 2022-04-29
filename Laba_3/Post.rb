@@ -5,7 +5,8 @@ class Post
   attr_reader :vacancy
 
   # Конструктор
-  def initialize(department:,name:,salary:, percent: 0, rub: 0, premium: 0, fine: 0,vacancy:)
+  def initialize(department:,name:,salary:, percent: , rub: , premium: , fine: ,vacancy:)
+
     @department, @name, self.vacancy = department, name, vacancy.to_i
     set_salary(salary:salary.to_i, percent:percent.to_i, rub:rub.to_i, premium:premium.to_i, fine:fine.to_i) # Вызов сеттер зарплаты
   end
@@ -15,14 +16,14 @@ class Post
     component = line.chomp.split(';') # Разделитель в строке
     salary = component[2].split(',') # Разделитель в зарплате
     new(department:component[0], name:component[1], salary:salary[0],
-      percent:salary[1], rub:salary[2],premium:salary[3],fine:salary[4], vacancy:component[3])
+      percent:salary[1].to_i, rub:salary[2].to_i,premium:salary[3].to_i,fine:salary[4].to_i, vacancy:component[3])
   end
 
   #=============================================================================
 
   # Сеттер зарплаты
   # зарплата, процент надбавки, надбавка в рублях, премия в процентах, штраф
-  def set_salary(salary:, percent:, rub:, premium:, fine:)
+  def set_salary(salary:, percent: 0, rub: 0, premium: 0, fine: 0)
     if self.class.check_salary(salary,percent,rub,premium,fine)
       @salary = Salary.assembling(salary: salary, percent: percent, rub: rub, premium: premium, fine: fine)
     else raise ArgumentError.new("Некорректная зарплата!")
@@ -71,14 +72,16 @@ class Post
 
   # Переопределенный метод to_s
   def to_s
-    "#{department}; Название: #{name}; Зарплата: #{salary}; Должность: #{display_vacancy}"
+    "#{@department}; Название: #{@name}; Зарплата: #{@salary}; Должность: #{display_vacancy}"
   end
 
   # Запись в txt
   def write_to_txt
-    "#{department};#{name};#{salary};#{vacancy}"
+    "#{@department};#{@name};#{@salary.write_to_txt};#{@vacancy}"
   end
 
   #========================================================================
+
+  # Метод принятия на должность
 
 end
