@@ -10,7 +10,7 @@ class Department
   @name = name # Имя
   self.phone = phone # Телефон
   @duty = duty # Обязанности
-  @posts = Post_list.new(posts) # Должности
+  @posts = posts # Должности
   @index_duty = -1 # Индекс выбранной обязанности
   @index_post = -1 # Индекс выбранной должности
   end
@@ -18,7 +18,7 @@ class Department
   # Конструктор, принимающий строку
   def Department.read_line(line)
     component = line.chomp.split(';')
-    new(component[0], component[1],component[2].split(','),Post_list.initialize_txt("#{File.dirname(__FILE__)}/txt/" + component[3]))
+    new(component[0], component[1],component[2].split(','),Post_list.read_from_txt("#{File.dirname(__FILE__)}/car_dealership/" + component[3]))
   end
 
   # Получение информации об объекте

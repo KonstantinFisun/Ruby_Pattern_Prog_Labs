@@ -1,5 +1,6 @@
 path = File.dirname(__FILE__) # Получили путь к папке
 Dir[File.dirname(__FILE__) + '/*.rb'].each {|file| require file }
+
 require "yaml"
 require "yaml/store"
 
@@ -26,7 +27,8 @@ class Department_list < Parent_list
     @children_list.sort_by!{|a| a.name}
   end
 
-
+  #=====================================================================================================================
+  # TXT Сереализация и десереализация
   # Считывание всех отделов из файла
   def Department_list.read_from_txt(file)
     file = File.new(file, "r")
@@ -48,6 +50,8 @@ class Department_list < Parent_list
     end
   end
 
+  #=====================================================================================================================
+  # YAML Сереализация и десереализация
   # Считывание всех отделов из YAML
   def Department_list.read_from_yaml(file)
     store = YAML::Store.new file
@@ -57,34 +61,26 @@ class Department_list < Parent_list
         list_departments += line
       end
     end
-    store.load(list_departments)
-    new(list_departments)
+    new(store.load(list_departments))
   end
 
   # Запись всех отделов в YAML
-  def Department_list.write_to_yaml(file)
-    File.open(file,"w") do |f|
-      f.puts YAML.dump(@children_list)
+  def write_to_yaml(file)
+    File.open(file, "w") do |f|
+      f.puts(YAML.dump(@children_list))
     end
   end
 
-  def Department_list.initialize_yaml(file)
-    @index = -1
-    @children_list = Department_list.read_from_yaml(file)
-  end
+  #=====================================================================================================================
 
-  def Department_list.initialize_txt(file)
-    @index = -1
-    @children_list = Department_list.read_from_txt(file)
-  end
-
+  # Сортировка по количеству вакансий
   def sort_by_vacancy!
     @children_list.sort_by!{|a| a.count_vacancy}
   end
 
   # Метод возвращающий коллекцию, в названии которых
   # содержится введенная в аргументе строка как подстрока.
-  def Department_list.all_departments_with_substring(str)
+  def all_departments_with_substring(str)
     new(@children_list.find_all do |x|
       x.name[str] or x.phone[str]
     end)

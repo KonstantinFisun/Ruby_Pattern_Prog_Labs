@@ -26,7 +26,8 @@ class Employee_list < Parent_list
     @children_list.sort_by!{|a| a.surname}
   end
 
-
+  #=====================================================================================================================
+  # TXT Сереализация и десереализация
   # Считывание всех отделов из файла
   def Employee_list.read_from_txt(file)
     file = File.new(file, "r")
@@ -34,7 +35,7 @@ class Employee_list < Parent_list
     for line in file.readlines
       list_employees.push(Employee.read_line(line))
     end
-    file.close()
+    file.close
     new(list_employees)
   end
 
@@ -46,16 +47,32 @@ class Employee_list < Parent_list
       end
     end
   end
-
-  def Employee_list.initialize_txt(file)
-    @index = -1
-    @children_list = Employee_list.read_from_txt(file)
+  #=====================================================================================================================
+  # YAML Сереализация и десереализация
+  # Считывание всех должностей из YAML
+  def Job_list.read_from_yaml(file)
+    store = YAML::Store.new file
+    list_posts = ""
+    File.open(file, 'r') do |f|
+      while (line = f.gets)
+        list_posts += line
+      end
+    end
+    new(store.load(list_posts))
   end
+
+  # Запись всех должностей в YAML
+  def write_to_yaml(file)
+    File.open(file,"w") do |f|
+      f.puts YAML.dump(@children_list)
+    end
+  end
+  #=====================================================================================================================
 
 
   # Метод возвращающий коллекцию, в названии которых
   # содержится введенная в аргументе строка как подстрока.
-  def Employee_list.all_employees_with_substring(str)
+  def all_employees_with_substring(str)
     new(@children_list.find_all do |x|
       x.surname[str] or x.firstname[str] or x.lastname[str] or
       x.bd[str] or x.passport[str] or x.address[str] or x.phone[str] or x.email[str]
@@ -63,7 +80,7 @@ class Employee_list < Parent_list
   end
 
   # Подсчет полного возраста
-  def Employee_list.age_in_completed_years (bd, today)
+  def age_in_completed_years (bd, today)
     age = today.year - bd.year
     age = age - 1 if (
          bd.month >  today.month or
@@ -73,7 +90,7 @@ class Employee_list < Parent_list
   end
 
   # Метод возвращающий людей, конкретного возраста
-  def Employee_list.employees_of_a_specific_age(age)
+  def employees_of_a_specific_age(age)
     today = Time.new() # Текущая дата
     new(@children_list.find_all do |x|
       data = x.bd.split(".")
@@ -83,7 +100,7 @@ class Employee_list < Parent_list
   end
 
   # Метод  возвращающий людей, младше заданного возраста
-  def Employee_list.employees_of_the_youngest_age(age)
+  def employees_of_the_youngest_age(age)
     today = Time.new # Текущая дата
     new(@children_list.find_all do |x|
       data = x.bd.split(".")
@@ -93,7 +110,7 @@ class Employee_list < Parent_list
   end
 
   # Метод  возвращающий людей, старше заданного возраста
-  def Employee_list.employees_of_the_olderest_age(age)
+  def employees_of_the_olderest_age(age)
     today = Time.new # Текущая дата
     new(@children_list.find_all do |x|
       data = x.bd.split(".")

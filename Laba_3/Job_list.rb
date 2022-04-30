@@ -34,19 +34,9 @@ class Job_list < Parent_list
   def sort_by!
     @children_list.sort_by!{|a| a.employee}
   end
-  #=============================================================================
-  # Сереализация
-  # Запись всех отделов в файл
-  def Job_list.write_to_txt(file)
-    File.open(file, "w") do |f|
-      @children_list.each do |x|
-      f.puts("#{x.post_name};#{x.employee};#{x.start_date};#{x.date_of_dismissal};#{x.percentage_of_the_bid}")
-      end
-    end
-  end
-
-  #=============================================================================
-  # Десериализация
+  #=====================================================================================================================
+  # TXT Сереализация и десереализация
+  # # Считывание всех отделов из файла
   def Job_list.read_from_txt(file)
     file = File.new(file, "r")
     list_jobs = [] # Список отделов
@@ -57,10 +47,35 @@ class Job_list < Parent_list
     new(list_jobs)
   end
 
-  def Job_list.initialize_txt(file)
-    @index = -1
-    @children_list = Job_list.read_from_txt(file)
+  # Запись всех отделов в файл
+  def Job_list.write_to_txt(file)
+    File.open(file, "w") do |f|
+      @children_list.each do |x|
+        f.puts("#{x.post_name};#{x.employee};#{x.start_date};#{x.date_of_dismissal};#{x.percentage_of_the_bid}")
+      end
+    end
   end
-  #=============================================================================
+
+  #=====================================================================================================================
+  # YAML Сереализация и десереализация
+  # Считывание всех должностей из YAML
+  def Job_list.read_from_yaml(file)
+    store = YAML::Store.new file
+    list_posts = ""
+    File.open(file, 'r') do |f|
+      while (line = f.gets)
+        list_posts += line
+      end
+    end
+    new(store.load(list_posts))
+  end
+
+  # Запись всех должностей в YAML
+  def write_to_yaml(file)
+    File.open(file,"w") do |f|
+      f.puts YAML.dump(@children_list)
+    end
+  end
+  #=====================================================================================================================
 
 end

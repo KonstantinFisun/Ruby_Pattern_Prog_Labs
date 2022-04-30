@@ -3,7 +3,6 @@ Dir[File.dirname(__FILE__) + '/*.rb'].each {|file| require file }
 
 
 class Post_list < Parent_list
-  attr_accessor :children_list
   # Конструктор
   def initialize(list_posts)
     super(list_posts)
@@ -45,9 +44,9 @@ class Post_list < Parent_list
     @children_list.sort_by!{|a| a.name}
   end
 
-
-
-  # Считывание всех должностей из файла(txt)
+  #=====================================================================================================================
+  # TXT Сереализация и десереализация
+  # # Считывание всех отделов из файла
   def Post_list.read_from_txt(file)
     file = File.new(file, "r")
     list_posts = [] # Список должностей
@@ -59,13 +58,14 @@ class Post_list < Parent_list
   end
 
   # Запись всех должностей в файл(txt)
-  def Post_list.write_to_txt(file)
+  def write_to_txt(file)
     File.open(file, "w") do |f|
       @children_list.each{|x| f.puts(x.write_to_txt)}
     end
   end
 
-
+  #=====================================================================================================================
+  # YAML Сереализация и десереализация
   # Считывание всех должностей из YAML
   def Post_list.read_from_yaml(file)
     store = YAML::Store.new file
@@ -75,28 +75,16 @@ class Post_list < Parent_list
         list_posts += line
       end
     end
-    store.load(list_posts)
-    new(list_posts)
+    new(store.load(list_posts))
   end
 
   # Запись всех должностей в YAML
-  def Post_list.write_to_yaml(file)
+  def write_to_yaml(file)
     File.open(file,"w") do |f|
       f.puts YAML.dump(@children_list)
     end
   end
-
-  # Конструктор для yaml
-  def Post_list.initialize_yaml(file)
-    @index = -1
-    @children_list = Post_list.read_from_yaml(file)
-  end
-
-  # Конструктор для txt
-  def Post_list.initialize_txt(file)
-    @index = -1
-    @children_list = Post_list.read_from_txt(file)
-  end
+  #=====================================================================================================================
 
   # Метод получающий все вакантные должности
   def find_vacancy

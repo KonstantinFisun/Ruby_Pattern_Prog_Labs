@@ -5,8 +5,6 @@ Dir[File.dirname(__FILE__) + '/*.rb'].each {|file| require file }
 require "yaml"
 require "yaml/store"
 
-
-
 def main
 
 
@@ -27,8 +25,11 @@ def main
   #                                               start_date: "15.06.2015",percentage_bid: 1)]))
   # posts.hiring(employee, 1)
   # posts.class.write_to_txt("4.txt")
-  # depart = Department_list.initialize_txt("#{File.dirname(__FILE__)}/txt/Department.txt")
-  # puts(depart)
+  depart = Department_list.read_from_txt("#{File.dirname(__FILE__)}/car_dealership/Departments.txt")
+  puts(depart.write_to_yaml("1.yaml"))
+
+  # depart = Department_list.read_from_yaml("1.yaml")
+  # puts depart
 
   # depart.add_note(Department.new("Лол", "79958255525", ["Какашка"], posts))
   # puts(depart)
