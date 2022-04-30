@@ -86,4 +86,9 @@ class Job_list < Parent_list
   def search_by_fio(fio)
     new(@children_list.find_all{|x| x.employee == fio})
   end
+
+  # Метод, составляющий новый список, содержащий записи о всех текущих должностях, где человек указан в аргументах метода.
+  def search_by_fio_current(fio)
+    new(@children_list.find_all{|x| x.employee == fio and x.date_of_dismissal == nil})
+  end
 end
