@@ -1,0 +1,419 @@
+---
+- !ruby/object:Department
+  name: Marketing
+  phone: '78619990000'
+  duty:
+  - Организация разработки стратегии проведения рекламных акций в средствах массовой
+    информации под лозунгом компании
+  - Участие в подготовке годового плана продаж
+  - Организация выставок и мероприятий по привлечению потенциальных клиентов
+  posts: !ruby/object:Post_list
+    children_list:
+    - !ruby/object:Post
+      department: Marketing
+      name: Старший маркетолог
+      vacancy: 0
+      salary: !ruby/object:Fine_sal
+        salary: !ruby/object:Premium_sal
+          salary: !ruby/object:Rub_sal
+            salary: !ruby/object:Percent_sal
+              salary: !ruby/object:Fix_sal
+                salary: 50000
+              add_percent: 0
+              choose: 0
+            add_rub: 0
+          premium: 0
+        fine: 0
+    - !ruby/object:Post
+      department: Marketing
+      name: Младший маркетолог
+      vacancy: 1
+      salary: !ruby/object:Fine_sal
+        salary: !ruby/object:Premium_sal
+          salary: !ruby/object:Rub_sal
+            salary: !ruby/object:Percent_sal
+              salary: !ruby/object:Fix_sal
+                salary: 40000
+              add_percent: 0
+              choose: 0
+            add_rub: 0
+          premium: 0
+        fine: 0
+    index: -1
+  index_duty: -1
+  index_post: -1
+- !ruby/object:Department
+  name: Sales
+  phone: '78619990000'
+  duty:
+  - Встреча клиента в автосалоне
+  - Помощь и консультация в выборе автомобиля
+  - Проведение тест - драйва
+  - Заказ на заводе-производителе автомобиля необходимой комплектации
+  - Обслуживание склада автосалона
+  - Отслеживания текущего положения дел по каждому автомобилю
+  - Ведение необходимого документооборота
+  - Оформление кредита и страхование автомобиля
+  - Выдача автомобиля клиенту
+  posts: !ruby/object:Post_list
+    children_list:
+    - !ruby/object:Post
+      department: Sales
+      name: Начальник отдела продаж
+      vacancy: 0
+      salary: !ruby/object:Fine_sal
+        salary: !ruby/object:Premium_sal
+          salary: !ruby/object:Rub_sal
+            salary: !ruby/object:Percent_sal
+              salary: !ruby/object:Fix_sal
+                salary: 60000
+              add_percent: 0
+              choose: 1
+            add_rub: 0
+          premium: 0
+        fine: 0
+    - !ruby/object:Post
+      department: Sales
+      name: Менеджер по работе с клиентами
+      vacancy: 1
+      salary: !ruby/object:Fine_sal
+        salary: !ruby/object:Premium_sal
+          salary: !ruby/object:Rub_sal
+            salary: !ruby/object:Percent_sal
+              salary: !ruby/object:Fix_sal
+                salary: 30000
+              add_percent: 0
+              choose: 1
+            add_rub: 0
+          premium: 0
+        fine: 0
+    - !ruby/object:Post
+      department: Sales
+      name: Ассистенты
+      vacancy: 1
+      salary: !ruby/object:Fine_sal
+        salary: !ruby/object:Premium_sal
+          salary: !ruby/object:Rub_sal
+            salary: !ruby/object:Percent_sal
+              salary: !ruby/object:Fix_sal
+                salary: 28000
+              add_percent: 0
+              choose: 0
+            add_rub: 0
+          premium: 0
+        fine: 0
+    - !ruby/object:Post
+      department: Sales
+      name: Менеджер кредитования
+      vacancy: 1
+      salary: !ruby/object:Fine_sal
+        salary: !ruby/object:Premium_sal
+          salary: !ruby/object:Rub_sal
+            salary: !ruby/object:Percent_sal
+              salary: !ruby/object:Fix_sal
+                salary: 30000
+              add_percent: 0
+              choose: 0
+            add_rub: 0
+          premium: 0
+        fine: 0
+    - !ruby/object:Post
+      department: Sales
+      name: Менеджер страхования
+      vacancy: 1
+      salary: !ruby/object:Fine_sal
+        salary: !ruby/object:Premium_sal
+          salary: !ruby/object:Rub_sal
+            salary: !ruby/object:Percent_sal
+              salary: !ruby/object:Fix_sal
+                salary: 30000
+              add_percent: 0
+              choose: 1
+            add_rub: 0
+          premium: 0
+        fine: 0
+    index: -1
+  index_duty: -1
+  index_post: -1
+- !ruby/object:Department
+  name: Accounting
+  phone: '78619990000'
+  duty:
+  - Контроль и анализ финансового состояния компании
+  - Учет хозяйственных средств
+  - Организация своевременной уплаты налогов и сборов
+  - Прием оплаты клиентом автомобиля
+  - Ведение расчетных операций с компанией-импортером
+  - Взаимодействие с проверяющими организациями
+  posts: !ruby/object:Post_list
+    children_list:
+    - !ruby/object:Post
+      department: Accounting
+      name: Старший бухгалтер
+      vacancy: 0
+      salary: !ruby/object:Fine_sal
+        salary: !ruby/object:Premium_sal
+          salary: !ruby/object:Rub_sal
+            salary: !ruby/object:Percent_sal
+              salary: !ruby/object:Fix_sal
+                salary: 60000
+              add_percent: 0
+              choose: 1
+            add_rub: 0
+          premium: 0
+        fine: 0
+    - !ruby/object:Post
+      department: Accounting
+      name: Младший бухгалтер
+      vacancy: 0
+      salary: !ruby/object:Fine_sal
+        salary: !ruby/object:Premium_sal
+          salary: !ruby/object:Rub_sal
+            salary: !ruby/object:Percent_sal
+              salary: !ruby/object:Fix_sal
+                salary: 40000
+              add_percent: 0
+              choose: 1
+            add_rub: 0
+          premium: 0
+        fine: 0
+    - !ruby/object:Post
+      department: Accounting
+      name: Кассиры
+      vacancy: 1
+      salary: !ruby/object:Fine_sal
+        salary: !ruby/object:Premium_sal
+          salary: !ruby/object:Rub_sal
+            salary: !ruby/object:Percent_sal
+              salary: !ruby/object:Fix_sal
+                salary: 30000
+              add_percent: 0
+              choose: 0
+            add_rub: 0
+          premium: 0
+        fine: 0
+    index: -1
+  index_duty: -1
+  index_post: -1
+- !ruby/object:Department
+  name: CRM
+  phone: '78619990000'
+  duty:
+  - Сопровождение единой базы данных клиентов автосалона
+  - Поздравление клиента с покупкой автомобиля в виде поздравительных посылок
+  - Рассылка поздравительных открыток
+  - Приглашение клиентов на особые акции и презентации автосалона
+  - Создание атмосферы особого отношения с клиентом
+  posts: !ruby/object:Post_list
+    children_list:
+    - !ruby/object:Post
+      department: CRM
+      name: Начальник отдела
+      vacancy: 0
+      salary: !ruby/object:Fine_sal
+        salary: !ruby/object:Premium_sal
+          salary: !ruby/object:Rub_sal
+            salary: !ruby/object:Percent_sal
+              salary: !ruby/object:Fix_sal
+                salary: 70000
+              add_percent: 0
+              choose: 1
+            add_rub: 0
+          premium: 0
+        fine: 0
+    - !ruby/object:Post
+      department: CRM
+      name: Менеджер по работе с клиентами
+      vacancy: 1
+      salary: !ruby/object:Fine_sal
+        salary: !ruby/object:Premium_sal
+          salary: !ruby/object:Rub_sal
+            salary: !ruby/object:Percent_sal
+              salary: !ruby/object:Fix_sal
+                salary: 35000
+              add_percent: 0
+              choose: 0
+            add_rub: 0
+          premium: 0
+        fine: 0
+    index: -1
+  index_duty: -1
+  index_post: -1
+- !ruby/object:Department
+  name: Information
+  phone: '78619990000'
+  duty:
+  - Создание базы аппаратного и программного обеспечения
+  - Поддержка базы в работоспособном состоянии
+  - Помощь работникам компании в работе с базой обеспечения
+  - Поддержка сайта компании
+  - Сборка и наладка серверов и ПК сотрудников
+  posts: !ruby/object:Post_list
+    children_list:
+    - !ruby/object:Post
+      department: Information
+      name: Начальник отдела
+      vacancy: 0
+      salary: !ruby/object:Fine_sal
+        salary: !ruby/object:Premium_sal
+          salary: !ruby/object:Rub_sal
+            salary: !ruby/object:Percent_sal
+              salary: !ruby/object:Fix_sal
+                salary: 90000
+              add_percent: 0
+              choose: 0
+            add_rub: 0
+          premium: 0
+        fine: 0
+    - !ruby/object:Post
+      department: Information
+      name: Системные администраторы
+      vacancy: 1
+      salary: !ruby/object:Fine_sal
+        salary: !ruby/object:Premium_sal
+          salary: !ruby/object:Rub_sal
+            salary: !ruby/object:Percent_sal
+              salary: !ruby/object:Fix_sal
+                salary: 70000
+              add_percent: 0
+              choose: 1
+            add_rub: 0
+          premium: 0
+        fine: 0
+    index: -1
+  index_duty: -1
+  index_post: -1
+- !ruby/object:Department
+  name: AXO
+  phone: '78619990000'
+  duty:
+  - Контроль и обеспечение соблюдения санитарных норм
+  - Закупка необходимого количества средств необходимых для работы
+  - Ведение отчетности
+  - Взаимодействие с контролирующими организациями
+  posts: !ruby/object:Post_list
+    children_list:
+    - !ruby/object:Post
+      department: AXO
+      name: Начальник отдела
+      vacancy: 0
+      salary: !ruby/object:Fine_sal
+        salary: !ruby/object:Premium_sal
+          salary: !ruby/object:Rub_sal
+            salary: !ruby/object:Percent_sal
+              salary: !ruby/object:Fix_sal
+                salary: 40000
+              add_percent: 0
+              choose: 0
+            add_rub: 0
+          premium: 0
+        fine: 0
+    - !ruby/object:Post
+      department: AXO
+      name: Уборщицы
+      vacancy: 1
+      salary: !ruby/object:Fine_sal
+        salary: !ruby/object:Premium_sal
+          salary: !ruby/object:Rub_sal
+            salary: !ruby/object:Percent_sal
+              salary: !ruby/object:Fix_sal
+                salary: 20000
+              add_percent: 0
+              choose: 0
+            add_rub: 0
+          premium: 0
+        fine: 0
+    index: -1
+  index_duty: -1
+  index_post: -1
+- !ruby/object:Department
+  name: Security Service
+  phone: '78619990000'
+  duty:
+  - Охрана автосалона
+  - Обеспечение режима безопасности клиентов и сотрудников автосалона
+  - Предотвращение доступа посторонних лиц к объектам и документам
+  - Локализация и устранение возможных каналов утечки документов
+  posts: !ruby/object:Post_list
+    children_list:
+    - !ruby/object:Post
+      department: Security Service
+      name: Начальник
+      vacancy: 0
+      salary: !ruby/object:Fine_sal
+        salary: !ruby/object:Premium_sal
+          salary: !ruby/object:Rub_sal
+            salary: !ruby/object:Percent_sal
+              salary: !ruby/object:Fix_sal
+                salary: 50000
+              add_percent: 0
+              choose: 1
+            add_rub: 0
+          premium: 0
+        fine: 0
+    - !ruby/object:Post
+      department: Security Service
+      name: Сотрудник охраны
+      vacancy: 1
+      salary: !ruby/object:Fine_sal
+        salary: !ruby/object:Premium_sal
+          salary: !ruby/object:Rub_sal
+            salary: !ruby/object:Percent_sal
+              salary: !ruby/object:Fix_sal
+                salary: 25000
+              add_percent: 0
+              choose: 0
+            add_rub: 0
+          premium: 0
+        fine: 0
+    index: -1
+  index_duty: -1
+  index_post: -1
+- !ruby/object:Department
+  name: HR
+  phone: '78619990000'
+  duty:
+  - Обеспечение постоянства кадрового состава за счет поддержания баланса приема и
+    увольнения сотрудников
+  - Планирование карьеры сотрудников
+  - Создание и планирование тарифной сетки
+  - Создание планов подготовки и повышение квалификации сотрудников
+  - Соблюдение норм трудового законодательства
+  - Укрепление трудовой дисциплины и охрана труда
+  - Обеспечение своевременной отчетности
+  - Планирование и создание социальных пакетов организации
+  posts: !ruby/object:Post_list
+    children_list:
+    - !ruby/object:Post
+      department: HR
+      name: Начальник отдела
+      vacancy: 0
+      salary: !ruby/object:Fine_sal
+        salary: !ruby/object:Premium_sal
+          salary: !ruby/object:Rub_sal
+            salary: !ruby/object:Percent_sal
+              salary: !ruby/object:Fix_sal
+                salary: 80000
+              add_percent: 0
+              choose: 1
+            add_rub: 0
+          premium: 0
+        fine: 0
+    - !ruby/object:Post
+      department: HR
+      name: Менеджер отдела
+      vacancy: 1
+      salary: !ruby/object:Fine_sal
+        salary: !ruby/object:Premium_sal
+          salary: !ruby/object:Rub_sal
+            salary: !ruby/object:Percent_sal
+              salary: !ruby/object:Fix_sal
+                salary: 40000
+              add_percent: 0
+              choose: 0
+            add_rub: 0
+          premium: 0
+        fine: 0
+    index: -1
+  index_duty: -1
+  index_post: -1

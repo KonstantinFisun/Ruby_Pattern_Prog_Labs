@@ -1,0 +1,2 @@
+Security Service;Начальник;50000,,,,;0
+Security Service;Сотрудник охраны;25000,,,,;1
