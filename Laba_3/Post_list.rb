@@ -121,7 +121,5 @@ class Post_list < Parent_list
     new(@children_list.find_all{|x| x.department[department]})
   end
 
-  def hiring(employee, percentage_bid)
-    @children_list[0].hiring(employee, percentage_bid)
-  end
+
 end

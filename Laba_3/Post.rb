@@ -83,14 +83,23 @@ class Post
 
   #========================================================================
 
-  # Метод принятия на должность, создаться job
-  # работник и ставка
+  # Метод принятия на должность
   def hiring(employee, percentage_bid)
     today = Time.new # Текущая дата
+    # Работа
     job = Job.new(post_name: @name, employee: "#{employee.surname} #{employee.firstname} #{employee.lastname}",
                   start_date:"#{today.day}.#{today.month}.#{today.year}",
                   date_of_dismissal:nil, percentage_bid: percentage_bid)
-    employee.hiring(job)
+    employee.hiring(job) # Вызов добавления работы у сотрудника
   end
 
+  # Метод уволить с работы
+  def dismiss(employee)
+    today = Time.new # Текущая дата
+    # Работа
+    job = Job.new(post_name: @name, employee: "#{employee.surname} #{employee.firstname} #{employee.lastname}",
+                  date_of_dismissal:"#{today.day}.#{today.month}.#{today.year}")
+    employee.dismiss(job) # Вызов удаления работы у сотрудника
+  end
+  #========================================================================
 end

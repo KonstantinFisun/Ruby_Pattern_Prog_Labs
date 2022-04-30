@@ -1,7 +1,7 @@
 class Job
   attr_accessor :post_name,:employee,:start_date,:date_of_dismissal,:percentage_of_the_bid
   # Конструктор
-  def initialize(post_name:, employee:, start_date:, date_of_dismissal:nil, percentage_bid:)
+  def initialize(post_name:, employee:, start_date:nil, date_of_dismissal:nil, percentage_bid: nil)
     @post_name = post_name
     @employee = employee
     @start_date = start_date

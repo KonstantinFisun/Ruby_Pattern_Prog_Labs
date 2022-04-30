@@ -56,6 +56,17 @@ class Employee
       @job_list.add_note(job)
     end
   end
+
+  # Метод ухода с должности
+  def dismiss(job)
+    # Находим работу у сотрудника и устанавливаем дату удаления
+    @job_list.each do |x|
+      if x.post_name == job.post_name
+        x.date_of_dismissal = job.date_of_dismissal
+      end
+    end
+  end
+  #=====================================================================================================================
 end
 
 class Skilled_employee < Employee
