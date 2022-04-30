@@ -81,4 +81,9 @@ class Job_list < Parent_list
   def search_by_post(post_name)
     new(@children_list.find_all{|x| x.post_name == post_name})
   end
+
+  # Метод, составляющий новый список, содержащий записи о всех элементах, где человек указан в аргументах метода.
+  def search_by_fio(fio)
+    new(@children_list.find_all{|x| x.employee == fio})
+  end
 end
