@@ -87,10 +87,10 @@ class Post
   # работник и ставка
   def hiring(employee, percentage_bid)
     today = Time.new # Текущая дата
-    employee.hiring(Job.new(post_name: @name, employee: "#{employee.surname} #{employee.firstname} #{employee.lastname}",
-                            start_date:"#{today.day}.#{today.month}.#{today.year}",
-                            date_of_dismissal:nil, percentage_bid: percentage_bid))
-    puts(employee)
+    job = Job.new(post_name: @name, employee: "#{employee.surname} #{employee.firstname} #{employee.lastname}",
+                  start_date:"#{today.day}.#{today.month}.#{today.year}",
+                  date_of_dismissal:nil, percentage_bid: percentage_bid)
+    employee.hiring(job)
   end
 
 end

@@ -1,5 +1,5 @@
 path = File.dirname(__FILE__) # Получили путь к папке
-Dir[File.dirname(__FILE__) + '/*.rb'].each {|file| require file }
+require "#{path}/Parent_list.rb"
 require "yaml"
 require "yaml/store"
 
@@ -9,6 +9,7 @@ class Job_list < Parent_list
   def initialize(list_job)
     super(list_job)
   end
+
 
   #=============================================================================
   # Переопределенный метод to_s
@@ -61,4 +62,5 @@ class Job_list < Parent_list
     @children_list = Job_list.read_from_txt(file)
   end
   #=============================================================================
+
 end

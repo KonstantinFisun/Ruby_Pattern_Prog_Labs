@@ -1,3 +1,4 @@
+
 class Employee
   # Геттеры и сеттеры
   attr_accessor :surname, :firstname, :lastname, :bd, :passport,
@@ -5,7 +6,7 @@ class Employee
 
   # Конструктор
   def initialize(surname:, firstname:, lastname:, bd:, passport:,
-  phone:, address:, email:, job_list:)
+  phone:, address:, email:, job_list:nil)
     @surname = surname # Фамилия
     @firstname = firstname # Имя
     @lastname = lastname # Отчество
@@ -14,7 +15,7 @@ class Employee
     @phone = phone # Телефон
     @address = address # Адрес
     @email = email # Электронная почта
-    @job_list = Job_list.new(job_list) # Места работ
+    @job_list = job_list # Места работ
   end
 
   # Конструктор из строки
@@ -36,7 +37,7 @@ class Employee
      Телефон: #{@phone};
      Адрес: #{@address};
      Email: #{@email};
-     Список работ: #{@job_list}\n"
+     Список работ:\n #{@job_list}"
   end
 
   # Урезанный формат
@@ -48,7 +49,12 @@ class Employee
 
   # Метод вступления в должность
   def hiring(job)
-    @job_list.add_note(job)
+    # Если не имелась работы до этого
+    if @job_list == nil
+      @job_list = Job_list.new([job])
+    else
+      @job_list.add_note(job)
+    end
   end
 end
 
@@ -60,7 +66,7 @@ class Skilled_employee < Employee
   def initialize(surname:, firstname:, lastname:, bd:, passport:,
                   phone:, address:, email:, job_list:, experience:, descrip_exp:)
     super(surname:surname, firstname:firstname, lastname:lastname, bd:bd,
-          passport:passport, phone:phone, address:address, email:email, job_list:)
+          passport:passport, phone:phone, address:address, email:email, job_list:job_list)
 
       @experience = experience # Лет опыта
       @descrip_exp = descrip_exp # Описание опыта

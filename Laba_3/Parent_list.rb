@@ -5,7 +5,6 @@ class Parent_list
     @index = -1
   end
 
-
   # Метод добавления записи
   def add_note(children)
     @children_list.append(children)
