@@ -70,13 +70,22 @@ class Employee
 
   # Метод, возвращающий текущую должность
   def current_post
-    @job_list.find do |x|
+    @job_list.find_all do |x|
       if x.date_of_dismissal == "" or x.date_of_dismissal == nil
         x
       end
     end
   end
   #=====================================================================================================================
+
+  # Метод, рассчитывающий суммарную зарплату данного человека на всех текущих должностях
+  # Аргумент: имеющиеся должности
+  def total_salary(posts)
+    current_job = current_post # Получаем все текущие работы
+    sum = 0
+    current_job.each{|x| sum += x.get_salary(posts)}
+    sum
+  end
 end
 
 class Skilled_employee < Employee

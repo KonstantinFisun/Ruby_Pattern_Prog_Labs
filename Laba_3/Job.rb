@@ -26,7 +26,10 @@ class Job
   def cut
     "#{@post_name}, Сотрудник: #{@employee}"
   end
-
   #=====================================================================================================================
 
+  # Метод, получающий зарплату
+  def get_salary(posts)
+    posts.find{|x| @post_name == x.name}.salary * @percentage_bid
+  end
 end
