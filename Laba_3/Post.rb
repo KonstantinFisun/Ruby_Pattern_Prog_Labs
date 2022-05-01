@@ -7,7 +7,6 @@ class Post
 
   # Конструктор
   def initialize(department:,name:,salary:, percent: , rub: , premium: , fine: ,vacancy:)
-
     @department, @name, self.vacancy = department, name, vacancy.to_i
     set_salary(salary:salary.to_i, percent:percent.to_i, rub:rub.to_i, premium:premium.to_i, fine:fine.to_i) # Вызов сеттер зарплаты
   end
@@ -102,4 +101,10 @@ class Post
     employee.dismiss(job) # Вызов удаления работы у сотрудника
   end
   #========================================================================
+
+  # Метод, строящий всех сотрудников на этой должности
+  # Аргумент: Employee_list
+  def employees_in_post(employee_list)
+    employee_list.find_all{|x| x.current_post.post_name == @name}
+  end
 end

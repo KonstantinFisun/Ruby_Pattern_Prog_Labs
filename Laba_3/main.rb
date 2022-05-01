@@ -8,14 +8,14 @@ require "yaml/store"
 def main
 
 
-  # job = Job_list.initialize_txt("#{File.dirname(__FILE__)}/txt/Jobs.txt")
+  job = Job_list.read_from_txt("#{File.dirname(__FILE__)}/txt/Jobs.txt")
   #
   # posts = Post_list.initialize_txt("#{File.dirname(__FILE__)}/txt/Post_list.txt")
   # # # puts(posts)
-  # employee = Employee.new(surname: "Фисун", firstname: "Константин", lastname: "Сергеевич",
-  #                         bd: "22.10.2001", passport: "0315277561", phone: "79885252599", address: "Крас", email: "mail",
-  #                         job_list:job)
-  # posts.dismiss(employee)
+  employee = Employee.new(surname: "Фисун", firstname: "Константин", lastname: "Сергеевич",
+                          bd: "22.10.2001", passport: "0315277561", phone: "79885252599", address: "Крас", email: "mail",
+                          job_list:job)
+  puts(employee.current_post.class)
 
   # posts = Post_list.initialize_txt("#{File.dirname(__FILE__)}/txt/Post_list.txt")
   # # # puts(posts)
@@ -25,8 +25,8 @@ def main
   #                                               start_date: "15.06.2015",percentage_bid: 1)]))
   # posts.hiring(employee, 1)
   # posts.class.write_to_txt("4.txt")
-  depart = Department_list.read_from_txt("#{File.dirname(__FILE__)}/car_dealership/Departments.txt")
-  puts(depart.write_to_yaml("1.yaml"))
+  # depart = Department_list.read_from_txt("#{File.dirname(__FILE__)}/car_dealership/Departments.txt")
+  # puts(depart.write_to_yaml("1.yaml"))
 
   # depart = Department_list.read_from_yaml("1.yaml")
   # puts depart

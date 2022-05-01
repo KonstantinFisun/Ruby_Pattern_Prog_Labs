@@ -50,4 +50,10 @@ class Parent_list
        yield dep
      end
   end
+
+  def find
+    @children_list.find  do |dep|
+      yield dep
+    end
+  end
 end
