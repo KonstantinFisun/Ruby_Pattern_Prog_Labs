@@ -20,7 +20,7 @@ class Department
     component = line.chomp.split(';')
     new(component[0], component[1],component[2].split(','),Post_list.read_from_txt("#{File.dirname(__FILE__)}/car_dealership/" + component[3]))
   end
-
+  #=====================================================================================================================
   # Получение информации об объекте
   def to_s
     "Название: #{@name}; Телефон : #{@phone}; \nОбязанности : \n#{duty}Должности: \n#{@posts}\n"
@@ -55,7 +55,7 @@ class Department
   def posts_write_txt(file)
     @posts.posts_write_txt(file)
   end
-
+  #=====================================================================================================================
   # Добавить обязанность
   def duty_add(value)
     @duty.append(value)
@@ -81,7 +81,8 @@ class Department
   def change_text_sel_duty(value)
     @duty[@index_duty] = value
   end
-
+  #=====================================================================================================================
+  # Сеттер номера телефона
   # Проверка корректности номера
   def phone=(value)
     if self.class.verify_phone(value)
@@ -95,6 +96,7 @@ class Department
     phone == /^((\+7|7|8)+(\d){10})$/.match(phone).to_s
   end
 
+  #=====================================================================================================================
   # Добавить должность
   def post_add(value)
     @posts.add_note(value)
@@ -119,6 +121,7 @@ class Department
   def change_sel_post(value)
     @posts.change_note(value)
   end
+  #=====================================================================================================================
 
   # Все вакантные должности
   def popular_vacancies
@@ -130,4 +133,16 @@ class Department
     @posts.find_vacancy.length
   end
 
+  #=====================================================================================================================
+
+  # Метод, строящий Employee_list всех сотрудников, находящихся сейчас на данных должностях
+  def employees_in_posts(employee_list)
+    employee_list.each do |x|
+      @posts.each do |y|
+        if x.current_post.post_name == y.name
+          x
+        end
+      end
+    end
+  end
 end

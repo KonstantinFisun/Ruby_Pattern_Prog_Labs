@@ -121,5 +121,4 @@ class Post_list < Parent_list
       end
     end
   end
-
 end
