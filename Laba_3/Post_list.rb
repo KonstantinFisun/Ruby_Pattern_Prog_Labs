@@ -109,5 +109,17 @@ class Post_list < Parent_list
     new(@children_list.find_all{|x| x.department[department]})
   end
 
+  #=====================================================================================================================
+
+  # Метод, строящий Employee_list всех сотрудников, находящихся сейчас на данных должностях
+  def employees_in_posts(employee_list)
+    employee_list.each do |x|
+      @children_list.each do |y|
+        if x.current_post.post_name == y.name
+          x
+        end
+      end
+    end
+  end
 
 end
