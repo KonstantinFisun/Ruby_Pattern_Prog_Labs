@@ -126,4 +126,16 @@ class Employee_list < Parent_list
          data[1], data[0]), today) > age_a
     end)
   end
+
+  #=====================================================================================================================
+  # Метод, сортировки по зарплате трудоустроенных
+  # Аргумент: зарплаты
+  def sort_by_salary(posts)
+    @children_list.find_all{|x| if x.total_salary(posts) != 0 then x end}.sort_by!{|x| x.total_salary(posts)}
+  end
+
+  # Метод, выводящий первые k человек с самой высокой зарплатой
+  def first_k_employee_sal(posts, k)
+    sort_by_salary(posts).reverse.take(k)
+  end
 end
