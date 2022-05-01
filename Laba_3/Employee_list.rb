@@ -11,14 +11,14 @@ class Employee_list < Parent_list
 
   def to_s
     s = ""
-    @children_list.each_index{|i| s += "Работник - #{i}\n#{@children_list[i]}"}
+    @children_list.each_index{|i| s += "\nРаботник - #{i}\n#{@children_list[i]}"}
     s
   end
 
   # Урезанный формат ФИО
   def cut_to_s
     s = ""
-    @children_list.each_index{|i| s += "Работник - #{i}\n#{@children_list[i].cut}"}
+    @children_list.each_index{|i| s += "\nРаботник - #{i}\n#{@children_list[i].cut}"}
     s
   end
   # Сортировка по Фамилии
@@ -73,7 +73,7 @@ class Employee_list < Parent_list
   # Метод возвращающий коллекцию, в названии которых
   # содержится введенная в аргументе строка как подстрока.
   def all_employees_with_substring(str)
-    new(@children_list.find_all do |x|
+    Employee_list.new(@children_list.find_all do |x|
       x.surname[str] or x.firstname[str] or x.lastname[str] or
       x.bd[str] or x.passport[str] or x.address[str] or x.phone[str] or x.email[str]
     end)
@@ -91,41 +91,38 @@ class Employee_list < Parent_list
 
   # Метод возвращающий людей, конкретного возраста
   def employees_of_a_specific_age(age)
-    today = Time.new() # Текущая дата
-    new(@children_list.find_all do |x|
+    today = Time.new # Текущая дата
+    Employee_list.new(@children_list.find_all do |x|
       data = x.bd.split(".")
-      Employee_list.age_in_completed_years(Time.new(data[2],
-        data[1], data[0]), today) == age
+      age_in_completed_years(Time.new(data[2],data[1], data[0]), today) == age
     end)
   end
 
   # Метод  возвращающий людей, младше заданного возраста
   def employees_of_the_youngest_age(age)
     today = Time.new # Текущая дата
-    new(@children_list.find_all do |x|
+    Employee_list.new(@children_list.find_all do |x|
       data = x.bd.split(".")
-      Employee_list.age_in_completed_years(Time.new(data[2],
-        data[1], data[0]), today) < age
+      age_in_completed_years(Time.new(data[2],data[1], data[0]), today) < age
     end)
   end
 
   # Метод  возвращающий людей, старше заданного возраста
   def employees_of_the_olderest_age(age)
     today = Time.new # Текущая дата
-    new(@children_list.find_all do |x|
+    Employee_list.new(@children_list.find_all do |x|
       data = x.bd.split(".")
-      Employee_list.age_in_completed_years(Time.new(data[2],
-        data[1], data[0]), today) > age
+      age_in_completed_years(Time.new(data[2],data[1], data[0]), today) > age
     end)
   end
 
   # Метод  возвращающий людей в заданном диапазоне
-  def Employee_list.employees_of_the_range_age(age_a, age_b)
+  def employees_of_the_range_age(age_a, age_b)
     today = Time.new # Текущая дата
-    new(@children_list.find_all do |x|
+    Employee_list.new(@children_list.find_all do |x|
       data = x.bd.split(".")
-       Employee_list.age_in_completed_years(Time.new(data[2],
-        data[1], data[0]), today) < age_b and Employee_list.age_in_completed_years(Time.new(data[2],
+       age_in_completed_years(Time.new(data[2],
+        data[1], data[0]), today) < age_b and age_in_completed_years(Time.new(data[2],
          data[1], data[0]), today) > age_a
     end)
   end

@@ -1,7 +1,7 @@
 class Job
   attr_accessor :post_name,:employee,:start_date,:date_of_dismissal,:percentage_of_the_bid
   # Конструктор
-  def initialize(post_name:, employee:, start_date:nil, date_of_dismissal:nil, percentage_bid: nil)
+  def initialize(post_name:, employee:, start_date:nil, date_of_dismissal:nil, percentage_bid: 50)
     @post_name = post_name
     @employee = employee
     @start_date = start_date
@@ -19,7 +19,7 @@ class Job
 
   # Переопределение to_s
   def to_s
-    "#{@post_name}, Сотрудник: #{@employee}, Дата назначения: #{@start_date}, Процент от ставки: #{@percentage_bid}, Дата увольнения: #{@date_of_dismissal}"
+    "#{@post_name}, Сотрудник: #{@employee}, Дата назначения: #{@start_date}, Процент от ставки: #{@percentage_bid} #{if @date_of_dismissal != "" and @date_of_dismissal != nil then ", Дата увольнения: "+@date_of_dismissal end}"
   end
 
   # Урезанный формат
@@ -30,6 +30,11 @@ class Job
 
   # Метод, получающий зарплату
   def get_salary(posts)
-    posts.find{|x| @post_name == x.name}.salary * @percentage_bid
+    post = posts.find{|x| @post_name == x.name} # * @percentage_bid
+    if post != nil
+      post.salary.to_i * @percentage_bid.to_i/100
+    else
+      0
+    end
   end
 end

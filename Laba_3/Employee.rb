@@ -24,7 +24,7 @@ class Employee
     fio = component[0].split(" ")
     new(surname:fio[0], firstname:fio[1], lastname:fio[2],
       bd:component[1], passport:component[2], phone:component[3], address:component[4],
-      email:component[5], job_list: component[6])
+      email:component[5], job_list: Job_list.read_from_txt("#{File.dirname(__FILE__)}/car_dealership/" + component[6]))
   end
 
   #=====================================================================================================================
@@ -37,7 +37,7 @@ class Employee
      Телефон: #{@phone};
      Адрес: #{@address};
      Email: #{@email};
-     Список работ:\n #{@job_list}"
+     Список работ:\n#{@job_list}"
   end
 
   # Урезанный формат

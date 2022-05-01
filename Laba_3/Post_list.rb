@@ -88,25 +88,25 @@ class Post_list < Parent_list
 
   # Метод получающий все вакантные должности
   def find_vacancy
-    @children_list.find_all{|x| x.vacancy == 1}
+    Post_list.new(@children_list.find_all{|x| x.vacancy == 1})
   end
 
   # Метод возвращающий коллекцию должностей,
   # относящихся к заданному в аргументе отделу.
-  def Post_list.all_posts_of_the_department(department)
-    new(@children_list.find_all{|x| x.department == department})
+  def all_posts_of_the_department(department)
+    Post_list.new(@children_list.find_all{|x| x.department == department})
   end
 
   # Метод возвращающий коллекцию вакантных должностей,
   # относящихся к заданному в аргументе отделу.
-  def Post_list.all_vacant_posts_department(department)
-    new(@children_list.find_all{|x| x.department == department and x.vacancy == 1})
+  def all_vacant_posts_department(department)
+    Post_list.new(@children_list.find_all{|x| x.department == department and x.vacancy == 1})
   end
 
   # Метод возвращающий коллекцию должностей, в названии которых
   # содержится введенная в аргументе строка как подстрока.
-  def Post_list.all_posts_department_substring(department)
-    new(@children_list.find_all{|x| x.department[department]})
+  def all_posts_substring(str)
+    Post_list.new(@children_list.find_all{|x| x.department[str] or x.name[str]})
   end
 
   #=====================================================================================================================
