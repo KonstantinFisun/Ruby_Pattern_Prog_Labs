@@ -85,6 +85,13 @@ class Department_list < Parent_list
       x.name[str] or x.phone[str]
     end)
   end
+  #=====================================================================================================================
+  # Метод, строящий Employee_list всех сотрудников, находящихся сейчас на данных должностях
+  def employees_in_posts(employee_list)
+    list = []
+    @children_list.each{|x| list.append(x.employees_in_posts(employee_list))}
+    Employee_list.new(list.flatten)
+  end
 
 
 end
