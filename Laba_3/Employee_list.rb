@@ -5,9 +5,30 @@ require "yaml/store"
 
 class Employee_list < Parent_list
   # Конструктор
-  def initialize(list_employees)
-    super(list_employees)
+  # Поле, содержащее объект
+  @@instance = nil
+
+  def Employee_list.get_instance(*list)
+    if @@instance
+      @@instance.set_parameters(list)
+    else
+      @@instance = Employee_list.new(list)
+    end
+    @@instance
   end
+
+  # "Ленивая инициализация"
+  def set_parameters(list)
+    # Список работников
+    @children_list = list
+    @index = nil
+  end
+
+  # Приватный конструктор
+  private def initialize(list)
+    self.set_parameters(list)
+  end
+
 
   def to_s
     s = ""
@@ -36,7 +57,7 @@ class Employee_list < Parent_list
       list_employees.push(Employee.read_line(line))
     end
     file.close
-    new(list_employees)
+    get_instance(list_employees)
   end
 
   # Запись всех отделов в файл
@@ -58,7 +79,7 @@ class Employee_list < Parent_list
         list_posts += line
       end
     end
-    new(store.load(list_posts))
+    get_instance(store.load(list_posts))
   end
 
   # Запись всех должностей в YAML

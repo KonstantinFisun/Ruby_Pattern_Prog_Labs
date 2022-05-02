@@ -6,10 +6,11 @@ require "yaml"
 require "yaml/store"
 
 def main
-  posts = Post_list.read_from_txt("#{File.dirname(__FILE__)}/car_dealership/All_posts.txt")
-  # puts posts
-  employees = Employee_list.read_from_txt("#{File.dirname(__FILE__)}/car_dealership/Employees.txt")
-  puts(employees.sort_by_salary(posts))
+  # posts = Post_list.read_from_txt("#{File.dirname(__FILE__)}/car_dealership/All_posts.txt")
+  # # puts posts
+  # employees = Employee_list.read_from_txt("#{File.dirname(__FILE__)}/car_dealership/Employees.txt")
+  # puts(employees.sort_by_salary(posts))
+  emp = Employee_list.get_instance
 end
 
 if __FILE__ == $0
