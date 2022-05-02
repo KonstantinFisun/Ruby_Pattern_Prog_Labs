@@ -86,6 +86,10 @@ class Employee
     current_job.each{|x| sum += x.get_salary(posts)}
     sum
   end
+
+  def ==(employee)
+    @passport == employee.passport
+  end
 end
 
 class Skilled_employee < Employee
@@ -101,4 +105,6 @@ class Skilled_employee < Employee
       @experience = experience # Лет опыта
       @descrip_exp = descrip_exp # Описание опыта
   end
+
+
 end
