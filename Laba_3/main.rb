@@ -4,13 +4,23 @@ Dir[File.dirname(__FILE__) + '/*.rb'].each {|file| require file }
 
 require "yaml"
 require "yaml/store"
+require 'mysql2'
+
+def db_mysql_con
+  client = Mysql2::Client.new(:host => "localhost", :username => "root", :password => "12345", :database => "sakila")
+end
 
 def main
+  client = Mysql2::Client.new(:host => "localhost", :username => "root", :password => "12345", :database => "sakila")
+  results = client.query("select * from sakila.address")
+  results.each do |row|
+    puts row
+  end
   # posts = Post_list.read_from_txt("#{File.dirname(__FILE__)}/car_dealership/All_posts.txt")
   # # puts posts
   # employees = Employee_list.read_from_txt("#{File.dirname(__FILE__)}/car_dealership/Employees.txt")
   # puts(employees.sort_by_salary(posts))
-  emp = Employee_list.get_instance
+  # emp = Employee_list.get_instance
 end
 
 if __FILE__ == $0
