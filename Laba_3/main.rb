@@ -6,16 +6,18 @@ require "yaml"
 require "yaml/store"
 require 'mysql2'
 
+# Подключение базы данных
 def db_mysql_con
-  client = Mysql2::Client.new(:host => "localhost", :username => "root", :password => "12345", :database => "sakila")
+  client = Mysql2::Client.new(:host => "localhost", :username => "root", :password => "12345", :database => "car_dealership")
 end
 
 def main
-  client = Mysql2::Client.new(:host => "localhost", :username => "root", :password => "12345", :database => "sakila")
-  results = client.query("select * from sakila.address")
-  results.each do |row|
-    puts row
-  end
+  depart = Department_list.read_from_db(db_mysql_con)
+  puts(depart)
+  # results = db_mysql_con.query("select * from car_dealership.department")
+  # results.each do |row|
+  #   puts row["name"]
+  # end
   # posts = Post_list.read_from_txt("#{File.dirname(__FILE__)}/car_dealership/All_posts.txt")
   # # puts posts
   # employees = Employee_list.read_from_txt("#{File.dirname(__FILE__)}/car_dealership/Employees.txt")

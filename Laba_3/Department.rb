@@ -20,6 +20,7 @@ class Department
     component = line.chomp.split(';')
     new(component[0], component[1],component[2].split(','),Post_list.read_from_txt("#{File.dirname(__FILE__)}/car_dealership/" + component[3]))
   end
+
   #=====================================================================================================================
   # Получение информации об объекте
   def to_s

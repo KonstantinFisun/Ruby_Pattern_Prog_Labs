@@ -70,7 +70,34 @@ class Department_list < Parent_list
       f.puts(YAML.dump(@children_list))
     end
   end
+  #=====================================================================================================================
+  # Считывание из БД
+  def Department_list.read_from_db(client)
+    list_departments = [] # Список отделов
+    results = client.query("select * from car_dealership.department")
+    results.each do |row|
+      name = row["name"] # Считали имя департамента
+      phone = row["phone"] # Считали телефон департамента
 
+      # Считали обязанности
+      list_duty = []
+      duty = client.query("select duty_name from car_dealership.duty where id_department = #{row["id"]}")
+      duty.each do |dut|
+        list_duty.push(dut["duty_name"])
+      end
+
+      # Считали должности
+      list_posts = []
+      posts = client.query("select * from car_dealership.post where id_department = #{row["id"]}")
+      posts.each do |post|
+        list_posts.push(Post.new(department: name, salary:post["salary"], name: post["name"], vacancy: post["vacancy"]))
+      end
+
+      list_departments.push(Department.new(name,phone,list_duty,Post_list.new(list_posts)))
+    end
+
+    new(list_departments)
+  end
   #=====================================================================================================================
 
   # Сортировка по количеству вакансий
