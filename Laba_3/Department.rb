@@ -56,6 +56,16 @@ class Department
   def posts_write_txt(file)
     @posts.posts_write_txt(file)
   end
+
+  #=====================================================================================================================
+  # Запись в БД
+  def write_to_bd(client)
+    client.query("INSERT INTO car_dealership.department (id, name, phone) VALUES (\"#{@name}\", \"#{@phone}\");") # Запись отдела
+    result = client.query("SELECT * FROM duty WHERE id_department=(SELECT max(id_department) FROM duty)").first["id_department"] # Получение последнего id отдела
+    @duty.each do |duty|
+      client.query("INSERT INTO car_dealership.duty (id_department, duty_name) VALUES (\"#{result}\", \"#{duty}\");") # Запись обязанности
+    end
+  end
   #=====================================================================================================================
   # Добавить обязанность
   def duty_add(value)

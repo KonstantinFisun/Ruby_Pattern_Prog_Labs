@@ -79,6 +79,13 @@ class Post
   def write_to_txt
     "#{@department};#{@name};#{@salary.write_to_txt};#{@vacancy}"
   end
+  #=====================================================================================================================
+  # Запись в БД
+  def write_to_bd(client)
+    id = client.query("SELECT * FROM department WHERE department.name = \"#{name}\"").first["id"] # Получение id департамента должности
+    client.query("INSERT INTO car_dealership.post (id_department, name, salary, vacancy) VALUES (\"#{id}\", \"#{@name}\",
+                 \"#{@salary.get_salary}\", \"#{@vacancy}\");") # Запись отдела
+  end
 
   #========================================================================
 

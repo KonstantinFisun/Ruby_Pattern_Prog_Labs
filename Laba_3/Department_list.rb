@@ -6,6 +6,7 @@ require "yaml/store"
 
 class Department_list < Parent_list
   # Конструктор
+  attr_accessor :children_list
   def initialize(list_departments)
     super(list_departments)
   end
@@ -97,6 +98,11 @@ class Department_list < Parent_list
     end
 
     new(list_departments)
+  end
+
+  # Запись в БД
+  def write_to_bd(client)
+
   end
   #=====================================================================================================================
 
