@@ -76,6 +76,24 @@ class Job_list < Parent_list
       f.puts YAML.dump(@children_list)
     end
   end
+  # Сделать employee значение null и если мы считываем из employee_list то передаем null, иначе в Job_list заполняем
+  #=====================================================================================================================
+  # Считывание из БД
+  def Job_list.read_from_db(client)
+    # Считали работников
+    list_jobs = []
+    jobs = client.query("SELECT *, post.name as post_name FROM job
+                        join employee ON job.id_employee = employee.id
+                        join post ON job.id_post = post.id_post")
+    jobs.each do |job|
+      list_jobs.push(Job.new(post_name: job["post_name"],
+                             employee: Employee.new(surname: job["surname"], firstname: job["firstname"], lastname: job["lastname"],
+                                                                                 bd: job["birthday"], phone: job["phone"], passport: job["passport"],
+                                                                                 address: job["address"], email: job["email"]),
+                             start_date: job["start_date"], date_of_dismissal: job["date_of_dismissal"], percentage_bid: job["percentage_bid"]))
+    end
+    new(list_jobs)
+  end
   #=====================================================================================================================
   # Метод, составляющий новый список, содержащий записи о всех элементах, где должность равна аргументу метода.
   def search_by_post(post_name)
