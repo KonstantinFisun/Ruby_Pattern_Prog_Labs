@@ -89,7 +89,19 @@ class Employee_list < Parent_list
     end
   end
   #=====================================================================================================================
-
+  # Считывание из БД
+  def Employee_list.read_from_db(client)
+    # Считали работников
+    list_employee = []
+    employees = client.query("SELECT * FROM employee")
+    employees.each do |employee|
+      list_employee.push(Employee.new(surname: employee["surname"], firstname: employee["firstname"], lastname: employee["lastname"],
+                                      bd: employee["birthday"], phone: employee["phone"], passport: employee["passport"],
+                                      address: employee["address"], email: employee["email"]))
+    end
+    new(list_employee)
+  end
+  #=====================================================================================================================
 
   # Метод возвращающий коллекцию, в названии которых
   # содержится введенная в аргументе строка как подстрока.
