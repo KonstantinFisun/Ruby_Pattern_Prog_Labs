@@ -86,10 +86,6 @@ class Employee
     current_job.each{|x| sum += x.get_salary(posts)}
     sum
   end
-
-  def ==(employee)
-    @passport == employee.passport
-  end
 end
 
 class Skilled_employee < Employee

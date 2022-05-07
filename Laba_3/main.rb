@@ -12,8 +12,8 @@ def db_mysql_con
 end
 
 def main
-  post = Post_list.read_from_db(db_mysql_con)
-  puts(post)
+  employees = Job_list.read_from_db(db_mysql_con)
+  puts(employees)
 end
 
 if __FILE__ == $0
