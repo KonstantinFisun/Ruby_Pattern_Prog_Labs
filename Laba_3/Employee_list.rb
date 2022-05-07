@@ -90,24 +90,8 @@ class Employee_list < Parent_list
   end
   #=====================================================================================================================
   # Считывание из БД
-  def Employee_list.read_from_db(client)
-    # Считали работников
-    list_employee = []
-    employees = client.query("SELECT * FROM employee")
-    employees.each do |employee|
-      list_job = [] # Список работ сотрудника
-      jobs = client.query("SELECT * FROM job
-                            join post ON post.id_post = job.id_post
-                            where job.id_employee = #{employee["id"]}")
-      jobs.each do |job|
-        list_job.push(Job.new(post_name: job["name"], start_date: job["start_date"], date_of_dismissal: job["date_of_dismissal"],
-        percentage_bid: job["percentage_bid"]))
-      end
-      list_employee.push(Employee.new(surname: employee["surname"], firstname: employee["firstname"], lastname: employee["lastname"],
-                                      bd: employee["birthday"], phone: employee["phone"], passport: employee["passport"],
-                                      address: employee["address"], email: employee["email"], job_list: Job_list.new(list_job)))
-    end
-    new(list_employee)
+  def Employee_list.read_from_db
+    new(DB_driver.get_instance.employees_read_from_db)
   end
   #=====================================================================================================================
 

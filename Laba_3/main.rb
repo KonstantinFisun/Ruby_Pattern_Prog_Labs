@@ -4,16 +4,11 @@ Dir[File.dirname(__FILE__) + '/*.rb'].each {|file| require file }
 
 require "yaml"
 require "yaml/store"
-require 'mysql2'
 
-# Подключение базы данных
-def db_mysql_con
-  client = Mysql2::Client.new(:host => "localhost", :username => "root", :password => "12345", :database => "car_dealership")
-end
 
 def main
-  dep = Department_list.read_from_db(db_mysql_con)
-  dep.lol(db_mysql_con)
+  dep = Department_list.read_from_db
+  puts dep
 end
 
 if __FILE__ == $0
