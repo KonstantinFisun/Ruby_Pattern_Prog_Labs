@@ -14,7 +14,7 @@ class Employee
     @passport = passport # Паспорт
     self.phone = phone # Телефон
     @address = address # Адрес
-    @email = email # Электронная почта
+    self.email = email # Электронная почта
     @job_list = job_list # Места работ
   end
 
@@ -41,6 +41,20 @@ class Employee
     phone.gsub!(/[^\d]/, '') # Оставили только цифры
     phone == /(8|7)[\d]{10}$/.match(phone).to_s
   end
+
+  # Проверка email
+  def email=(value)
+    if self.class.verify_email(value)
+      @email = value.downcase
+    else raise ArgumentError.new("Электронный адрес введен неверно!")
+    end
+  end
+
+  # Метод класса для проверки российского номера телефона
+  def self.verify_email(email)
+    email == /^((?:[a-z]+[0-9_\.-]*)+[a-z0-9_\.-]*[a-z0-9])@((?:[a-z0-9]+[\.-]*)+\.[a-z]{2,4})$/.match(email).to_s
+  end
+
   #=====================================================================================================================
 
   # Получение информации об объекте
