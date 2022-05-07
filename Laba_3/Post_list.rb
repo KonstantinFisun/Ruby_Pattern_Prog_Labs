@@ -85,7 +85,18 @@ class Post_list < Parent_list
     end
   end
   #=====================================================================================================================
-
+  # Считывание из БД
+  def Post_list.read_from_db(client)
+    # Считали должности
+    list_posts = []
+    posts = client.query("SELECT post.name as post_name,department.name as department_name,salary,vacancy FROM post
+join department ON post.id_department = department.id")
+    posts.each do |post|
+      list_posts.push(Post.new(department: post["department_name"], salary:post["salary"], name: post["post_name"], vacancy: post["vacancy"]))
+    end
+    Post_list.new(list_posts)
+  end
+  #=====================================================================================================================
   # Метод получающий все вакантные должности
   def find_vacancy
     Post_list.new(@children_list.find_all{|x| x.vacancy == 1})
