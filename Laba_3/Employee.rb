@@ -12,7 +12,7 @@ class Employee
     @lastname = lastname # Отчество
     @bd = bd # День рождения
     @passport = passport # Паспорт
-    @phone = phone # Телефон
+    self.phone = phone # Телефон
     @address = address # Адрес
     @email = email # Электронная почта
     @job_list = job_list # Места работ
@@ -26,7 +26,21 @@ class Employee
       bd:component[1], passport:component[2], phone:component[3], address:component[4],
       email:component[5], job_list: Job_list.read_from_txt("#{File.dirname(__FILE__)}/car_dealership/" + component[6]))
   end
+  #=====================================================================================================================
+  # Сеттеры
+  # Проверка номера телефона
+  def phone=(value)
+    if self.class.verify_phone(value)
+      @phone = ("7-"+value[1..-1]).insert(5, "-")
+    else raise ArgumentError.new("Номер телефона введен неверно!")
+    end
+  end
 
+  # Метод класса для проверки российского номера телефона
+  def self.verify_phone(phone)
+    phone.gsub!(/[^\d]/, '') # Оставили только цифры
+    phone == /(8|7)[\d]{10}$/.match(phone).to_s
+  end
   #=====================================================================================================================
 
   # Получение информации об объекте
