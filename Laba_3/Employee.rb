@@ -78,10 +78,23 @@ class Employee
     end
   end
 
-  # Метод класса для имени
+  # Метод класса для проверки имени
   def self.verify_name(name)
     name == /^[А-ЯЁ][а-яё]{2,}([-][А-ЯЁ][а-яё]{2,})?$/.match(name).to_s
   end
+
+  def bd=(value)
+    if self.class.verify_bd(value)
+      @bd = value
+    else raise ArgumentError.new("Дата рождения введена неверно #{value}!")
+    end
+  end
+
+  # Метод класса для проверки даты рождения
+  def self.verify_bd(birthday)
+    birthday == /0?[1-9]+\.[0-9]{2}\.[0-9]{2,4}/.match(birthday).to_s
+  end
+
   #=====================================================================================================================
 
   # Получение информации об объекте
