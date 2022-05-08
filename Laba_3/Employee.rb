@@ -7,9 +7,9 @@ class Employee
   # Конструктор
   def initialize(surname:, firstname:, lastname:, bd:, passport:,
   phone:, address:, email:, job_list:nil)
-    @surname = surname # Фамилия
-    @firstname = firstname # Имя
-    @lastname = lastname # Отчество
+    self.surname = surname.gsub(/\s+/, "") # Фамилия
+    self.firstname = firstname.gsub(/\s+/, "") # Имя
+    self.lastname = lastname.gsub(/\s+/, "") # Отчество
     @bd = bd # День рождения
     @passport = passport # Паспорт
     self.phone = phone # Телефон
@@ -32,7 +32,7 @@ class Employee
   def phone=(value)
     if self.class.verify_phone(value)
       @phone = ("7-"+value[1..-1]).insert(5, "-")
-    else raise ArgumentError.new("Номер телефона введен неверно!")
+    else raise ArgumentError.new("Номер телефона введен неверно #{value}!")
     end
   end
 
@@ -46,7 +46,7 @@ class Employee
   def email=(value)
     if self.class.verify_email(value)
       @email = value.downcase
-    else raise ArgumentError.new("Электронный адрес введен неверно!")
+    else raise ArgumentError.new("Электронный адрес введен неверно #{value}!")
     end
   end
 
@@ -55,6 +55,33 @@ class Employee
     email == /^((?:[a-z]+[0-9_\.-]*)+[a-z0-9_\.-]*[a-z0-9])@((?:[a-z0-9]+[\.-]*)+\.[a-z]{2,4})$/.match(email).to_s
   end
 
+  # Проверка Фамилии, Имени и Отчества
+  def surname=(value)
+    if self.class.verify_name(value)
+      @surname = value
+    else
+      raise ArgumentError.new("Фамилия введена неверно #{value}!")
+    end
+  end
+
+  def firstname=(value)
+    if self.class.verify_name(value)
+      @firstname = value
+    else raise ArgumentError.new("Имя введено неверно #{value}!")
+    end
+  end
+
+  def lastname=(value)
+    if self.class.verify_name(value)
+      @lastname = value
+    else raise ArgumentError.new("Отчество введено неверно #{value}!")
+    end
+  end
+
+  # Метод класса для имени
+  def self.verify_name(name)
+    name == /^[А-ЯЁ][а-яё]{2,}([-][А-ЯЁ][а-яё]{2,})?$/.match(name).to_s
+  end
   #=====================================================================================================================
 
   # Получение информации об объекте
