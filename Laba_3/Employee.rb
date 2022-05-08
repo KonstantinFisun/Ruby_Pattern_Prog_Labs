@@ -121,7 +121,11 @@ class Employee
     if @job_list == nil
       @job_list = Job_list.new([job])
     else
-      @job_list.add_note(job)
+      if total_bid.to_i+job.percentage_bid.to_i<=150
+        @job_list.add_note(job)
+      else
+        Exception.new("Суммарная ставка превышает заданной нормы!")
+      end
     end
   end
 
@@ -134,7 +138,6 @@ class Employee
       end
     end
   end
-  #=====================================================================================================================
 
   # Метод, возвращающий текущую должность
   def current_post
@@ -146,13 +149,21 @@ class Employee
   end
   #=====================================================================================================================
 
-  # Метод, рассчитывающий суммарную зарплату данного человека на всех текущих должностях
+  # Метод, рассчитывающий суммарную зарплату данного работника на всех текущих должностях
   # Аргумент: имеющиеся должности
   def total_salary(posts)
     current_job = current_post # Получаем все текущие работы
     sum = 0
     current_job.each{|x| sum += x.get_salary(posts)}
     sum
+  end
+
+  # Метод получающий суммарную ставку работники
+  def total_bid
+    current_job = current_post # Получаем все текущие работы
+    total = 0
+    current_job.each {|x| total += x.percentage_bid}
+    total
   end
 end
 
