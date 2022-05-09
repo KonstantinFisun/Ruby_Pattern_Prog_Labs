@@ -7,8 +7,7 @@ require "yaml/store"
 
 
 def main
-  dep = Department_list.read_from_db
-  puts dep
+  puts(Employee_list.read_from_db)
 end
 
 if __FILE__ == $0
