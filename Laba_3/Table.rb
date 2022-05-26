@@ -32,38 +32,48 @@ class Table < FXMainWindow
     # Меню файла
     filemenu = FXMenuPane.new(self)
     FXMenuCommand.new(filemenu, "Выход", nil, getApp, FXApp::ID_QUIT)
-    FXMenuCommand.new(filemenu, "Департаменты").connect(SEL_COMMAND, method(:draw_dep))
-    FXMenuCommand.new(filemenu, "Должности").connect(SEL_COMMAND, method(:draw_posts))
-    FXMenuCommand.new(filemenu, "Записи о работах").connect(SEL_COMMAND, method(:draw_jobs))
-    FXMenuCommand.new(filemenu, "Сотрудники").connect(SEL_COMMAND, method(:draw_employee))
+    FXMenuCommand.new(filemenu, "Департаменты").connect(SEL_COMMAND, method(:dep))
+    FXMenuCommand.new(filemenu, "Должности").connect(SEL_COMMAND, method(:posts))
+    FXMenuCommand.new(filemenu, "Записи о работах").connect(SEL_COMMAND, method(:jobs))
+    FXMenuCommand.new(filemenu, "Сотрудники").connect(SEL_COMMAND, method(:employee))
     FXMenuTitle.new(menubar, "Файл", nil, filemenu) # Название
 
     # Меню манипуляции
     manip = FXMenuPane.new(self)
-    FXMenuCommand.new(manip, "Добавить запись")
+    FXMenuCommand.new(manip, "Добавить запись").connect(SEL_COMMAND, method(:add))
     FXMenuCommand.new(manip, "Удалить запись")
+    FXMenuCommand.new(manip, "Изменить запись")
     FXMenuTitle.new(menubar, "Манипуляция", nil, manip)
 
   end
 
-  # Обращение к контроллеру для отрисовки департаментов
-  def draw_dep(sender, sel, ptr)
-    Controller.draw_dep(self, @table)
+  # # Обращение к контроллеру для добавления записи
+  def add(sender, sel, ptr)
+    Controller.add(self)
   end
 
   # Обращение к контроллеру для отрисовки департаментов
-  def draw_posts(sender, sel, ptr)
-    Controller.draw_posts(self, @table)
+  def dep(sender, sel, ptr)
+    Controller.transition_to(DepState.new) # Меняем состояние
+    Controller.draw(self, @table) # Вызываем отрисовку
   end
 
   # Обращение к контроллеру для отрисовки департаментов
-  def draw_jobs(sender, sel, ptr)
-    Controller.draw_jobs(self, @table)
+  def posts(sender, sel, ptr)
+    Controller.transition_to(PostState.new) # Меняем состояние
+    Controller.draw(self, @table) # Вызываем отрисовку
   end
 
   # Обращение к контроллеру для отрисовки департаментов
-  def draw_employee(sender, sel, ptr)
-    Controller.draw_employee(self, @table)
+  def jobs(sender, sel, ptr)
+    Controller.transition_to(JobState.new) # Меняем состояние
+    Controller.draw(self, @table) # Вызываем отрисовку
+  end
+
+  # Обращение к контроллеру для отрисовки департаментов
+  def employee(sender, sel, ptr)
+    Controller.transition_to(EmployeeState.new) # Меняем состояние
+    Controller.draw(self, @table) # Вызываем отрисовку
   end
 
 

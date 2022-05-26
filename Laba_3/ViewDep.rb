@@ -7,6 +7,7 @@ class ViewDep
 
   def initialize(app, table)
 
+    @app = app
     # Считывание департаментов из бд
     dep = Department_list.read_from_db
 
@@ -38,10 +39,10 @@ class ViewDep
   end
 
   #Добавление департамента
-  def add_dep(sender, sel, ptr)
+  def self.add_dep(app)
 
     # Создание диалогово окна
-    dlg = FXDialogBox.new(self, "Добавить департамент")
+    dlg = FXDialogBox.new(app, "Добавить департамент")
 
     # Заполнение контента
     frame = FXHorizontalFrame.new(dlg, LAYOUT_FILL_X|LAYOUT_FILL_Y)

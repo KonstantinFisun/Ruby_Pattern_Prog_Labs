@@ -39,7 +39,7 @@ class ViewEmployee
   end
 
   #Добавление департамента
-  def add_employee(sender, sel, ptr)
+  def self.add_employee(sender, sel, ptr)
 
     # Создание диалогово окна
     dlg = FXDialogBox.new(self, "Добавить сотрудника")

@@ -37,7 +37,7 @@ class ViewJob
   end
 
   #Добавление департамента
-  def add_job(sender, sel, ptr)
+  def self.add_job(sender, sel, ptr)
 
     # Создание диалогово окна
     dlg = FXDialogBox.new(self, "Добавить запись о работе")
@@ -67,7 +67,7 @@ class ViewJob
     # Вернет ненулевое значение при нажатие ОК
     if dlg.execute != 0
       # Обращаемся к контроллеру
-      Controller.add_job(post.text, employee.text, start_date.text, date_of_dismissal.text, percentage_bid.text)
+      Controller.add_bd(post.text, employee.text, start_date.text, date_of_dismissal.text, percentage_bid.text)
     end
   end
 end
