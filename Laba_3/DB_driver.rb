@@ -26,6 +26,7 @@ class DB_driver
     self.set_parameters
   end
 
+  
   # Считывание отделов
   def departments_read_from_db
     list_departments = [] # Список отделов

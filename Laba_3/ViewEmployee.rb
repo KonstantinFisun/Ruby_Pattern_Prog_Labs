@@ -5,7 +5,7 @@ Dir[File.dirname(__FILE__) + '/*.rb'].each {|file| require file }
 # Отображение должностей
 class ViewEmployee
   def initialize(app, table, employee)
-    
+
     # Количество видимых ячеек
     table.visibleRows = employee.len+5
     table.visibleColumns = 8
@@ -36,27 +36,36 @@ class ViewEmployee
   end
 
   #Добавление департамента
-  def self.add_employee(sender, sel, ptr)
+  def self.add_employee(app)
 
     # Создание диалогово окна
-    dlg = FXDialogBox.new(self, "Добавить сотрудника")
+    dlg = FXDialogBox.new(app, "Добавить сотрудника")
 
     # Заполнение контента
     frame = FXHorizontalFrame.new(dlg, LAYOUT_FILL_X|LAYOUT_FILL_Y)
-    FXLabel.new(frame, "Должность:", nil, LAYOUT_SIDE_LEFT|LAYOUT_CENTER_Y)
-    post = FXTextField.new(frame, 10,
+    FXLabel.new(frame, "Фамилия:", nil, LAYOUT_SIDE_LEFT|LAYOUT_CENTER_Y)
+    surname = FXTextField.new(frame, 10,
                            :opts => JUSTIFY_RIGHT|FRAME_SUNKEN|FRAME_THICK|LAYOUT_SIDE_LEFT|LAYOUT_CENTER_Y)
-    FXLabel.new(frame, "Сотрудник:", nil, LAYOUT_SIDE_LEFT|LAYOUT_CENTER_Y)
-    employee = FXTextField.new(frame, 10,
+    FXLabel.new(frame, "Имя:", nil, LAYOUT_SIDE_LEFT|LAYOUT_CENTER_Y)
+    firstname = FXTextField.new(frame, 10,
                                :opts => JUSTIFY_RIGHT|FRAME_SUNKEN|FRAME_THICK|LAYOUT_SIDE_LEFT|LAYOUT_CENTER_Y)
-    FXLabel.new(frame, "Дата назначения:", nil, LAYOUT_SIDE_LEFT|LAYOUT_CENTER_Y)
-    start_date = FXTextField.new(frame, 10,
+    FXLabel.new(frame, "Отчество:", nil, LAYOUT_SIDE_LEFT|LAYOUT_CENTER_Y)
+    lastname = FXTextField.new(frame, 10,
                                  :opts => JUSTIFY_RIGHT|FRAME_SUNKEN|FRAME_THICK|LAYOUT_SIDE_LEFT|LAYOUT_CENTER_Y)
-    FXLabel.new(frame, "Дата увольнения:", nil, LAYOUT_SIDE_LEFT|LAYOUT_CENTER_Y)
-    date_of_dismissal = FXTextField.new(frame, 10,
+    FXLabel.new(frame, "Дата рождения:", nil, LAYOUT_SIDE_LEFT|LAYOUT_CENTER_Y)
+    bd = FXTextField.new(frame, 10,
                                         :opts => JUSTIFY_RIGHT|FRAME_SUNKEN|FRAME_THICK|LAYOUT_SIDE_LEFT|LAYOUT_CENTER_Y)
-    FXLabel.new(frame, "Ставка:", nil, LAYOUT_SIDE_LEFT|LAYOUT_CENTER_Y)
-    percentage_bid = FXTextField.new(frame, 10,
+    FXLabel.new(frame, "Паспорт:", nil, LAYOUT_SIDE_LEFT|LAYOUT_CENTER_Y)
+    passport = FXTextField.new(frame, 10,
+                                     :opts => JUSTIFY_RIGHT|FRAME_SUNKEN|FRAME_THICK|LAYOUT_SIDE_LEFT|LAYOUT_CENTER_Y)
+    FXLabel.new(frame, "Телефон:", nil, LAYOUT_SIDE_LEFT|LAYOUT_CENTER_Y)
+    phone = FXTextField.new(frame, 10,
+                                     :opts => JUSTIFY_RIGHT|FRAME_SUNKEN|FRAME_THICK|LAYOUT_SIDE_LEFT|LAYOUT_CENTER_Y)
+    FXLabel.new(frame, "Адрес:", nil, LAYOUT_SIDE_LEFT|LAYOUT_CENTER_Y)
+    address = FXTextField.new(frame, 10,
+                                     :opts => JUSTIFY_RIGHT|FRAME_SUNKEN|FRAME_THICK|LAYOUT_SIDE_LEFT|LAYOUT_CENTER_Y)
+    FXLabel.new(frame, "Email:", nil, LAYOUT_SIDE_LEFT|LAYOUT_CENTER_Y)
+    email = FXTextField.new(frame, 10,
                                      :opts => JUSTIFY_RIGHT|FRAME_SUNKEN|FRAME_THICK|LAYOUT_SIDE_LEFT|LAYOUT_CENTER_Y)
     FXButton.new(frame, "Отмена", nil, dlg, FXDialogBox::ID_CANCEL,
                  FRAME_RAISED|FRAME_THICK|LAYOUT_SIDE_LEFT|LAYOUT_CENTER_Y)
@@ -66,7 +75,7 @@ class ViewEmployee
     # Вернет ненулевое значение при нажатие ОК
     if dlg.execute != 0
       # Обращаемся к контроллеру
-      Controller.add_bd([post.text, employee.text, start_date.text, date_of_dismissal.text, percentage_bid.text])
+      Controller.add_bd([surname.text, firstname.text, lastname.text, bd.text, passport.text, phone.text, address.text, email.text])
     end
   end
 end

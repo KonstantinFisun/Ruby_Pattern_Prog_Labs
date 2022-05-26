@@ -34,10 +34,10 @@ class ViewJob
   end
 
   # Форма для добавление департамента
-  def self.add_job(sender, sel, ptr)
+  def self.add_job(app)
 
     # Создание диалогово окна
-    dlg = FXDialogBox.new(self, "Добавить запись о работе")
+    dlg = FXDialogBox.new(app, "Добавить запись о работе")
 
     # Заполнение контента
     frame = FXHorizontalFrame.new(dlg, LAYOUT_FILL_X|LAYOUT_FILL_Y)

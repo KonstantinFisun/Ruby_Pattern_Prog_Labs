@@ -21,7 +21,12 @@ class State
 
   # Метод вывод формы добавления
   def add
-    raise NotImplementedError, "Не реализован метод вывод формы добавления"
+    raise NotImplementedError, "Не реализован метод вывода формы добавления"
+  end
+
+  # Метод добавления в бд
+  def add_bd
+    raise NotImplementedError, "Не реализован метод добавления в базу данных"
   end
 end
 
@@ -33,9 +38,14 @@ class DepState < State
     ViewDep.new(app, table, driver_db.departments_read_from_db)
   end
 
-  # Реализация метода добавления
+  # Реализация метода вывода формы добавления
   def add(app)
     ViewDep.add_dep(app)
+  end
+
+  # Реализация метода добавлени в бд
+  def add_bd
+
   end
 end
 
@@ -45,9 +55,14 @@ class PostState < State
     ViewPost.new(app, table, driver_db.posts_read_from_db)
   end
 
-  # Реализация метода добавления
+  # Реализация метода вывода формы добавления
   def add(app)
-    ViewPost.add_dep(app)
+    ViewPost.add_post(app)
+  end
+
+  # Реализация метода добавлени в бд
+  def add_bd
+
   end
 end
 
@@ -57,9 +72,14 @@ class JobState < State
     ViewJob.new(app, table, driver_db.jobs_read_from_db)
   end
 
-  # Реализация метода добавления
+  # Реализация метода вывода формы добавления
   def add(app)
-    ViewJob.add_dep(app)
+    ViewJob.add_job(app)
+  end
+
+  # Реализация метода добавлени в бд
+  def add_bd
+
   end
 end
 
@@ -69,9 +89,14 @@ class EmployeeState < State
     ViewEmployee.new(app, table, driver_db.employees_read_from_db)
   end
 
-  # Реализация метода добавления
+  # Реализация метода вывода формы добавления
   def add(app)
-    ViewEmployee.add_dep(app)
+    ViewEmployee.add_employee(app)
+  end
+
+  # Реализация метода добавлени в бд
+  def add_bd
+
   end
 end
 # ======================================================================================================================
@@ -84,7 +109,7 @@ class Controller
   def initialize
     begin
       # Подключение к базе данных
-      @driver_db = DB_driver.get_instance
+      @@driver_db = DB_driver.get_instance
     rescue => exception
       # Ловим ошибку
       puts("#{exception.message}  ⚰️⚰️⚰️⚰️» ")
@@ -115,7 +140,7 @@ class Controller
   #=====================================================================================================================
   # Отображение
   def self.draw(app, table)
-    @state.draw(app, table, @driver_db)
+    @state.draw(app, table, @@driver_db)
   end
   # #===================================================================================================================
   # Вывод формы добавление
@@ -125,7 +150,7 @@ class Controller
   #=====================================================================================================================
   # Обработка данных с формы
   def self.add_bd(list)
-
+    @state.add_bd(list)
   end
 
   # # Добавление департаментов
