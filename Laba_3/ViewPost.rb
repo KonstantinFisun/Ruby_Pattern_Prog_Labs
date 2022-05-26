@@ -39,7 +39,7 @@ class ViewPost
   end
 
   #Добавление департамента
-  def add_dep(sender, sel, ptr)
+  def add_post(sender, sel, ptr)
 
     # Создание диалогово окна
     dlg = FXDialogBox.new(self, "Добавить должность")

@@ -34,6 +34,7 @@ class Table < FXMainWindow
     FXMenuCommand.new(filemenu, "Выход", nil, getApp, FXApp::ID_QUIT)
     FXMenuCommand.new(filemenu, "Департаменты").connect(SEL_COMMAND, method(:draw_dep))
     FXMenuCommand.new(filemenu, "Должности").connect(SEL_COMMAND, method(:draw_posts))
+    FXMenuCommand.new(filemenu, "Записи о работах").connect(SEL_COMMAND, method(:draw_jobs))
     FXMenuTitle.new(menubar, "Файл", nil, filemenu) # Название
 
     # Меню манипуляции
@@ -52,6 +53,11 @@ class Table < FXMainWindow
   # Обращение к контроллеру для отрисовки департаментов
   def draw_posts(sender, sel, ptr)
     Controller.draw_posts(self, @table)
+  end
+
+  # Обращение к контроллеру для отрисовки департаментов
+  def draw_jobs(sender, sel, ptr)
+    Controller.draw_jobs(self, @table)
   end
 
 
