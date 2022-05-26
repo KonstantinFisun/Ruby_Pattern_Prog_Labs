@@ -11,24 +11,23 @@ include Fox
 
 class Controller
   def initialize
-    @application = FXApp.new("TableApp", "FoxTest")
-
-    # Подключение к базе данных
     begin
+      # Подключение к базе данных
       @driver_db = DB_driver.get_instance
-    rescue Exception
-      puts("Не удалось подключиться к базе")
+    rescue => exception
+      # Ловим ошибку
+      puts("#{exception.message}  ⚰️⚰️⚰️⚰️» ")
+    else
+      @application = FXApp.new("TableApp", "FoxTest")
+      # Создание окна
+      Table.new(@application)
+
+      # Создание приложения
+      @application.create
+
+      # Запуск
+      @application.run
     end
-
-    # Создание окна
-    Table.new(@application)
-
-    # Создание приложения
-    @application.create
-
-    # Запуск
-    @application.run
-
   end
 
   # Отображение департаментов
@@ -37,7 +36,7 @@ class Controller
   end
 
   # Отображение должностей
-  def self.draw_dep(app, table)
+  def self.draw_posts(app, table)
     ViewPost.new(app, table)
   end
 
@@ -45,4 +44,10 @@ class Controller
   def self.add_dep(name, phone, duty, posts)
     puts(@application.class)
   end
+
+  # Добавление должностей
+  def self.add_post(department, post, salary, vacancy)
+    puts(@application.class)
+  end
+
 end

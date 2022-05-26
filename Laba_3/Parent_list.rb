@@ -56,4 +56,11 @@ class Parent_list
       yield dep
     end
   end
+
+  # Метод возвращающий количество записей
+  def len
+    length = 0
+    @children_list.each{|x| length += 1}
+    length
+  end
 end
