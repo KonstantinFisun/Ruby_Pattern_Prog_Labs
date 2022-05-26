@@ -45,6 +45,11 @@ class Controller
     ViewJob.new(app, table)
   end
 
+  # Отображение сотрудников
+  def self.draw_employee(app, table)
+    ViewEmployee.new(app, table)
+  end
+
   # Добавление департаментов
   def self.add_dep(name, phone, duty, posts)
     puts(@application.class)
@@ -57,6 +62,10 @@ class Controller
 
   # Добавление записи о работе
   def self.add_job(post, employee, start_date, date_of_dismissal, percentage_bid)
+    puts(@application.class)
+  end
+
+  def self.add_employee(surname, firstname, lastname, bd, passport, phone, address, email)
     puts(@application.class)
   end
 

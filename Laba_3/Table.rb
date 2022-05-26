@@ -10,7 +10,7 @@ class Table < FXMainWindow
 
   def initialize(app)
     # Call the base class initializer first
-    super(app, "Департаменты", :opts => DECOR_ALL, :width => 700, :height => 350)
+    super(app, "Департаменты", :opts => DECOR_ALL, :width => 1200, :height => 650)
 
     # Меню бар
     menubar = FXMenuBar.new(self, LAYOUT_SIDE_TOP|LAYOUT_FILL_X)
@@ -35,6 +35,7 @@ class Table < FXMainWindow
     FXMenuCommand.new(filemenu, "Департаменты").connect(SEL_COMMAND, method(:draw_dep))
     FXMenuCommand.new(filemenu, "Должности").connect(SEL_COMMAND, method(:draw_posts))
     FXMenuCommand.new(filemenu, "Записи о работах").connect(SEL_COMMAND, method(:draw_jobs))
+    FXMenuCommand.new(filemenu, "Сотрудники").connect(SEL_COMMAND, method(:draw_employee))
     FXMenuTitle.new(menubar, "Файл", nil, filemenu) # Название
 
     # Меню манипуляции
@@ -58,6 +59,11 @@ class Table < FXMainWindow
   # Обращение к контроллеру для отрисовки департаментов
   def draw_jobs(sender, sel, ptr)
     Controller.draw_jobs(self, @table)
+  end
+
+  # Обращение к контроллеру для отрисовки департаментов
+  def draw_employee(sender, sel, ptr)
+    Controller.draw_employee(self, @table)
   end
 
 
