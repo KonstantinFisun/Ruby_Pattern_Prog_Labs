@@ -101,6 +101,14 @@ class Department_list < Parent_list
     @children_list.each{|x| list.append(x.employees_in_posts(employee_list))}
     Employee_list.new(list.flatten)
   end
+  #=====================================================================================================================
+  # Метод возвращающий количество записей
+  def len
+    length = 0
+    @children_list.each{|x| length += 1}
+    length
+  end
+  #=====================================================================================================================
 
 
 end

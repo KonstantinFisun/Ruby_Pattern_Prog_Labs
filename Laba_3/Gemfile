@@ -4,4 +4,7 @@ source "https://rubygems.org"
 
 gem 'sqlite3', '~> 1.4', '>= 1.4.2'
 gem 'mysql2', '~> 0.5.4'
-# gem "rails"
+gem 'shoes', '~> 3.0', '>= 3.0.1'
+gem 'tk', '~> 0.4.0'
+gem 'activerecord', '~> 7.0', '>= 7.0.3'
+gem 'fxruby', '~> 1.6', '>= 1.6.45'

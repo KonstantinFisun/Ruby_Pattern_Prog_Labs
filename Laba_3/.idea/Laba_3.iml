@@ -11,8 +11,19 @@
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
+    <orderEntry type="library" scope="PROVIDED" name="activemodel (v7.0.3, ruby-3.1.0-p0) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="activerecord (v7.0.3, ruby-3.1.0-p0) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="activesupport (v7.0.3, ruby-3.1.0-p0) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="bundler (v2.3.13, ruby-3.1.0-p0) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="concurrent-ruby (v1.1.10, ruby-3.1.0-p0) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="fxruby (v1.6.45, ruby-3.1.0-p0) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="i18n (v1.10.0, ruby-3.1.0-p0) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="mini_portile2 (v2.8.0, ruby-3.1.0-p0) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="minitest (v5.15.0, ruby-3.1.0-p0) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="mysql2 (v0.5.4, ruby-3.1.0-p0) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="shoes (v3.0.1, ruby-3.1.0-p0) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="sqlite3 (v1.4.2, ruby-3.1.0-p0) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="tk (v0.4.0, ruby-3.1.0-p0) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="tzinfo (v2.0.4, ruby-3.1.0-p0) [gem]" level="application" />
   </component>
 </module>
