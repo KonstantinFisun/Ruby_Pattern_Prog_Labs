@@ -52,28 +52,24 @@ class Table < FXMainWindow
     Controller.add(self)
   end
 
-  # Обращение к контроллеру для отрисовки департаментов
+  # Обращение к контроллеру для изменения состояния на департаментов
   def dep(sender, sel, ptr)
-    Controller.transition_to(DepState.new) # Меняем состояние
-    Controller.draw(self, @table) # Вызываем отрисовку
+    Controller.transition_to(DepState.new, self, @table) # Меняем состояние
   end
 
-  # Обращение к контроллеру для отрисовки департаментов
+  # Обращение к контроллеру для изменения состояния на должности
   def posts(sender, sel, ptr)
-    Controller.transition_to(PostState.new) # Меняем состояние
-    Controller.draw(self, @table) # Вызываем отрисовку
+    Controller.transition_to(PostState.new, self, @table) # Меняем состояние
   end
 
-  # Обращение к контроллеру для отрисовки департаментов
+  # Обращение к контроллеру для изменения состояния на работы
   def jobs(sender, sel, ptr)
-    Controller.transition_to(JobState.new) # Меняем состояние
-    Controller.draw(self, @table) # Вызываем отрисовку
+    Controller.transition_to(JobState.new, self, @table) # Меняем состояние
   end
 
-  # Обращение к контроллеру для отрисовки департаментов
+  # Обращение к контроллеру для изменения состояния на сотрудников
   def employee(sender, sel, ptr)
-    Controller.transition_to(EmployeeState.new) # Меняем состояние
-    Controller.draw(self, @table) # Вызываем отрисовку
+    Controller.transition_to(EmployeeState.new, self, @table) # Меняем состояние
   end
 
 

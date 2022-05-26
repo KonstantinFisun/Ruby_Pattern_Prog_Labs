@@ -5,10 +5,8 @@ Dir[File.dirname(__FILE__) + '/*.rb'].each {|file| require file }
 # Отображение должностей
 class ViewPost
 
-  def initialize(app, table)
+  def initialize(app, table, post)
 
-    # Считывание должностей из бд
-    post = Post_list.read_from_db
 
     # Количество видимых ячеек
     table.visibleRows = post.len+5
@@ -66,7 +64,7 @@ class ViewPost
     # Вернет ненулевое значение при нажатие ОК
     if dlg.execute != 0
       # Обращаемся к контроллеру
-      Controller.add_post(department.text, post.text, salary.text, vacancy.text)
+      Controller.add_db([department.text, post.text, salary.text, vacancy.text])
     end
 
   end

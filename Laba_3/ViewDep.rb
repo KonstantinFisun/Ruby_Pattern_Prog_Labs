@@ -5,11 +5,7 @@ Dir[File.dirname(__FILE__) + '/*.rb'].each {|file| require file }
 # Отображение департаментов
 class ViewDep
 
-  def initialize(app, table)
-
-    @app = app
-    # Считывание департаментов из бд
-    dep = Department_list.read_from_db
+  def initialize(app, table,dep)
 
     # Количество видимых ячеек
     table.visibleRows = dep.len+5
@@ -66,7 +62,7 @@ class ViewDep
     # Вернет ненулевое значение при нажатие ОК
     if dlg.execute != 0
       # Обращаемся к контроллеру
-      Controller.add_dep(name.text, phone.text, duty.text, posts.text)
+      Controller.add_db([name.text, phone.text, duty.text, posts.text])
     end
 
   end

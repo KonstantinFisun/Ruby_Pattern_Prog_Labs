@@ -4,11 +4,8 @@ Dir[File.dirname(__FILE__) + '/*.rb'].each {|file| require file }
 
 # Отображение должностей
 class ViewEmployee
-  def initialize(app, table)
-
-    # Считывание должностей из бд
-    employee = Employee_list.read_from_db
-
+  def initialize(app, table, employee)
+    
     # Количество видимых ячеек
     table.visibleRows = employee.len+5
     table.visibleColumns = 8
@@ -69,7 +66,7 @@ class ViewEmployee
     # Вернет ненулевое значение при нажатие ОК
     if dlg.execute != 0
       # Обращаемся к контроллеру
-      Controller.add_job(post.text, employee.text, start_date.text, date_of_dismissal.text, percentage_bid.text)
+      Controller.add_bd([post.text, employee.text, start_date.text, date_of_dismissal.text, percentage_bid.text])
     end
   end
 end

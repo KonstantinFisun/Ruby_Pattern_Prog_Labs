@@ -51,7 +51,7 @@ class DB_driver
       list_departments.push(Department.new(name,phone,list_duty,Post_list.new(list_posts)))
     end
 
-    list_departments
+    Department_list.new(list_departments)
   end
 
   # Считывание сотрудников
@@ -72,7 +72,7 @@ class DB_driver
                                       bd: employee["birthday"], phone: employee["phone"], passport: employee["passport"],
                                       address: employee["address"], email: employee["email"], job_list: Job_list.new(list_job)))
     end
-    list_employee
+    Employee_list.new(list_employee)
   end
 
   # Считывание работ
@@ -88,7 +88,7 @@ class DB_driver
                                                     address: job["address"], email: job["email"]),
                              start_date: job["start_date"], date_of_dismissal: job["date_of_dismissal"], percentage_bid: job["percentage_bid"]))
     end
-    list_jobs
+    Job_list.new(list_jobs)
   end
 
   # Считывание должностей
@@ -99,7 +99,7 @@ class DB_driver
     posts.each do |post|
       list_posts.push(Post.new(department: post["department_name"], salary:post["salary"], name: post["post_name"], vacancy: post["vacancy"]))
     end
-    list_posts
+    Post_list.new(list_posts)
   end
 
 

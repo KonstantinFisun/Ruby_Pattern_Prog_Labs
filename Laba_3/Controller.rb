@@ -19,9 +19,9 @@ class State
     raise NotImplementedError, "Не реализован метод отрисовки"
   end
 
-  # Метод добавления
+  # Метод вывод формы добавления
   def add
-    raise NotImplementedError, "Не реализован метод добавления"
+    raise NotImplementedError, "Не реализован метод вывод формы добавления"
   end
 end
 
@@ -29,8 +29,8 @@ end
 # Различные состояния
 class DepState < State
   # Реализация метода отрисовки
-  def draw(app,table)
-    ViewDep.new(app, table)
+  def draw(app,table, driver_db)
+    ViewDep.new(app, table, driver_db.departments_read_from_db)
   end
 
   # Реализация метода добавления
@@ -41,37 +41,37 @@ end
 
 class PostState < State
   # Реализация метода отрисовки
-  def draw(app,table)
-    ViewPost.new(app, table)
+  def draw(app,table, driver_db)
+    ViewPost.new(app, table, driver_db.posts_read_from_db)
   end
 
   # Реализация метода добавления
-  def add(sender, sel, ptr)
-    ViewPost.add_dep(sender, sel, ptr)
+  def add(app)
+    ViewPost.add_dep(app)
   end
 end
 
 class JobState < State
   # Реализация метода отрисовки
-  def draw(app,table)
-    ViewJob.new(app, table)
+  def draw(app, table, driver_db)
+    ViewJob.new(app, table, driver_db.jobs_read_from_db)
   end
 
   # Реализация метода добавления
-  def add(sender, sel, ptr)
-    ViewJob.add_dep(sender, sel, ptr)
+  def add(app)
+    ViewJob.add_dep(app)
   end
 end
 
 class EmployeeState < State
   # Реализация метода отрисовки
-  def draw(app,table)
-    ViewEmployee.new(app, table)
+  def draw(app, table, driver_db)
+    ViewEmployee.new(app, table, driver_db.employees_read_from_db)
   end
 
   # Реализация метода добавления
-  def add(sender, sel, ptr)
-    ViewEmployee.add_dep(sender, sel, ptr)
+  def add(app)
+    ViewEmployee.add_dep(app)
   end
 end
 # ======================================================================================================================
@@ -106,26 +106,27 @@ class Controller
   end
 
   # Изменение состояния работы
-  def self.transition_to(state)
+  def self.transition_to(state, app, table)
     @state = state
     @state.controller = self
+    self.draw(app, table)
   end
 
   #=====================================================================================================================
   # Отображение
   def self.draw(app, table)
-    @state.draw(app, table)
+    @state.draw(app, table, @driver_db)
   end
   # #===================================================================================================================
-  # Добавление
+  # Вывод формы добавление
   def self.add(app)
     @state.add(app)
   end
   #=====================================================================================================================
-  # # Обработка данных с формы
-  # def self.add_bd
-  #
-  # end
+  # Обработка данных с формы
+  def self.add_bd(list)
+
+  end
 
   # # Добавление департаментов
   # def self.add_dep(name, phone, duty, posts)

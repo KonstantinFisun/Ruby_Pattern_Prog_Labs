@@ -4,10 +4,7 @@ Dir[File.dirname(__FILE__) + '/*.rb'].each {|file| require file }
 
 # Отображение должностей
 class ViewJob
-  def initialize(app, table)
-
-    # Считывание должностей из бд
-    jobs = Job_list.read_from_db
+  def initialize(app, table, jobs)
 
     # Количество видимых ячеек
     table.visibleRows = jobs.len+5
@@ -36,7 +33,7 @@ class ViewJob
     (0..jobs.len-1).each { |r| table.setRowText(r, "#{r}") }
   end
 
-  #Добавление департамента
+  # Форма для добавление департамента
   def self.add_job(sender, sel, ptr)
 
     # Создание диалогово окна
@@ -67,7 +64,7 @@ class ViewJob
     # Вернет ненулевое значение при нажатие ОК
     if dlg.execute != 0
       # Обращаемся к контроллеру
-      Controller.add_bd(post.text, employee.text, start_date.text, date_of_dismissal.text, percentage_bid.text)
+      Controller.add_bd([post.text, employee.text, start_date.text, date_of_dismissal.text, percentage_bid.text])
     end
   end
 end
