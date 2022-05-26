@@ -64,7 +64,7 @@ class ViewJob
     # Вернет ненулевое значение при нажатие ОК
     if dlg.execute != 0
       # Обращаемся к контроллеру
-      Controller.add_bd([post.text, employee.text, start_date.text, date_of_dismissal.text, percentage_bid.text])
+      Controller.add_db([post.text, employee.text, start_date.text, date_of_dismissal.text, percentage_bid.text])
     end
   end
 end

@@ -25,8 +25,18 @@ class State
   end
 
   # Метод добавления в бд
-  def add_bd
+  def add_db
     raise NotImplementedError, "Не реализован метод добавления в базу данных"
+  end
+
+  # Метод вывод формы удаления записи
+  def delete
+    raise NotImplementedError, "Не реализован метод вывод формы удаления записи"
+  end
+
+  # Метод удаления записи из БД
+  def delete_from_db
+    raise NotImplementedError, "Не реализован метод удаления из базы данных"
   end
 end
 
@@ -44,9 +54,20 @@ class DepState < State
   end
 
   # Реализация метода добавлени в бд
-  def add_bd(list, driver_db)
+  def add_db(list, driver_db)
     puts(list)
   end
+
+  # Реализация метода вывода формы удаления
+  def delete(app, table)
+
+  end
+
+  # Реализация метода удаления из БД
+  def delete_from_db(list)
+
+  end
+
 end
 
 class PostState < State
@@ -61,8 +82,18 @@ class PostState < State
   end
 
   # Реализация метода добавлени в бд
-  def add_bd(list, driver_db)
+  def add_db(list, driver_db)
     puts(list)
+  end
+
+  # Реализация метода вывода формы удаления
+  def delete(app, table)
+
+  end
+
+  # Реализация метода удаления из БД
+  def delete_from_db(list)
+
   end
 end
 
@@ -78,8 +109,18 @@ class JobState < State
   end
 
   # Реализация метода добавлени в бд
-  def add_bd(list, driver_db)
+  def add_db(list, driver_db)
     puts(list)
+  end
+
+  # Реализация метода вывода формы удаления
+  def delete(app, table)
+
+  end
+
+  # Реализация метода удаления из БД
+  def delete_from_db(list)
+
   end
 end
 
@@ -95,8 +136,18 @@ class EmployeeState < State
   end
 
   # Реализация метода добавлени в бд
-  def add_bd(list, driver_db)
+  def add_db(list, driver_db)
     driver_db.employees_write_to_db(list)
+  end
+
+  # Реализация метода вывода формы удаления
+  def delete(app, table)
+    ViewEmployee.delete(app, table)
+  end
+
+  # Реализация метода удаления из БД
+  def delete_from_db(list, driver_db)
+    driver_db.employees_delete_from_db(list)
   end
 end
 # ======================================================================================================================
@@ -149,8 +200,18 @@ class Controller
   end
   #=====================================================================================================================
   # Обработка данных с формы
-  def self.add_bd(list)
-    @state.add_bd(list, @@driver_db)
+  def self.add_db(list)
+    @state.add_db(list, @@driver_db)
+  end
+  #=====================================================================================================================
+  # Обработка формы удаления записи
+  def self.delete(app, table)
+    @state.delete(app, table)
+  end
+
+  # Удаление записи из БД
+  def self.delete_from_db(list)
+    @state.delete_from_db(list, @@driver_db)
   end
   #=====================================================================================================================
 

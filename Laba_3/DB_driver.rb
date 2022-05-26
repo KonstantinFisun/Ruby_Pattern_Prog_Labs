@@ -114,6 +114,11 @@ class DB_driver
 `passport`, `address`, `email`, `phone`) VALUES ('#{emp.surname}', '#{emp.firstname}', '#{emp.lastname}', '#{emp.bd}', '#{emp.passport}',
  '#{emp.address}', '#{emp.email}', '#{emp.phone}');")
   end
-
-
+  #=====================================================================================================================
+  # Удаление из БД
+  # Удаление сотрудников из БД
+  def employees_delete_from_db(list)
+    @client.query("DELETE FROM employee WHERE(`surname` = '#{list[0][0]}')")
+  end
+  #=====================================================================================================================
 end

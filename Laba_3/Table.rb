@@ -41,13 +41,17 @@ class Table < FXMainWindow
     # Меню манипуляции
     manip = FXMenuPane.new(self)
     FXMenuCommand.new(manip, "Добавить запись").connect(SEL_COMMAND, method(:add))
-    FXMenuCommand.new(manip, "Удалить запись")
+    FXMenuCommand.new(manip, "Удалить запись").connect(SEL_COMMAND, method(:delete))
     FXMenuCommand.new(manip, "Изменить запись")
     FXMenuTitle.new(menubar, "Манипуляции", nil, manip)
 
   end
 
-  # # Обращение к контроллеру для добавления записи
+  def delete(sender, sel, ptr)
+    Controller.delete(self, @table)
+  end
+
+  # Обращение к контроллеру для добавления записи
   def add(sender, sel, ptr)
     Controller.add(self)
   end

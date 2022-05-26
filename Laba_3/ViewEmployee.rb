@@ -75,7 +75,30 @@ class ViewEmployee
     # Вернет ненулевое значение при нажатие ОК
     if dlg.execute != 0
       # Обращаемся к контроллеру
-      Controller.add_bd([surname.text, firstname.text, lastname.text, bd.text, passport.text, phone.text, address.text, email.text])
+      Controller.add_db([surname.text, firstname.text, lastname.text, bd.text, passport.text, phone.text, address.text, email.text])
+    end
+  end
+
+  def self.delete(app, table)
+
+    form = FXDialogBox.new(app, "Удалить запись")
+
+    frame = FXHorizontalFrame.new(form, LAYOUT_FILL_X|LAYOUT_FILL_Y)
+    FXLabel.new(frame, "Удалить сотрудника #{table.getItemText(table.currentRow,0)} #{table.getItemText(table.currentRow,1)}
+                #{table.getItemText(table.currentRow,2)}?", nil, LAYOUT_SIDE_LEFT|LAYOUT_CENTER_Y)
+
+    FXButton.new(frame, "Отмена", nil, form, FXDialogBox::ID_CANCEL,
+                 FRAME_RAISED|FRAME_THICK|LAYOUT_SIDE_LEFT|LAYOUT_CENTER_Y)
+    FXButton.new(frame, "Удалить", nil, form, FXDialogBox::ID_ACCEPT,
+                 FRAME_RAISED|FRAME_THICK|LAYOUT_SIDE_LEFT|LAYOUT_CENTER_Y)
+
+
+    if form.execute != 0
+      list = []
+      (0..7).each{|x| list.append(table.getItemText(table.currentRow,x))}
+      Controller.delete_from_db([list])
+      # Удаляется выбранная строчка
+      table.removeRows(table.currentRow)
     end
   end
 end
