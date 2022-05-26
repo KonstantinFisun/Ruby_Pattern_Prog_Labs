@@ -43,7 +43,7 @@ class Table < FXMainWindow
     FXMenuCommand.new(manip, "Добавить запись").connect(SEL_COMMAND, method(:add))
     FXMenuCommand.new(manip, "Удалить запись")
     FXMenuCommand.new(manip, "Изменить запись")
-    FXMenuTitle.new(menubar, "Манипуляция", nil, manip)
+    FXMenuTitle.new(menubar, "Манипуляции", nil, manip)
 
   end
 

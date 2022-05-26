@@ -26,7 +26,8 @@ class DB_driver
     self.set_parameters
   end
 
-  
+  #=====================================================================================================================
+  # Считывание из БД
   # Считывание отделов
   def departments_read_from_db
     list_departments = [] # Список отделов
@@ -101,6 +102,17 @@ class DB_driver
       list_posts.push(Post.new(department: post["department_name"], salary:post["salary"], name: post["post_name"], vacancy: post["vacancy"]))
     end
     Post_list.new(list_posts)
+  end
+  #=====================================================================================================================
+  # Запись в БД
+  # Запись сотрудников в БД
+  def employees_write_to_db(list)
+    # Проверка, что поля корректны
+    emp = Employee.new(surname: list[0],firstname: list[1],lastname: list[2], bd: list[3],passport: list[4], phone: list[5],
+                       address: list[6],email: list[7])
+    jobs = @client.query("INSERT INTO `car_dealership`.`employee` (`surname`, `firstname`, `lastname`, `birthday`,
+`passport`, `address`, `email`, `phone`) VALUES ('#{emp.surname}', '#{emp.firstname}', '#{emp.lastname}', '#{emp.bd}', '#{emp.passport}',
+ '#{emp.address}', '#{emp.email}', '#{emp.phone}');")
   end
 
 

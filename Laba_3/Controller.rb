@@ -44,8 +44,8 @@ class DepState < State
   end
 
   # Реализация метода добавлени в бд
-  def add_bd
-
+  def add_bd(list, driver_db)
+    puts(list)
   end
 end
 
@@ -61,8 +61,8 @@ class PostState < State
   end
 
   # Реализация метода добавлени в бд
-  def add_bd
-
+  def add_bd(list, driver_db)
+    puts(list)
   end
 end
 
@@ -78,8 +78,8 @@ class JobState < State
   end
 
   # Реализация метода добавлени в бд
-  def add_bd
-
+  def add_bd(list, driver_db)
+    puts(list)
   end
 end
 
@@ -95,8 +95,8 @@ class EmployeeState < State
   end
 
   # Реализация метода добавлени в бд
-  def add_bd
-
+  def add_bd(list, driver_db)
+    driver_db.employees_write_to_db(list)
   end
 end
 # ======================================================================================================================
@@ -150,28 +150,8 @@ class Controller
   #=====================================================================================================================
   # Обработка данных с формы
   def self.add_bd(list)
-    @state.add_bd(list)
+    @state.add_bd(list, @@driver_db)
   end
-
-  # # Добавление департаментов
-  # def self.add_dep(name, phone, duty, posts)
-  #   puts(@application.class)
-  # end
-  #
-  # # Добавление должностей
-  # def self.add_post(department, post, salary, vacancy)
-  #   puts(@application.class)
-  # end
-  #
-  # # Добавление записи о работе
-  # def self.add_job(post, employee, start_date, date_of_dismissal, percentage_bid)
-  #   puts(@application.class)
-  # end
-  #
-  # # Добавление сотрудника о работе
-  # def self.add_employee(surname, firstname, lastname, bd, passport, phone, address, email)
-  #   puts(@application.class)
-  # end
   #=====================================================================================================================
 
 end
