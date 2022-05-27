@@ -10,7 +10,7 @@ class Table < FXMainWindow
 
   def initialize(app)
     # Call the base class initializer first
-    super(app, "Департаменты", :opts => DECOR_ALL, :width => 1200, :height => 650)
+    super(app, "Автосалон", :opts => DECOR_ALL, :width => 1200, :height => 650)
 
     # Меню бар
     menubar = FXMenuBar.new(self, LAYOUT_SIDE_TOP|LAYOUT_FILL_X)
@@ -42,11 +42,16 @@ class Table < FXMainWindow
     manip = FXMenuPane.new(self)
     FXMenuCommand.new(manip, "Добавить запись").connect(SEL_COMMAND, method(:add))
     FXMenuCommand.new(manip, "Удалить запись").connect(SEL_COMMAND, method(:delete))
-    FXMenuCommand.new(manip, "Изменить запись")
+    FXMenuCommand.new(manip, "Изменить запись").connect(SEL_COMMAND, method(:update))
     FXMenuTitle.new(menubar, "Манипуляции", nil, manip)
 
   end
 
+  def update(sender, sel, ptr)
+    Controller.update(self, @table)
+  end
+
+  # Обращение к контроллеру для удаления записи
   def delete(sender, sel, ptr)
     Controller.delete(self, @table)
   end

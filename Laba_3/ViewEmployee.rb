@@ -101,5 +101,65 @@ class ViewEmployee
       table.removeRows(table.currentRow)
     end
   end
+
+  #Добавление департамента
+  def self.update(app, table)
+
+    # Создание диалогово окна
+    dlg = FXDialogBox.new(app, "Обновить сотрудника сотрудника")
+
+    # Заполнение контента
+    frame = FXHorizontalFrame.new(dlg, LAYOUT_FILL_X|LAYOUT_FILL_Y)
+    FXLabel.new(frame, "Фамилия:", nil, LAYOUT_SIDE_LEFT|LAYOUT_CENTER_Y)
+    surname = FXTextField.new(frame, 10,
+                              :opts => JUSTIFY_RIGHT|FRAME_SUNKEN|FRAME_THICK|LAYOUT_SIDE_LEFT|LAYOUT_CENTER_Y)
+    surname.text = table.getItemText(table.currentRow,0)
+
+    FXLabel.new(frame, "Имя:", nil, LAYOUT_SIDE_LEFT|LAYOUT_CENTER_Y)
+    firstname = FXTextField.new(frame, 10,
+                                :opts => JUSTIFY_RIGHT|FRAME_SUNKEN|FRAME_THICK|LAYOUT_SIDE_LEFT|LAYOUT_CENTER_Y)
+    firstname.text = table.getItemText(table.currentRow,1)
+
+    FXLabel.new(frame, "Отчество:", nil, LAYOUT_SIDE_LEFT|LAYOUT_CENTER_Y)
+    lastname = FXTextField.new(frame, 10,
+                               :opts => JUSTIFY_RIGHT|FRAME_SUNKEN|FRAME_THICK|LAYOUT_SIDE_LEFT|LAYOUT_CENTER_Y)
+    lastname.text = table.getItemText(table.currentRow,2)
+
+    FXLabel.new(frame, "Дата рождения:", nil, LAYOUT_SIDE_LEFT|LAYOUT_CENTER_Y)
+    bd = FXTextField.new(frame, 10,
+                         :opts => JUSTIFY_RIGHT|FRAME_SUNKEN|FRAME_THICK|LAYOUT_SIDE_LEFT|LAYOUT_CENTER_Y)
+    bd.text = table.getItemText(table.currentRow,3)
+
+    FXLabel.new(frame, "Паспорт:", nil, LAYOUT_SIDE_LEFT|LAYOUT_CENTER_Y)
+    passport = FXTextField.new(frame, 10,
+                               :opts => JUSTIFY_RIGHT|FRAME_SUNKEN|FRAME_THICK|LAYOUT_SIDE_LEFT|LAYOUT_CENTER_Y)
+    passport.text = table.getItemText(table.currentRow,4)
+
+    FXLabel.new(frame, "Телефон:", nil, LAYOUT_SIDE_LEFT|LAYOUT_CENTER_Y)
+    phone = FXTextField.new(frame, 10,
+                            :opts => JUSTIFY_RIGHT|FRAME_SUNKEN|FRAME_THICK|LAYOUT_SIDE_LEFT|LAYOUT_CENTER_Y)
+    phone.text = table.getItemText(table.currentRow,5)
+
+    FXLabel.new(frame, "Адрес:", nil, LAYOUT_SIDE_LEFT|LAYOUT_CENTER_Y)
+    address = FXTextField.new(frame, 10,
+                              :opts => JUSTIFY_RIGHT|FRAME_SUNKEN|FRAME_THICK|LAYOUT_SIDE_LEFT|LAYOUT_CENTER_Y)
+    address.text = table.getItemText(table.currentRow,6)
+
+    FXLabel.new(frame, "Email:", nil, LAYOUT_SIDE_LEFT|LAYOUT_CENTER_Y)
+    email = FXTextField.new(frame, 10,
+                            :opts => JUSTIFY_RIGHT|FRAME_SUNKEN|FRAME_THICK|LAYOUT_SIDE_LEFT|LAYOUT_CENTER_Y)
+    email.text = table.getItemText(table.currentRow,7)
+
+    FXButton.new(frame, "Отмена", nil, dlg, FXDialogBox::ID_CANCEL,
+                 FRAME_RAISED|FRAME_THICK|LAYOUT_SIDE_LEFT|LAYOUT_CENTER_Y)
+    FXButton.new(frame, "Обновить", nil, dlg, FXDialogBox::ID_ACCEPT,
+                 FRAME_RAISED|FRAME_THICK|LAYOUT_SIDE_LEFT|LAYOUT_CENTER_Y)
+
+    # Вернет ненулевое значение при нажатие ОК
+    if dlg.execute != 0
+      # Обращаемся к контроллеру
+      Controller.update_db([surname.text, firstname.text, lastname.text, bd.text, passport.text, phone.text, address.text, email.text])
+    end
+  end
 end
 

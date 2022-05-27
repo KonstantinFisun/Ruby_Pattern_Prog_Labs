@@ -121,4 +121,12 @@ class DB_driver
     @client.query("DELETE FROM employee WHERE(`surname` = '#{list[0][0]}')")
   end
   #=====================================================================================================================
+  # Обновление записи в БД
+  def employees_update(list)
+    emp = Employee.new(surname: list[0],firstname: list[1],lastname: list[2], bd: list[3],passport: list[4], phone: list[5],
+                       address: list[6],email: list[7])
+    @client.query("UPDATE `car_dealership`.`employee` SET `surname`='#{emp.surname}', `firstname`='#{emp.firstname}',
+  `lastname`='#{emp.lastname}', `birthday`='#{emp.bd}', `passport`='#{emp.passport}',
+ `address`='#{emp.address}', `email`='#{emp.email}', `phone`='#{emp.phone}' WHERE `passport`='#{list[4]}'")
+  end
 end

@@ -149,6 +149,14 @@ class EmployeeState < State
   def delete_from_db(list, driver_db)
     driver_db.employees_delete_from_db(list)
   end
+
+  def update(app, table)
+    ViewEmployee.update(app, table)
+  end
+
+  def update_db(list, driver_db)
+    driver_db.employees_update(list)
+  end
 end
 # ======================================================================================================================
 
@@ -194,11 +202,12 @@ class Controller
     @state.draw(app, table, @@driver_db)
   end
   # #===================================================================================================================
-  # Вывод формы добавление
+  # Добавление
+  # Обработка формы добавление
   def self.add(app)
     @state.add(app)
   end
-  #=====================================================================================================================
+
   # Обработка данных с формы
   def self.add_db(list)
     @state.add_db(list, @@driver_db)
@@ -212,6 +221,16 @@ class Controller
   # Удаление записи из БД
   def self.delete_from_db(list)
     @state.delete_from_db(list, @@driver_db)
+  end
+  #=====================================================================================================================
+  # Обработка формы обновления записи
+  def self.update(app, table)
+    @state.update(app, table)
+  end
+
+  # Удаление записи из БД
+  def self.update_db(list)
+    @state.update_db(list, @@driver_db)
   end
   #=====================================================================================================================
 
